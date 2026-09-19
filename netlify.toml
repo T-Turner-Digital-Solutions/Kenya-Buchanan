@@ -1,0 +1,22 @@
+# Netlify configuration — Kenya Buchanan platform (Phase 1 prototype)
+# NOTE: the production domain (kenyabuchanan.com) is intentionally NOT connected.
+# This site deploys to its Netlify preview/staging URL only.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--no-audit --no-fund"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
