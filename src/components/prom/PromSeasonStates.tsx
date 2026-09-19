@@ -209,7 +209,11 @@ function OfferState({ season }: { season: Season }) {
   const [expired, setExpired] = useState(false);
 
   useEffect(() => {
-    setHoldTarget(new Date(Date.now() + 47 * 60_000 + 32_000).toISOString());
+    // Started after paint so the server-rendered markup stays time-neutral.
+    const frame = window.requestAnimationFrame(() =>
+      setHoldTarget(new Date(Date.now() + 47 * 60_000 + 32_000).toISOString()),
+    );
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const resetHold = useMemo(

@@ -22,8 +22,9 @@ export function Reveal({
     const node = ref.current;
     if (!node) return;
     if (typeof IntersectionObserver === "undefined") {
-      setShown(true);
-      return;
+      // No observer support: reveal everything rather than hiding content.
+      const frame = window.requestAnimationFrame(() => setShown(true));
+      return () => window.cancelAnimationFrame(frame);
     }
     const observer = new IntersectionObserver(
       (entries) => {

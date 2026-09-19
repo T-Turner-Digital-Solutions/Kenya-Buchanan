@@ -432,8 +432,16 @@ export type PortalClient = Omit<ClientRecord, "ownerNotes"> & {
 export function getPortalClient(id: string): PortalClient | undefined {
   const record = getClientRecord(id);
   if (!record) return undefined;
-  const { ownerNotes: _ownerNotes, ...safe } = record;
-  return { ...safe, activity: record.activity.filter((event) => event.clientVisible) };
+
+  // Owner-only fields are removed here, so a portal component cannot render
+  // them even by accident. Phase 2 additionally enforces this server-side.
+  const safe: Record<string, unknown> = { ...record };
+  delete safe.ownerNotes;
+
+  return {
+    ...(safe as Omit<ClientRecord, "ownerNotes">),
+    activity: record.activity.filter((event) => event.clientVisible),
+  };
 }
 
 /** The account the Phase 1 client demo signs into. */

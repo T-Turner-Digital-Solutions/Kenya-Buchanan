@@ -48,7 +48,9 @@ export function Countdown({
   const [time, setTime] = useState<Remaining | null>(null);
 
   useEffect(() => {
-    setTime(remainingFrom(targetMs));
+    // The first read happens after paint: the server cannot know "now", so the
+    // initial render stays neutral and hydration matches.
+    const frame = window.requestAnimationFrame(() => setTime(remainingFrom(targetMs)));
     const id = window.setInterval(() => {
       const next = remainingFrom(targetMs);
       setTime(next);
@@ -57,7 +59,10 @@ export function Countdown({
         onExpire?.();
       }
     }, 1000);
-    return () => window.clearInterval(id);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearInterval(id);
+    };
   }, [targetMs, onExpire]);
 
   const textTone = tone === "dark" ? "text-bone" : "text-ink";

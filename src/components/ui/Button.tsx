@@ -41,16 +41,22 @@ export function Button(props: ButtonProps) {
   const { variant = "ink", size = "md", className, children } = props;
   const classes = cx(base, variants[variant], sizes[size], className);
 
+  // Style props are consumed here; everything else passes through to the element.
+  const rest = { ...props } as Record<string, unknown>;
+  delete rest.variant;
+  delete rest.size;
+  delete rest.className;
+  delete rest.children;
+  delete rest.href;
+
   if (props.href !== undefined) {
-    const { href, variant: _v, size: _s, className: _c, children: _ch, ...rest } = props;
     return (
-      <Link href={href} className={classes} {...rest}>
+      <Link href={props.href} className={classes} {...rest}>
         {children}
       </Link>
     );
   }
 
-  const { variant: _v, size: _s, className: _c, children: _ch, href: _h, ...rest } = props;
   return (
     <button type="button" className={classes} {...rest}>
       {children}

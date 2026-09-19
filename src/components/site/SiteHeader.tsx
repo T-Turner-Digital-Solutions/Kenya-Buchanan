@@ -14,14 +14,14 @@ export function SiteHeader({ tone = "auto" }: { tone?: "auto" | "light" | "dark"
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    // Read the initial position after paint — a refresh can land mid-page.
+    const frame = window.requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -152,6 +152,7 @@ export function SiteHeader({ tone = "auto" }: { tone?: "auto" | "light" | "dark"
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setOpen(false)}
                 style={{ transitionDelay: open ? `${120 + index * 55}ms` : "0ms" }}
                 className={cx(
                   "border-b border-bone/10 py-4 font-display text-3xl text-bone transition-all duration-700 ease-silk sm:text-4xl",
@@ -168,6 +169,7 @@ export function SiteHeader({ tone = "auto" }: { tone?: "auto" | "light" | "dark"
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setOpen(false)}
                 className={cx(
                   "border px-5 py-4 text-center text-[0.6rem] uppercase tracking-wide2",
                   item.emphasis === "book"
