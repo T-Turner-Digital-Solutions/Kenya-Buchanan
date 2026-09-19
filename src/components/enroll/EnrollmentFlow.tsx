@@ -4,23 +4,29 @@ import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { ContractReview } from "@/components/enroll/ContractReview";
 import { Button } from "@/components/ui/Button";
-import { SelectField, TextField } from "@/components/ui/Field";
+import { SelectField, TextAreaField, TextField } from "@/components/ui/Field";
 import { MockNotice } from "@/components/ui/MockNotice";
 import { ProgressBar } from "@/components/ui/ProgressBar";
+import { VideoFrame } from "@/components/ui/VideoFrame";
+import { getVideo } from "@/lib/services";
 import { cx, formatCurrency, formatDate } from "@/lib/format";
-import type { ContractTemplate, Season } from "@/lib/types";
+import type { ContractTemplate, Experience, Season } from "@/lib/types";
 
-type Step = "details" | "agreement" | "payment" | "confirmed";
+type Step = "details" | "agreement" | "deposit" | "welcome";
 
 const steps: Array<{ key: Step; label: string }> = [
   { key: "details", label: "Your Details" },
   { key: "agreement", label: "Agreement" },
-  { key: "payment", label: "Deposit" },
-  { key: "confirmed", label: "Confirmed" },
+  { key: "deposit", label: "Deposit" },
+  { key: "welcome", label: "Welcome" },
 ];
 
 /**
- * PROM ENROLLMENT — Phase 1 demonstration flow.
+ * BOOKING / ENROLLMENT — Phase 1 demonstration flow.
+ *
+ * One continuous path: fill in the form → sign the agreement → pay the deposit
+ * → meet Kenya. The welcome video is part of the flow, not a link the client
+ * has to go and find.
  *
  * Nothing here is real: no record is created, no agreement is executed, no
  * payment is processed and no account is provisioned. Production will run each
@@ -29,24 +35,31 @@ const steps: Array<{ key: Step; label: string }> = [
  * password — a password is never generated or displayed).
  */
 export function EnrollmentFlow({
+  experience,
   season,
   template,
 }: {
-  season: Season;
+  experience: Experience;
+  /** Present for seasonal experiences (Prom today). */
+  season?: Season;
   template: ContractTemplate;
 }) {
   const [step, setStep] = useState<Step>("details");
   const [clientName, setClientName] = useState("");
   const [guardianName, setGuardianName] = useState("");
-  const [isMinor, setIsMinor] = useState(true);
+  const [isMinor, setIsMinor] = useState(experience.slug === "prom");
   const [acknowledged, setAcknowledged] = useState<string[]>([]);
   const [signature, setSignature] = useState("");
   const [guardianSignature, setGuardianSignature] = useState("");
 
+  const welcome = getVideo("vid-welcome");
   const stepIndex = steps.findIndex((entry) => entry.key === step);
   const allAcknowledged = acknowledged.length === template.acknowledgements.length;
   const signatureValid =
     signature.trim().length > 1 && (!isMinor || guardianSignature.trim().length > 1);
+
+  const depositCents = season?.depositCents ?? experience.config.depositAmountCents;
+  const seasonName = season?.name ?? experience.name;
 
   const toggleAck = (value: string) =>
     setAcknowledged((current) =>
@@ -76,7 +89,7 @@ export function EnrollmentFlow({
             </li>
           ))}
         </ol>
-        <ProgressBar value={stepIndex + 1} max={steps.length} label="Enrollment progress" />
+        <ProgressBar value={stepIndex + 1} max={steps.length} label="Booking progress" />
       </div>
 
       {step === "details" ? (
@@ -84,7 +97,7 @@ export function EnrollmentFlow({
           <div className="flex flex-col gap-3">
             <h2 className="font-display text-3xl leading-tight sm:text-4xl">Your details</h2>
             <p className="max-w-xl text-sm leading-relaxed text-ink/60">
-              This is how Kenya reaches you and how your {season.name} record is created.
+              This is how Kenya reaches you and how your {seasonName} record is created.
             </p>
           </div>
 
@@ -100,16 +113,38 @@ export function EnrollmentFlow({
             />
             <TextField id="enroll-email" label="Email" type="email" required autoComplete="email" />
             <TextField id="enroll-mobile" label="Mobile" type="tel" required autoComplete="tel" />
-            <TextField id="enroll-school" label="School" required placeholder="Where you attend" />
-            <TextField id="enroll-prom-date" label="Prom date" type="date" hint="If known" />
-            <SelectField id="enroll-grad" label="Graduation year" required defaultValue="2027">
-              {[2027, 2028, 2029, 2030].map((year) => (
-                <option key={year}>{year}</option>
-              ))}
-            </SelectField>
+
+            {experience.slug === "prom" ? (
+              <>
+                <TextField id="enroll-school" label="School" required placeholder="Where you attend" />
+                <TextField id="enroll-prom-date" label="Prom date" type="date" hint="If known" />
+                <SelectField id="enroll-grad" label="Graduation year" required defaultValue="2027">
+                  {[2027, 2028, 2029, 2030].map((year) => (
+                    <option key={year}>{year}</option>
+                  ))}
+                </SelectField>
+              </>
+            ) : (
+              <TextField
+                id="enroll-event-date"
+                label={experience.slug === "bridal" ? "Wedding date" : "Event date"}
+                type="date"
+                hint="If known"
+              />
+            )}
+
             <TextField id="enroll-city" label="City" required autoComplete="address-level2" />
             <TextField id="enroll-state" label="State" required autoComplete="address-level1" />
           </div>
+
+          {experience.slug !== "prom" ? (
+            <TextAreaField
+              id="enroll-vision"
+              label="Tell Kenya about the occasion"
+              hint="Optional"
+              placeholder="The event, the feeling, anything you already know you want."
+            />
+          ) : null}
 
           <fieldset className="flex flex-col gap-4 border-t border-ink/10 pt-8">
             <legend className="eyebrow">Parent or guardian</legend>
@@ -210,7 +245,7 @@ export function EnrollmentFlow({
               <Button
                 size="lg"
                 disabled={!allAcknowledged || !signatureValid}
-                onClick={() => setStep("payment")}
+                onClick={() => setStep("deposit")}
               >
                 Sign &amp; Continue
               </Button>
@@ -226,23 +261,24 @@ export function EnrollmentFlow({
         </div>
       ) : null}
 
-      {step === "payment" ? (
+      {step === "deposit" ? (
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-3">
             <h2 className="font-display text-3xl leading-tight sm:text-4xl">
-              {formatCurrency(season.depositCents)} deposit
+              {depositCents ? `${formatCurrency(depositCents)} deposit` : "Your deposit"}
             </h2>
             <p className="max-w-xl text-sm leading-relaxed text-ink/60">
-              Your deposit secures your spot in {season.name}. A Prom Spot is acceptance into the
-              season — your appointments are scheduled afterward.
+              {season
+                ? `Your deposit secures your spot in ${season.name}. A Prom Spot is acceptance into the season — your appointments are scheduled afterward.`
+                : `Your deposit opens your ${experience.name} experience. Kenya confirms the full investment with you at your consultation.`}
             </p>
           </div>
 
           <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr]">
             <dl className="flex flex-col gap-4 border border-ink/15 p-8">
               <div className="flex items-baseline justify-between gap-6">
-                <dt className="eyebrow">Season</dt>
-                <dd className="text-sm">{season.name}</dd>
+                <dt className="eyebrow">Experience</dt>
+                <dd className="text-sm">{seasonName}</dd>
               </div>
               <div className="flex items-baseline justify-between gap-6">
                 <dt className="eyebrow">Agreement</dt>
@@ -252,7 +288,9 @@ export function EnrollmentFlow({
               </div>
               <div className="flex items-baseline justify-between gap-6 border-t border-ink/10 pt-4">
                 <dt className="eyebrow">Due today</dt>
-                <dd className="font-display text-3xl">{formatCurrency(season.depositCents)}</dd>
+                <dd className="font-display text-3xl">
+                  {depositCents ? formatCurrency(depositCents) : "Quoted at consultation"}
+                </dd>
               </div>
             </dl>
 
@@ -270,8 +308,8 @@ export function EnrollmentFlow({
                 processor is integrated in a later phase.
               </MockNotice>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <Button size="lg" onClick={() => setStep("confirmed")}>
-                  Pay {formatCurrency(season.depositCents)} (Demo)
+                <Button size="lg" onClick={() => setStep("welcome")}>
+                  {depositCents ? `Pay ${formatCurrency(depositCents)} (Demo)` : "Reserve My Place (Demo)"}
                 </Button>
                 <Button variant="ghost" size="lg" onClick={() => setStep("agreement")}>
                   Back
@@ -282,17 +320,36 @@ export function EnrollmentFlow({
         </div>
       ) : null}
 
-      {step === "confirmed" ? (
-        <div className="flex flex-col gap-10">
+      {step === "welcome" ? (
+        <div className="flex flex-col gap-12">
           <div className="flex flex-col gap-5 border-y border-ink/10 py-12 text-center">
-            <p className="eyebrow">{season.name}</p>
+            <p className="eyebrow">{seasonName}</p>
             <h2 className="font-display text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
-              Prom spot confirmed.
+              {season ? "Prom spot confirmed." : "You're in."}
             </h2>
             <p className="mx-auto max-w-lg text-sm leading-relaxed text-ink/60">
-              {signature || "Your"} place in {season.name} is secured. Kenya has been notified.
+              {signature ? `${signature.trim()}'s` : "Your"} place in {seasonName} is secured. Now
+              meet the woman making your gown.
             </p>
           </div>
+
+          {/* The welcome video is part of the flow — not a link to go and find. */}
+          {welcome ? (
+            <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-2 text-center">
+                <p className="eyebrow">A message from Kenya</p>
+                <p className="font-display text-2xl leading-snug sm:text-3xl">
+                  Welcome to your journey.
+                </p>
+              </div>
+              <VideoFrame video={welcome} size="lg" label="A Message From Kenya" />
+              <p className="mx-auto max-w-xl text-center text-sm leading-relaxed text-ink/55">
+                Kenya walks you through the whole experience — what to expect, how you and she
+                communicate, your appointments, inspiration, measurements, design, fabric sourcing,
+                fittings, when to ask for changes, and the day your gown is released to you.
+              </p>
+            </div>
+          ) : null}
 
           <div className="grid gap-10 lg:grid-cols-2">
             <div className="flex flex-col gap-4">
@@ -300,8 +357,8 @@ export function EnrollmentFlow({
               <ol className="flex flex-col gap-4">
                 {[
                   "You receive a secure activation link by email to create your own password — no password is ever generated or shown to you.",
-                  "Your My Kenya B. account opens with a welcome message from Kenya.",
-                  "You upload 1–3 inspiration images.",
+                  "Your My Kenya B. account opens with your journey laid out stage by stage.",
+                  `You upload ${experience.config.inspirationUploadsMin}–${experience.config.inspirationUploadsMax} inspiration images.`,
                   "Kenya opens scheduling for your measurement and design appointment.",
                 ].map((item, index) => (
                   <li key={item} className="flex gap-4 text-sm leading-relaxed text-ink/65">
@@ -319,7 +376,7 @@ export function EnrollmentFlow({
               <dl className="flex flex-col gap-3 text-sm">
                 <div className="flex justify-between gap-6">
                   <dt className="text-ink/50">Paid</dt>
-                  <dd>{formatCurrency(season.depositCents)}</dd>
+                  <dd>{depositCents ? formatCurrency(depositCents) : "Quoted at consultation"}</dd>
                 </div>
                 <div className="flex justify-between gap-6">
                   <dt className="text-ink/50">Agreement</dt>
@@ -341,14 +398,14 @@ export function EnrollmentFlow({
               <MockNotice>
                 Demonstration receipt — no payment was processed and no account was created.
               </MockNotice>
-              <Button href="/portal/welcome" size="lg">
-                Continue to My Kenya B.
+              <Button href="/portal" size="lg">
+                Start My Journey
               </Button>
               <Link
-                href="/prom"
+                href={`/${experience.slug}`}
                 className="text-center text-[0.6rem] uppercase tracking-wide2 text-ink/45 transition-colors hover:text-ink"
               >
-                Back to Prom
+                Back to {experience.name}
               </Link>
             </div>
           </div>

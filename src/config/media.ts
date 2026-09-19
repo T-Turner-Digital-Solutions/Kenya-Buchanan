@@ -21,13 +21,13 @@ const editorial = (name: string) => `/media/editorial/${name}.webp`;
 
 export const mediaSources: Record<string, string | undefined> = {
   /* Brand */
-  "brand-mark": "/media/brand/kenya-b-mark.png",
+  "brand-mark": "/media/brand/kenya-b-lockup.png",
 
   /* Kenya — displayed at its true size; a full-bleed hero needs a larger original */
   "kenya-portrait": editorial("kenya-buchanan-portrait"),
 
   /* Home */
-  "home-hero": editorial("gown-royal-blue-tulle-car"),
+  "home-hero": editorial("kenya-with-bride-lakeside"),
   "featured-1": editorial("gown-silver-pearl-cape"),
   "featured-2": editorial("gown-pink-ruffle-tulle"),
   "featured-3": editorial("gown-red-tulle-balustrade"),

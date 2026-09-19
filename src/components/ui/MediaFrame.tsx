@@ -21,6 +21,7 @@ export function MediaFrame({
   priority,
   sizes = "(max-width: 768px) 100vw, 50vw",
   bare = false,
+  focal = "center",
 }: {
   slot: MediaSlot;
   className?: string;
@@ -29,7 +30,14 @@ export function MediaFrame({
   sizes?: string;
   /** Suppress the placeholder's label — used when content is layered on top. */
   bare?: boolean;
+  /**
+   * Where to anchor the crop. Full-bleed heroes use "face": tall portraits
+   * cropped to a wide frame otherwise lose the subject's head.
+   */
+  focal?: "center" | "face" | "top";
 }) {
+  const focalClass =
+    focal === "face" ? "object-[50%_18%]" : focal === "top" ? "object-top" : "object-center";
   const src = resolveMedia(slot.id);
   const tone = slot.tone ?? "light";
 
@@ -42,7 +50,10 @@ export function MediaFrame({
           fill
           sizes={sizes}
           priority={priority}
-          className="object-cover transition-transform duration-[1.4s] ease-silk group-hover:scale-[1.04]"
+          className={cx(
+            "object-cover transition-transform duration-[1.4s] ease-silk group-hover:scale-[1.04]",
+            focalClass,
+          )}
         />
       ) : (
         <div

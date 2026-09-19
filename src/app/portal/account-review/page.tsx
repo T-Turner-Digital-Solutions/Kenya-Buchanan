@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { BrandMark } from "@/components/site/BrandMark";
 import { MockNotice } from "@/components/ui/MockNotice";
 import { StatusPill } from "@/components/ui/StatusPill";
 import { brand } from "@/config/site";
@@ -26,13 +26,7 @@ export default function AccountReviewPage() {
 
       <main id="main" className="flex flex-1 items-center justify-center px-5 py-16 sm:px-8">
         <div className="flex w-full max-w-xl flex-col gap-9">
-          <Image
-            src="/media/brand/kenya-b-mark.png"
-            alt=""
-            width={157}
-            height={285}
-            className="h-14 w-auto"
-          />
+          <BrandMark variant="light" lockup className="h-20 self-start" />
 
           <div className="flex flex-col gap-5">
             <StatusPill tone="attention">Account on hold</StatusPill>

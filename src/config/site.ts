@@ -29,7 +29,7 @@ export const primaryNav: NavItem[] = [
 ];
 
 export const actionNav: NavItem[] = [
-  { label: "My Kenya B.", href: "/portal/login", emphasis: "portal" },
+  { label: "My Kenya B. Login", href: "/portal/login", emphasis: "portal" },
   { label: "Book", href: "/book", emphasis: "book" },
 ];
 
@@ -55,7 +55,7 @@ export const footerNav = [
   {
     heading: "Clients",
     links: [
-      { label: "My Kenya B.", href: "/portal/login" },
+      { label: "My Kenya B. Login", href: "/portal/login" },
       { label: "Appointments", href: "/portal/appointments" },
       { label: "Payments", href: "/portal/payments" },
       { label: "Ask Kenya B.", href: "/portal/ask" },

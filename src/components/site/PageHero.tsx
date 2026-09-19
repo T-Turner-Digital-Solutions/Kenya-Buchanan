@@ -41,11 +41,12 @@ export function PageHero({
           slot={{ ...media, tone: "dark" }}
           className="h-full w-full !aspect-auto"
           sizes="100vw"
+          focal="face"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/30" />
         {/* Top scrim keeps the navigation legible over bright photography. */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/75 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/80 to-transparent" />
       </div>
 
       <div

@@ -34,7 +34,7 @@ export default function HomePage() {
   return (
     <>
       <PageHero
-        media={{ id: "home-hero", alt: "Kenya Buchanan gown, full-length editorial portrait", ratio: "landscape" }}
+        media={{ id: "home-hero", alt: "Kenya Buchanan with a bride in a Kenya B. gown", ratio: "landscape" }}
         title="KENYA BUCHANAN"
         subtitle={brand.motto}
         actions={
@@ -223,7 +223,7 @@ export default function HomePage() {
         </div>
         <Reveal delay={200} className="mt-12 flex flex-col gap-3 sm:flex-row">
           <Button href="/portal/login" variant="light">
-            Enter My Kenya B.
+            Log In To My Kenya B.
           </Button>
         </Reveal>
       </Section>
