@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { BrandMark } from "./BrandMark";
 import { brand, footerNav } from "@/config/site";
 
 export function SiteFooter() {
@@ -8,13 +8,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-editorial px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
           <div className="flex flex-col gap-6">
-            <Image
-              src="/media/brand/kenya-b-mark.png"
-              alt=""
-              width={157}
-              height={285}
-              className="h-24 w-auto invert"
-            />
+            <BrandMark variant="dark" lockup className="h-28 self-start" />
             <p className="font-display text-2xl leading-none tracking-[0.2em] sm:text-3xl">
               KENYA BUCHANAN
             </p>

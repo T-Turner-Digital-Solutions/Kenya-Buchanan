@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
+import { BrandMark } from "@/components/site/BrandMark";
 import { cx } from "@/lib/format";
 import type { NavItem } from "@/config/site";
 
@@ -61,13 +61,7 @@ export function PortalShell({
         >
           <div className={cx("flex flex-col gap-1 px-7 py-8", owner ? "" : "")}>
             <Link href="/" className="flex items-center gap-3">
-              <Image
-                src="/media/brand/kenya-b-mark.png"
-                alt=""
-                width={157}
-                height={285}
-                className={cx("h-10 w-auto", owner && "invert")}
-              />
+              <BrandMark variant={owner ? "dark" : "light"} className="h-11" />
               <span className="font-display text-base leading-tight tracking-[0.16em]">
                 {owner ? "KENYA B." : "MY KENYA B."}
               </span>
@@ -121,13 +115,7 @@ export function PortalShell({
             )}
           >
             <Link href="/" className="flex items-center gap-2.5">
-              <Image
-                src="/media/brand/kenya-b-mark.png"
-                alt=""
-                width={157}
-                height={285}
-                className={cx("h-8 w-auto", owner && "invert")}
-              />
+              <BrandMark variant={owner ? "dark" : "light"} className="h-9" />
               <span className="font-display text-sm tracking-[0.16em]">
                 {owner ? "KENYA B." : "MY KENYA B."}
               </span>

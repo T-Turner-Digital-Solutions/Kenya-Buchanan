@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { BrandMark } from "@/components/site/BrandMark";
 import { Button } from "@/components/ui/Button";
 import { MockNotice } from "@/components/ui/MockNotice";
 import { VideoFrame } from "@/components/ui/VideoFrame";
@@ -40,13 +40,7 @@ export default function WelcomePage() {
     <div className="min-h-screen bg-ink text-bone">
       <main id="main" className="mx-auto flex max-w-5xl flex-col gap-14 px-5 py-14 sm:px-8 lg:py-20">
         <div className="flex flex-col items-center gap-8 text-center">
-          <Image
-            src="/media/brand/kenya-b-mark.png"
-            alt=""
-            width={157}
-            height={285}
-            className="h-16 w-auto invert"
-          />
+          <BrandMark variant="dark" lockup className="h-24" />
           <div className="flex flex-col gap-4">
             <p className="text-[0.6rem] uppercase tracking-luxe text-champagne">
               {client.eventLabel} · Your account is active

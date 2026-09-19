@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { BrandMark } from "@/components/site/BrandMark";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/Field";
 import { MockNotice } from "@/components/ui/MockNotice";
@@ -40,13 +41,7 @@ export default function PortalLoginPage() {
       <main id="main" className="flex items-center justify-center px-5 py-16 sm:px-10">
         <div className="flex w-full max-w-sm flex-col gap-10">
           <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/media/brand/kenya-b-mark.png"
-              alt=""
-              width={157}
-              height={285}
-              className="h-12 w-auto"
-            />
+            <BrandMark variant="light" lockup className="h-20 shrink-0" />
             <span className="font-display text-base leading-tight tracking-[0.18em]">
               KENYA
               <br />

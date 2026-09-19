@@ -18,7 +18,11 @@ const SRC = "source-media";
 const OUT_EDITORIAL = "public/media/editorial";
 const OUT_BRAND = "public/media/brand";
 
-/** [source file, published name, pixels to crop from the top] */
+/**
+ * [source file, published name, pixels to crop from the top]
+ * An object may be given instead of a number to crop other edges too:
+ * { top, right, bottom, left }
+ */
 const sources = [
   // Prom
   ["prom-2026/Screenshot 2026-09-19 103531.png", "gown-ivory-beaded-arrival", 0],
@@ -57,6 +61,7 @@ const sources = [
   ["bridal/Screenshot 2026-09-19 105235.png", "bridal-ivory-halter-staircase", 0],
   // Kenya
   ["kenya/Screenshot 2026-09-19 105715.png", "kenya-buchanan-portrait", 0],
+  ["kenya/Screenshot 2026-09-19 120114.png", "kenya-with-bride-lakeside", { left: 6, right: 3 }],
 ];
 
 const brandMark = ["brand/Screenshot 2026-09-19 103349.png", "kenya-b-mark"];
@@ -66,16 +71,22 @@ await mkdir(OUT_BRAND, { recursive: true });
 
 let published = 0;
 
-for (const [file, name, cropTop] of sources) {
+for (const [file, name, crop] of sources) {
   let image = sharp(`${SRC}/${file}`);
   const meta = await image.metadata();
 
-  if (cropTop > 0) {
+  const edges = typeof crop === "number" ? { top: crop } : { ...crop };
+  const top = edges.top ?? 0;
+  const right = edges.right ?? 0;
+  const bottom = edges.bottom ?? 0;
+  const left = edges.left ?? 0;
+
+  if (top || right || bottom || left) {
     image = image.extract({
-      left: 0,
-      top: cropTop,
-      width: meta.width,
-      height: meta.height - cropTop,
+      left,
+      top,
+      width: meta.width - left - right,
+      height: meta.height - top - bottom,
     });
   }
 
@@ -84,11 +95,87 @@ for (const [file, name, cropTop] of sources) {
   console.log(`${name.padEnd(34)} ${info.width}x${info.height}  ${(info.size / 1024).toFixed(0)} KB`);
 }
 
-const logo = await sharp(`${SRC}/${brandMark[0]}`)
-  .trim({ threshold: 12 })
-  .png({ compressionLevel: 9 })
-  .toFile(`${OUT_BRAND}/${brandMark[1]}.png`);
-published += logo.size;
-console.log(`${brandMark[1]}.png`.padEnd(34) + ` ${logo.width}x${logo.height}  ${(logo.size / 1024).toFixed(0)} KB`);
+/**
+ * BRAND MARK
+ *
+ * The original artwork is black-and-red line art on a solid white field. Two
+ * things are derived from it:
+ *
+ *  - a transparent version keeping the original colours, for light surfaces
+ *  - a "reversed" bone monochrome version, for dark surfaces
+ *
+ * Reversing is NOT a CSS `invert()`: inverting this artwork produces a
+ * photographic negative (white hair, cyan lips). Instead the white field is
+ * turned into transparency and the remaining artwork is filled with bone.
+ *
+ * Each is produced as the figure alone (the mark) and the figure plus the
+ * "KENYA B." wordmark beneath it (the lockup).
+ */
+const BONE = [247, 244, 239];
+
+/** Turn a white field into transparency, un-premultiplying the artwork. */
+async function liftFromWhite(input, { monochrome }) {
+  const { data, info } = await sharp(input).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const out = Buffer.alloc(info.width * info.height * 4);
+
+  for (let i = 0, o = 0; i < data.length; i += info.channels, o += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+
+    // How far this pixel is from white becomes its opacity.
+    const alpha = 255 - Math.min(r, g, b);
+
+    if (alpha === 0) {
+      out[o] = out[o + 1] = out[o + 2] = out[o + 3] = 0;
+      continue;
+    }
+
+    if (monochrome) {
+      out[o] = BONE[0];
+      out[o + 1] = BONE[1];
+      out[o + 2] = BONE[2];
+    } else {
+      // Recover the artwork colour from its composite over white.
+      const a = alpha / 255;
+      const lift = (v) => Math.max(0, Math.min(255, Math.round((v - 255 * (1 - a)) / a)));
+      out[o] = lift(r);
+      out[o + 1] = lift(g);
+      out[o + 2] = lift(b);
+    }
+
+    out[o + 3] = alpha;
+  }
+
+  return sharp(out, { raw: { width: info.width, height: info.height, channels: 4 } });
+}
+
+const trimmed = await sharp(`${SRC}/${brandMark[0]}`).trim({ threshold: 12 }).png().toBuffer();
+const trimmedMeta = await sharp(trimmed).metadata();
+
+// The wordmark sits below a blank band; the figure alone is everything above it.
+const FIGURE_HEIGHT = 255;
+
+for (const [suffix, monochrome] of [
+  ["", false],
+  ["-reversed", true],
+]) {
+  const lockup = await (await liftFromWhite(trimmed, { monochrome }))
+    .png({ compressionLevel: 9 })
+    .toFile(`${OUT_BRAND}/kenya-b-lockup${suffix}.png`);
+
+  const figure = await sharp(trimmed)
+    .extract({ left: 0, top: 0, width: trimmedMeta.width, height: FIGURE_HEIGHT })
+    .png()
+    .toBuffer();
+
+  const mark = await (await liftFromWhite(figure, { monochrome }))
+    .png({ compressionLevel: 9 })
+    .toFile(`${OUT_BRAND}/kenya-b-mark${suffix}.png`);
+
+  published += lockup.size + mark.size;
+  console.log(`kenya-b-lockup${suffix}.png`.padEnd(34) + ` ${lockup.width}x${lockup.height}  ${(lockup.size / 1024).toFixed(0)} KB`);
+  console.log(`kenya-b-mark${suffix}.png`.padEnd(34) + ` ${mark.width}x${mark.height}  ${(mark.size / 1024).toFixed(0)} KB`);
+}
 
 console.log(`\n${sources.length + 1} files · ${(published / 1048576).toFixed(2)} MB published`);

@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { actionNav, brand, primaryNav } from "@/config/site";
 import { cx } from "@/lib/format";
+import { BrandMark } from "./BrandMark";
 
 export function SiteHeader({ tone = "auto" }: { tone?: "auto" | "light" | "dark" }) {
   const pathname = usePathname();
@@ -45,13 +45,18 @@ export function SiteHeader({ tone = "auto" }: { tone?: "auto" | "light" | "dark"
       <div className="mx-auto flex max-w-editorial items-center justify-between gap-6 px-5 py-5 sm:px-8 lg:px-12">
         <Link
           href="/"
-          className={cx(
-            "font-display text-lg leading-none tracking-[0.2em] transition-colors duration-500 sm:text-xl",
-            textClass,
-          )}
+          className="flex items-center gap-3 sm:gap-4"
           aria-label={`${brand.name} — home`}
         >
-          KENYA BUCHANAN
+          <BrandMark variant="auto" onLight={!overDark} priority className="h-10 sm:h-12" />
+          <span
+            className={cx(
+              "font-display text-lg leading-none tracking-[0.2em] transition-colors duration-500 sm:text-xl",
+              textClass,
+            )}
+          >
+            KENYA BUCHANAN
+          </span>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
@@ -128,13 +133,7 @@ export function SiteHeader({ tone = "auto" }: { tone?: "auto" | "light" | "dark"
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-between px-5 py-5 sm:px-8">
             <span className="flex items-center gap-3">
-              <Image
-                src="/media/brand/kenya-b-mark.png"
-                alt=""
-                width={157}
-                height={285}
-                className="h-9 w-auto invert"
-              />
+              <BrandMark variant="dark" className="h-10" />
               <span className="font-display text-lg tracking-[0.2em] text-bone">KENYA BUCHANAN</span>
             </span>
             <button

@@ -43,7 +43,7 @@ export default function BookPage() {
             Your account has everything.
           </h2>
           <Button href="/portal/login" variant="outline" size="lg">
-            Enter My Kenya B.
+            Log In To My Kenya B.
           </Button>
         </Reveal>
       </Section>
