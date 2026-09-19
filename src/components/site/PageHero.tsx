@@ -43,7 +43,9 @@ export function PageHero({
           sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/40" />
+        {/* Top scrim keeps the navigation legible over bright photography. */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/75 to-transparent" />
       </div>
 
       <div

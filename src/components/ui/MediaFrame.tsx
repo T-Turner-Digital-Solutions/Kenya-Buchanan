@@ -20,12 +20,15 @@ export function MediaFrame({
   caption,
   priority,
   sizes = "(max-width: 768px) 100vw, 50vw",
+  bare = false,
 }: {
   slot: MediaSlot;
   className?: string;
   caption?: string;
   priority?: boolean;
   sizes?: string;
+  /** Suppress the placeholder's label — used when content is layered on top. */
+  bare?: boolean;
 }) {
   const src = resolveMedia(slot.id);
   const tone = slot.tone ?? "light";
@@ -52,11 +55,15 @@ export function MediaFrame({
               : "placeholder-surface bg-bone-deep text-ink/45",
           )}
         >
-          <span className="text-[0.55rem] uppercase tracking-luxe">Kenya Buchanan</span>
-          <span className="font-display text-base leading-snug sm:text-lg">{slot.alt}</span>
-          <span className="text-[0.5rem] uppercase tracking-wide2 opacity-70">
-            Photography to be placed
-          </span>
+          {bare ? null : (
+            <>
+              <span className="text-[0.55rem] uppercase tracking-luxe">Kenya Buchanan</span>
+              <span className="font-display text-base leading-snug sm:text-lg">{slot.alt}</span>
+              <span className="text-[0.5rem] uppercase tracking-wide2 opacity-70">
+                Photography to be placed
+              </span>
+            </>
+          )}
         </div>
       )}
       {caption ? (

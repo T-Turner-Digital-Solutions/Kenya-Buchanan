@@ -170,7 +170,10 @@ export default function HomePage() {
       <Section tone="deep" size="lg">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20">
           <Reveal>
-            <MediaFrame slot={{ id: "kenya-portrait", alt: "Kenya Buchanan at work in the studio", ratio: "landscape" }} sizes="(max-width: 1024px) 100vw, 55vw" />
+            <MediaFrame
+              slot={{ id: "story-gown", alt: "Kenya B. gown, champagne silk with satin overskirt", ratio: "portrait" }}
+              sizes="(max-width: 1024px) 100vw, 55vw"
+            />
           </Reveal>
           <Reveal delay={120} className="flex flex-col gap-8">
             <Eyebrow>The Designer</Eyebrow>
@@ -182,6 +185,17 @@ export default function HomePage() {
               drafted, sourced and finished for one body and one night. The process is personal, and
               it is meant to be.
             </p>
+            <div className="flex items-center gap-5 border-t border-ink/10 pt-8">
+              <MediaFrame
+                slot={{ id: "kenya-portrait", alt: "Kenya Buchanan", ratio: "portrait" }}
+                className="w-20 shrink-0"
+                sizes="80px"
+              />
+              <div className="flex flex-col gap-1">
+                <p className="font-display text-lg leading-none">Kenya Buchanan</p>
+                <p className="text-[0.55rem] uppercase tracking-luxe text-ink/40">Designer &amp; Founder</p>
+              </div>
+            </div>
             <Button href="/about" variant="outline" className="self-start">
               About Kenya
             </Button>

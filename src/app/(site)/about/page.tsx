@@ -68,8 +68,24 @@ export default function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={120} className="flex flex-col gap-6">
-            <MediaFrame slot={{ id: "about-portrait", alt: "Kenya at the cutting table", ratio: "portrait" }} sizes="(max-width: 1024px) 100vw, 40vw" />
-            <MediaFrame slot={{ id: "about-detail", alt: "Hand-stitching detail", ratio: "landscape" }} sizes="(max-width: 1024px) 100vw, 40vw" />
+            <figure className="flex flex-col gap-4">
+              <MediaFrame
+                slot={{ id: "kenya-portrait", alt: "Kenya Buchanan", ratio: "portrait" }}
+                className="w-full max-w-[18rem]"
+                sizes="(max-width: 640px) 70vw, 288px"
+              />
+              <figcaption className="flex flex-col gap-1">
+                <span className="font-display text-xl leading-none">Kenya Buchanan</span>
+                <span className="text-[0.55rem] uppercase tracking-luxe text-ink/40">
+                  Designer &amp; Founder
+                </span>
+              </figcaption>
+            </figure>
+            <MediaFrame
+              slot={{ id: "about-detail", alt: "Hand-finished detail from the studio", ratio: "landscape" }}
+              className="max-w-md"
+              sizes="(max-width: 1024px) 100vw, 40vw"
+            />
           </Reveal>
         </div>
       </Section>

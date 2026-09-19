@@ -19,7 +19,7 @@ export function VideoFrame({
 }) {
   return (
     <div className={cx("group relative overflow-hidden bg-ink", className)}>
-      <MediaFrame slot={video.poster} className="opacity-70" />
+      <MediaFrame slot={video.poster} className="opacity-70" bare />
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-b from-ink/50 via-ink/20 to-ink/80 px-6 text-center">
         <span className="text-[0.55rem] uppercase tracking-luxe text-champagne-light">
           {label ?? video.label}

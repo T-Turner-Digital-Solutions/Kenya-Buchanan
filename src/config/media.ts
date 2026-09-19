@@ -23,6 +23,9 @@ export const mediaSources: Record<string, string | undefined> = {
   /* Brand */
   "brand-mark": "/media/brand/kenya-b-mark.png",
 
+  /* Kenya — displayed at its true size; a full-bleed hero needs a larger original */
+  "kenya-portrait": editorial("kenya-buchanan-portrait"),
+
   /* Home */
   "home-hero": editorial("gown-royal-blue-tulle-car"),
   "featured-1": editorial("gown-silver-pearl-cape"),
@@ -30,6 +33,7 @@ export const mediaSources: Record<string, string | undefined> = {
   "featured-3": editorial("gown-red-tulle-balustrade"),
   "featured-4": editorial("gown-gold-columns"),
   "prom-teaser": editorial("gown-royal-blue-cape"),
+  "story-gown": editorial("gown-champagne-rose-wall"),
   "collection-1": editorial("gown-red-off-shoulder-ruffle"),
   "collection-2": editorial("gown-powder-blue-night"),
 

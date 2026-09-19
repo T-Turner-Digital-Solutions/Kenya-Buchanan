@@ -55,6 +55,8 @@ const sources = [
   ["bridal/Screenshot 2026-09-19 105203.png", "bridal-silver-lace-veil", 0],
   ["bridal/Screenshot 2026-09-19 105218.png", "bridal-rose-sequin-bouquet", 0],
   ["bridal/Screenshot 2026-09-19 105235.png", "bridal-ivory-halter-staircase", 0],
+  // Kenya
+  ["kenya/Screenshot 2026-09-19 105715.png", "kenya-buchanan-portrait", 0],
 ];
 
 const brandMark = ["brand/Screenshot 2026-09-19 103349.png", "kenya-b-mark"];
