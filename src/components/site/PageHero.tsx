@@ -1,12 +1,18 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
-import { MediaFrame } from "@/components/ui/MediaFrame";
+import { mediaAspect, resolveMedia } from "@/config/media";
 import { cx } from "@/lib/format";
 import type { MediaSlot } from "@/lib/types";
 
 /**
- * Full-bleed editorial hero used across the public site.
- * Height is generous on desktop and restrained on mobile so the type never
- * fights the image.
+ * Editorial hero used across the public site.
+ *
+ * The photography is portrait (roughly 2:3) and the gown is the point, so the
+ * picture is NOT stretched across a wide frame — cropping a 2:3 portrait to a
+ * 3:1 band throws away three quarters of the dress and leaves a bodice. Instead
+ * the same photograph does two jobs: blurred and dimmed it becomes the dark
+ * atmosphere behind the type, and at its own proportions it sits beside the
+ * headline where the whole gown, hem and train included, is visible.
  */
 export function PageHero({
   eyebrow,
@@ -27,35 +33,49 @@ export function PageHero({
   size?: "full" | "tall" | "mid";
   children?: ReactNode;
 }) {
+  const src = resolveMedia(media.id);
+  // The frame takes the photograph's own proportions, so nothing is cropped.
+  // 2:3 is the house portrait shape and covers any slot still awaiting a file.
+  const aspect = mediaAspect(media.id) ?? 2 / 3;
+  // A wide frame would run past the text column, so the landscape ones are
+  // held to the same height the portraits get rather than the same width.
+  const wide = aspect > 1;
+
   return (
     <section
       className={cx(
-        "relative flex w-full items-end overflow-hidden bg-ink",
-        size === "full" && "min-h-[88svh] lg:min-h-screen",
-        size === "tall" && "min-h-[72svh]",
-        size === "mid" && "min-h-[58svh]",
+        "relative isolate flex w-full items-center overflow-hidden bg-ink",
+        size === "full" && "min-h-[82svh]",
+        size === "tall" && "min-h-[68svh]",
+        size === "mid" && "min-h-[54svh]",
       )}
     >
-      <div className="absolute inset-0">
-        <MediaFrame
-          slot={{ ...media, tone: "dark" }}
-          className="h-full w-full !aspect-auto"
-          sizes="100vw"
-          focal="face"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-ink/30" />
-        {/* Top scrim keeps the navigation legible over bright photography. */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/80 to-transparent" />
-      </div>
+      {src ? (
+        <div aria-hidden className="absolute inset-0">
+          <Image
+            src={src}
+            alt=""
+            fill
+            sizes="100vw"
+            priority
+            className="scale-125 object-cover object-center opacity-40 blur-2xl"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/75" />
+        </div>
+      ) : null}
 
       <div
         className={cx(
-          "relative mx-auto w-full max-w-editorial px-5 pb-16 pt-32 sm:px-8 lg:px-12 lg:pb-24",
-          align === "center" && "text-center",
+          "relative mx-auto grid w-full max-w-editorial items-center gap-10 px-5 pb-16 pt-32 sm:px-8 lg:gap-16 lg:px-12 lg:pb-20 lg:pt-36",
+          "lg:grid-cols-[1fr_auto]",
         )}
       >
-        <div className={cx("flex max-w-3xl flex-col gap-6", align === "center" && "mx-auto items-center")}>
+        <div
+          className={cx(
+            "flex max-w-2xl flex-col gap-6",
+            align === "center" && "mx-auto items-center text-center",
+          )}
+        >
           {eyebrow ? (
             <p className="animate-fade text-[0.6rem] uppercase tracking-luxe text-champagne">{eyebrow}</p>
           ) : null}
@@ -79,6 +99,34 @@ export function PageHero({
             </div>
           ) : null}
         </div>
+
+        {/* The gown, whole. Sized so the frame is read, not filled. */}
+        {src ? (
+          <figure
+            className={cx(
+              "relative mx-auto w-full lg:mx-0",
+              wide
+                ? "max-w-[22rem] sm:max-w-[26rem] lg:w-[26rem] xl:w-[30rem]"
+                : "max-w-[15rem] sm:max-w-[17rem]",
+              !wide &&
+                (size === "mid" ? "lg:w-[16rem] xl:w-[18rem]" : "lg:w-[19rem] xl:w-[21rem]"),
+            )}
+          >
+            <div
+              style={{ aspectRatio: String(aspect) }}
+              className="relative overflow-hidden bg-ink-soft ring-1 ring-bone/15"
+            >
+              <Image
+                src={src}
+                alt={media.alt}
+                fill
+                sizes="(max-width: 1024px) 70vw, 30rem"
+                priority
+                className="object-cover object-center"
+              />
+            </div>
+          </figure>
+        ) : null}
       </div>
     </section>
   );

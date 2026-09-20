@@ -61,10 +61,8 @@ export function HeroCarousel({
                 priority={position === 0}
                 loading={position === 0 ? undefined : "lazy"}
                 sizes="100vw"
-                className={cx(
-                  "object-cover object-[50%_18%]",
-                  active && !reducedMotion && "animate-kenburns",
-                )}
+                style={{ objectPosition: `50% ${slide.focalY ?? "18%"}` }}
+                className={cx("object-cover", active && !reducedMotion && "animate-kenburns")}
               />
             ) : (
               <div className="placeholder-surface-dark absolute inset-0 bg-ink" />

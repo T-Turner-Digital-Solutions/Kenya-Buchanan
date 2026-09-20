@@ -177,9 +177,14 @@ function FullState({ season }: { season: Season }) {
           All {season.initialCapacity} initial spaces have been claimed. The waitlist is how the next
           spot finds its person.
         </p>
+        <p className="max-w-xl border-l border-champagne/40 pl-5 text-sm leading-relaxed text-bone/75">
+          There is no charge to join the waitlist. Nothing is owed unless Kenya offers you a spot and
+          you claim it — the deposit is paid at that point, and only then.
+        </p>
 
         <ol className="flex flex-col gap-6 border-t border-bone/15 pt-8">
           {[
+            "Joining the waitlist is free — nothing is charged to hold your place in line.",
             "Kenya releases an opening when one becomes available.",
             "The opening is offered to the next eligible person on the waitlist — one person at a time.",
             "That person holds an exclusive 60-minute window to claim it.",

@@ -39,7 +39,7 @@ export default function PromPage() {
     <>
       <PageHero
         eyebrow={`Kenya B. ${currentPromSeason.name}`}
-        media={{ id: "prom-hero", alt: "Prom gown, full-length editorial portrait", ratio: "landscape" }}
+        media={{ id: "prom-hero", alt: "Red lace prom gown with a feather hem", ratio: "landscape" }}
         title="Prom"
         subtitle="One season. A limited number of gowns."
         size="tall"

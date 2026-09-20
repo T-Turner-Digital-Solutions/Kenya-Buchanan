@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ExperienceBand } from "@/components/site/ExperienceBand";
 import { ExperienceSelector } from "@/components/site/ExperienceSelector";
 import { GownCarousel } from "@/components/site/GownCarousel";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
@@ -30,7 +31,7 @@ import {
 /**
  * HOME — a visual sequence, not a document.
  *
- * Hero → experiences → prom gowns → the season → bridal → custom →
+ * Hero → the band → experiences → prom gowns → the season → bridal → custom →
  * My Kenya B. → live → Kenya → partners → close. Every section earns its
  * height, and the gowns carry the page.
  */
@@ -53,6 +54,9 @@ export default function HomePage() {
         title="Kenya Buchanan"
         tagline={brand.motto}
       />
+
+      {/* Three doors, black and edge-to-edge, carrying straight on from the hero */}
+      <ExperienceBand />
 
       {/* Experience selector */}
       <section className="bg-paper py-16 lg:py-24">

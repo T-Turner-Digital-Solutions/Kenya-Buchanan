@@ -17,6 +17,8 @@
  * misrepresent what the picture shows.
  */
 
+import { mediaDimensions } from "@/config/mediaDimensions";
+
 const editorial = (name: string) => `/media/editorial/${name}.webp`;
 
 export const mediaSources: Record<string, string | undefined> = {
@@ -51,11 +53,11 @@ export const mediaSources: Record<string, string | undefined> = {
   "custom-card": editorial("custom-fuchsia-orange-steps"),
 
   /* Prom */
-  "prom-hero": editorial("prom-black-sequin-high-neck"),
+  "prom-hero": editorial("prom-red-lace-feather"),
   "prom-editorial": editorial("prom-royal-blue-velvet"),
 
   /* Bridal */
-  "bridal-hero": editorial("bridal-ivory-lace-staircase"),
+  "bridal-hero": editorial("bridal-ivory-organza-seated"),
   "bridal-1": editorial("bridal-rose-gold-sequin"),
   "bridal-2": editorial("bridal-champagne-barn-garden"),
 
@@ -111,4 +113,17 @@ export function resolveMedia(slotId: string): string | undefined {
   if (named) return named;
   if (slotId.startsWith("photo/")) return editorial(slotId.slice("photo/".length));
   return undefined;
+}
+
+/**
+ * The photograph's own proportions (width / height), so a frame can take the
+ * shape of its picture instead of cropping it to a shape the layout chose.
+ * Returns undefined when the slot has no photography yet.
+ */
+export function mediaAspect(slotId: string): number | undefined {
+  const src = resolveMedia(slotId);
+  if (!src) return undefined;
+  const size = mediaDimensions[src];
+  if (!size) return undefined;
+  return size[0] / size[1];
 }
