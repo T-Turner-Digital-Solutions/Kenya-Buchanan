@@ -34,7 +34,7 @@ export default function HomePage() {
   return (
     <>
       <PageHero
-        media={{ id: "home-hero", alt: "Kenya Buchanan with a bride in a Kenya B. gown", ratio: "landscape" }}
+        media={{ id: "home-hero", alt: "Kenya B. gown, full-length editorial portrait", ratio: "landscape" }}
         title="KENYA BUCHANAN"
         subtitle={brand.motto}
         actions={

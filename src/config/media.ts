@@ -23,11 +23,16 @@ export const mediaSources: Record<string, string | undefined> = {
   /* Brand */
   "brand-mark": "/media/brand/kenya-b-lockup.png",
 
-  /* Kenya — displayed at its true size; a full-bleed hero needs a larger original */
+  /*
+   * Kenya's own photographs are small originals (221x318 and 406x538), so they
+   * are placed where they display at roughly their true size. Stretching either
+   * across a full-bleed hero visibly softens it — a hero needs ~1400px wide.
+   */
   "kenya-portrait": editorial("kenya-buchanan-portrait"),
+  "kenya-with-bride": editorial("kenya-with-bride-lakeside"),
 
   /* Home */
-  "home-hero": editorial("kenya-with-bride-lakeside"),
+  "home-hero": editorial("gown-royal-blue-tulle-car"),
   "featured-1": editorial("gown-silver-pearl-cape"),
   "featured-2": editorial("gown-pink-ruffle-tulle"),
   "featured-3": editorial("gown-red-tulle-balustrade"),
