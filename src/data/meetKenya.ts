@@ -22,11 +22,8 @@ export const meetKenya: StoryPage = {
       "there was a woman brave enough",
       "to choose the life that made her smile.",
     ],
-    portrait: { slot: "kenya-portrait", alt: "Kenya Buchanan" },
-    backdrop: {
-      slot: "photo/gown-black-sequin-night",
-      alt: "",
-    },
+    portrait: { slot: "kenya-meet-hero", alt: "Kenya Buchanan" },
+    backdrop: { slot: "kenya-meet-hero", alt: "" },
   },
 
   sections: [

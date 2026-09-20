@@ -91,12 +91,12 @@ export const promGowns: GalleryItem[] = [
 
 /** Collections lookbook — deliberately mixed across experiences. */
 export const lookbook: GalleryItem[] = [
-  photo("gown-white-hooded-cape", "Ivory beaded gown with a hooded cape", { label: "Custom" }),
+  photo("custom-black-feather-collar", "Black beaded gown with a feather collar", { label: "Custom" }),
   photo("bridal-silver-lace-veil", "Bridal gown with a cathedral veil", { label: "Bridal" }),
-  photo("gown-chocolate-velvet", "Chocolate velvet gown with a gold bodice", { label: "Custom" }),
+  photo("custom-fuchsia-orange-arrival", "Fuchsia beaded gown with an orange satin train", { label: "Custom" }),
   photo("gown-red-off-shoulder-ruffle", "Red off-shoulder gown with ruffle detail", { label: "Prom 2026" }),
   photo("bridal-ivory-halter-staircase", "Bridal gown on the staircase", { label: "Bridal" }),
-  photo("gown-pink-satin-waterfront", "Blush satin gown with a flowing cape", { label: "Custom" }),
+  photo("custom-fuchsia-candlelight", "Fuchsia beaded gown with a satin overskirt", { label: "Custom" }),
   photo("gown-powder-blue-night", "Powder blue satin gown at night", { label: "Prom 2026" }),
   photo("gown-champagne-rose-wall", "Champagne gown against a wall of roses", { label: "Prom 2026" }),
   photo("bridal-rose-sequin-bouquet", "Rose sequin bridal gown with a bouquet", { label: "Bridal" }),
@@ -107,7 +107,7 @@ export const lookbook: GalleryItem[] = [
 export const experienceFeature: Record<string, GalleryItem> = {
   prom: photo("gown-red-tulle-balustrade", "Red tulle prom gown", { ratio: "portrait" }),
   bridal: photo("bridal-silver-lace-veil", "Bridal gown with a cathedral veil", { ratio: "portrait" }),
-  custom: photo("gown-white-hooded-cape", "Custom gown with a hooded cape", { ratio: "portrait" }),
+  custom: photo("custom-fuchsia-orange-steps", "Fuchsia and orange custom gown on the steps", { ratio: "portrait" }),
 };
 
 export const bridalFeature = photo(
@@ -117,8 +117,8 @@ export const bridalFeature = photo(
 );
 
 export const customFeature: GalleryItem[] = [
-  photo("gown-purple-feather", "Beaded bodice with a purple feather skirt"),
-  photo("gown-black-feather-veil", "Black feather gown with a veil", { ratio: "square" }),
+  photo("custom-black-feather-collar", "Black beaded gown with a dramatic feather collar"),
+  photo("custom-fuchsia-orange-arrival", "Fuchsia beaded gown with an orange satin train"),
 ];
 
 export const promSeasonFeature = photo(

@@ -62,6 +62,12 @@ const sources = [
   // Kenya
   ["kenya/Screenshot 2026-09-19 105715.png", "kenya-buchanan-portrait", 0],
   ["kenya/Screenshot 2026-09-19 120114.png", "kenya-with-bride-lakeside", { left: 6, right: 3 }],
+  ["kenya/kenya-meet-portrait-original.png", "kenya-meet-portrait", 0],
+  // Custom — commissions, distinct from the prom season work
+  ["custom/custom-fuchsia-orange-arrival.png", "custom-fuchsia-orange-arrival", 0],
+  ["custom/custom-fuchsia-orange-steps.png", "custom-fuchsia-orange-steps", 0],
+  ["custom/custom-fuchsia-candlelight.png", "custom-fuchsia-candlelight", 0],
+  ["custom/custom-black-feather-collar.png", "custom-black-feather-collar", 0],
 ];
 
 const brandMark = ["brand/Screenshot 2026-09-19 103349.png", "kenya-b-mark"];

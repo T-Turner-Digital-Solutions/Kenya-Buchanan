@@ -260,7 +260,7 @@ export default function HomePage() {
           <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
             <Reveal className="flex justify-center lg:justify-start">
               <MediaFrame
-                slot={{ id: "kenya-portrait", alt: "Kenya Buchanan", ratio: "portrait" }}
+                slot={{ id: "kenya-meet-hero", alt: "Kenya Buchanan", ratio: "portrait" }}
                 className="w-full max-w-[19rem]"
                 sizes="(max-width: 1024px) 70vw, 300px"
               />

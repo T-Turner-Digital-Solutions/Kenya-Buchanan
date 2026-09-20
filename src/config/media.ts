@@ -30,6 +30,8 @@ export const mediaSources: Record<string, string | undefined> = {
    */
   "kenya-portrait": editorial("kenya-buchanan-portrait"),
   "kenya-with-bride": editorial("kenya-with-bride-lakeside"),
+  /* Full-resolution portrait — strong enough to lead a full-bleed hero. */
+  "kenya-meet-hero": editorial("kenya-meet-portrait"),
 
   /* Home */
   "home-hero": editorial("gown-royal-blue-tulle-car"),
@@ -45,7 +47,7 @@ export const mediaSources: Record<string, string | undefined> = {
   /* Experience cards */
   "prom-card": editorial("gown-blue-velvet-skyline"),
   "bridal-card": editorial("bridal-ivory-halter-staircase"),
-  "custom-card": editorial("gown-chocolate-velvet"),
+  "custom-card": editorial("custom-fuchsia-orange-steps"),
 
   /* Prom */
   "prom-hero": editorial("gown-black-sequin-night"),
@@ -57,8 +59,8 @@ export const mediaSources: Record<string, string | undefined> = {
   "bridal-2": editorial("bridal-blush-overskirt-lawn"),
 
   /* Custom */
-  "custom-hero": editorial("gown-royal-blue-feather-bridge"),
-  "custom-editorial": editorial("gown-purple-feather"),
+  "custom-hero": editorial("custom-black-feather-collar"),
+  "custom-editorial": editorial("custom-fuchsia-orange-arrival"),
 
   /* Collections */
   "collections-hero": editorial("gown-silver-satin-cape"),
@@ -70,16 +72,16 @@ export const mediaSources: Record<string, string | undefined> = {
   "col-bridal-2": editorial("bridal-ivory-organza-seated"),
   "col-bridal-3": editorial("bridal-ivory-halter-staircase"),
   "col-bridal-4": editorial("bridal-blush-overskirt-lawn"),
-  "col-custom-1": editorial("gown-pink-satin-waterfront"),
-  "col-custom-2": editorial("gown-black-feather-veil"),
-  "col-custom-3": editorial("gown-champagne-rose-wall"),
-  "col-custom-4": editorial("gown-white-silver-roses"),
+  "col-custom-1": editorial("custom-fuchsia-orange-arrival"),
+  "col-custom-2": editorial("custom-black-feather-collar"),
+  "col-custom-3": editorial("custom-fuchsia-orange-steps"),
+  "col-custom-4": editorial("custom-fuchsia-candlelight"),
 
   /* Book */
   "book-hero": editorial("gown-emerald-sequin-doors"),
   "book-prom": editorial("gown-ivory-beaded-arrival"),
   "book-bridal": editorial("bridal-rose-sequin-bouquet"),
-  "book-custom": editorial("gown-white-hooded-cape"),
+  "book-custom": editorial("custom-fuchsia-candlelight"),
 
   /* Partners */
   "partners-hero": editorial("arrival-champagne-street"),
