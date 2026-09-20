@@ -13,7 +13,7 @@ export const videos: VideoAsset[] = [
     description:
       "Kenya welcomes you personally and walks you through the experience — what to expect, how we communicate, and how to trust the process.",
     source: null,
-    poster: { id: "video-welcome-poster", alt: "Kenya Buchanan in the studio", ratio: "landscape", tone: "dark" },
+    poster: { id: "video-welcome-poster", alt: "Kenya Buchanan at work in her studio", ratio: "landscape", tone: "dark" },
   },
   {
     id: "vid-measurements-prep",

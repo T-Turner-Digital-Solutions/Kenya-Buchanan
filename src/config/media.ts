@@ -100,6 +100,20 @@ export const mediaSources: Record<string, string | undefined> = {
 
   /* Partners */
   "partners-hero": editorial("prom-pink-satin-car"),
+
+  /*
+   * Kenya B. Live and video posters. These use Kenya's own studio photograph
+   * and finished work — the only honest stand-ins until stills from the
+   * broadcasts themselves exist.
+   */
+  "live-hero": editorial("kenya-studio-sewing"),
+  "live-1-poster": editorial("kenya-studio-sewing"),
+  "live-3-poster": editorial("detail-beaded-bodice-roses"),
+  "live-4-poster": editorial("prom-black-sequin-chandelier"),
+  "video-welcome-poster": editorial("kenya-studio-sewing"),
+
+  /* Bridal sourcing — the beading the section describes, on a finished bodice. */
+  "bridal-sourcing": editorial("detail-beaded-bodice-roses"),
 };
 
 /**

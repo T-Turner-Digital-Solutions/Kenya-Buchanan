@@ -90,7 +90,7 @@ export default function BridalPage() {
           </Reveal>
           <Reveal className="lg:order-1">
             <MediaFrame
-              slot={{ id: "bridal-sourcing", alt: "Lace and silk laid out for selection", ratio: "landscape", tone: "dark" }}
+              slot={{ id: "bridal-sourcing", alt: "Hand beading on a finished bridal bodice", ratio: "landscape", tone: "dark" }}
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </Reveal>

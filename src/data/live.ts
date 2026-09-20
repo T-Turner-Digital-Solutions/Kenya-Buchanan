@@ -10,7 +10,7 @@ export const liveSessions: LiveSession[] = [
     platform: "Facebook Live",
     description: "Everything about the season — timeline, fittings, payments and what makes a spot yours.",
     externalUrl: null,
-    poster: { id: "live-1-poster", alt: "Kenya on camera in the studio", ratio: "landscape", tone: "dark" },
+    poster: { id: "live-1-poster", alt: "Kenya at work in her studio", ratio: "landscape", tone: "dark" },
   },
   {
     id: "live-2",
@@ -30,7 +30,7 @@ export const liveSessions: LiveSession[] = [
     platform: "Facebook Live",
     description: "How structure is built into a Kenya B. gown.",
     externalUrl: null,
-    poster: { id: "live-3-poster", alt: "Bodice construction detail", ratio: "landscape", tone: "dark" },
+    poster: { id: "live-3-poster", alt: "Hand beading on a finished bodice", ratio: "landscape", tone: "dark" },
   },
   {
     id: "live-4",
@@ -40,6 +40,6 @@ export const liveSessions: LiveSession[] = [
     platform: "Facebook Live",
     description: "The 2026 reveals, gown by gown.",
     externalUrl: null,
-    poster: { id: "live-4-poster", alt: "Reveal night gowns", ratio: "landscape", tone: "dark" },
+    poster: { id: "live-4-poster", alt: "Black sequin gown revealed under the chandeliers", ratio: "landscape", tone: "dark" },
   },
 ];

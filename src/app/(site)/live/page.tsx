@@ -26,7 +26,7 @@ export default function LivePage() {
     <>
       <PageHero
         eyebrow={brand.live}
-        media={{ id: "live-hero", alt: "Kenya on camera in the studio", ratio: "landscape" }}
+        media={{ id: "live-hero", alt: "Kenya at work in her studio", ratio: "landscape" }}
         title="Kenya B. Live"
         subtitle="Come with questions."
         size="mid"
