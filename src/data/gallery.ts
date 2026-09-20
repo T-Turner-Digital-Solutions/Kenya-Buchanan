@@ -122,8 +122,8 @@ export const customFeature: GalleryItem[] = [
 ];
 
 export const promSeasonFeature = photo(
-  "gown-white-silver-roses",
-  "Ivory and silver beaded gown beside the car",
+  "gown-red-lace-feathers",
+  "Red lace gown with feather detail",
   { ratio: "portrait" },
 );
 

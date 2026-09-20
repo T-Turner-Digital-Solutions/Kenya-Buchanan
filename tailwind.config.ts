@@ -43,6 +43,7 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-display)", "Cormorant Garamond", "Didot", "serif"],
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        script: ["var(--font-script)", "cursive"],
       },
       letterSpacing: {
         luxe: "0.28em",

@@ -588,3 +588,88 @@ export interface OwnerReviewCase {
   contractId?: string;
   decision: "pending" | "accepted" | "declined" | "hold";
 }
+
+/* ------------------------------------------------------------------ */
+/* Meet Kenya — editorial story content                                */
+/* ------------------------------------------------------------------ */
+
+/**
+ * The Meet Kenya page is content, not layout. Every section below is a record
+ * Kenya will edit from Kenya B. Studio → Website Content → Meet Kenya:
+ * reorder, hide, rewrite, add milestones and swap photography — without a
+ * developer. The page renders whatever this data says.
+ *
+ * Biography content is drawn from publicly available information and is
+ * intended to be reviewed and corrected by Kenya.
+ */
+
+export type StorySectionType =
+  | "narrative"
+  | "statement"
+  | "quote"
+  | "milestones"
+  | "gallery"
+  | "closing";
+
+export type StoryTone = "light" | "ivory" | "dark";
+
+export type StoryLayout = "image-left" | "image-right" | "centered" | "full";
+
+export interface StoryMedia {
+  /** Media slot id, or `photo/<name>` for direct photography. */
+  slot: string;
+  alt: string;
+  /** Archival imagery Kenya has not supplied yet renders as an intentional frame. */
+  awaitingUpload?: boolean;
+  caption?: string;
+}
+
+export interface StoryMilestone {
+  id: string;
+  marker: string;
+  title: string;
+  detail: string;
+}
+
+export interface StorySection {
+  id: string;
+  type: StorySectionType;
+  tone: StoryTone;
+  layout?: StoryLayout;
+  /** Owner can hide a section without deleting its content. */
+  hidden?: boolean;
+  eyebrow?: string;
+  /** Headline rendered one line per entry. */
+  headline?: string[];
+  body?: string[];
+  /** Oversized editorial statement lines. */
+  statement?: string[];
+  quote?: { text: string; attribution: string };
+  media?: StoryMedia[];
+  milestones?: StoryMilestone[];
+  cta?: { label: string; href: string };
+}
+
+export interface StoryTimelineEntry {
+  id: string;
+  marker: string;
+  title: string;
+  detail: string;
+}
+
+export interface StoryPage {
+  hero: {
+    eyebrow: string;
+    title: string;
+    roles: string[];
+    lede: string[];
+    portrait: StoryMedia;
+    backdrop: StoryMedia;
+  };
+  sections: StorySection[];
+  timeline: {
+    eyebrow: string;
+    headline: string;
+    entries: StoryTimelineEntry[];
+  };
+}

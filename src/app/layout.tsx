@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Cormorant_Garamond, Jost, Parisienne } from "next/font/google";
 import { brand } from "@/config/site";
 import "./globals.css";
 
@@ -14,6 +14,13 @@ const sans = Jost({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const script = Parisienne({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
   display: "swap",
 });
 
@@ -37,7 +44,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${script.variable}`}>
       <body>
         <a
           href="#main"

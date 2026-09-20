@@ -24,7 +24,7 @@ export const primaryNav: NavItem[] = [
   { label: "Bridal", href: "/bridal" },
   { label: "Custom", href: "/custom" },
   { label: "Collections", href: "/collections" },
-  { label: "About", href: "/about" },
+  { label: "Meet Kenya", href: "/meet-kenya" },
   { label: "Live", href: "/live" },
 ];
 
@@ -47,7 +47,7 @@ export const footerNav = [
     heading: "The House",
     links: [
       { label: "Collections", href: "/collections" },
-      { label: "About Kenya", href: "/about" },
+      { label: "Meet Kenya", href: "/meet-kenya" },
       { label: "Kenya B. Live", href: "/live" },
       { label: "Preferred Partners", href: "/partners" },
     ],

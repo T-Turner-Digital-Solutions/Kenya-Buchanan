@@ -96,7 +96,7 @@ export const studioActivity: ActivityEvent[] = [
   { id: "sa-2", at: "2026-09-18T16:02:00.000Z", actor: "System", actorRole: "system", action: "Waitlist offer expired", detail: "Waitlist #1 · 60-minute hold", clientVisible: false },
   { id: "sa-3", at: "2026-09-16T13:30:00.000Z", actor: "Kenya Buchanan", actorRole: "owner", action: "Fabric approval requested", detail: "Karlie McDowell", clientVisible: false },
   { id: "sa-4", at: "2026-09-15T14:20:00.000Z", actor: "System", actorRole: "system", action: "Account placed in owner review", detail: "Jordyn Alston", previousValue: "cancelled", newValue: "owner_review", clientVisible: false },
-  { id: "sa-5", at: "2026-09-12T20:10:00.000Z", actor: "Karlie McDowell", actorRole: "client", action: "Appointment rescheduled", previousValue: "Nov 7, 2026 · 4:00 PM", newValue: "Nov 14, 2026 · 4:00 PM", clientVisible: true },
+  { id: "sa-5", at: "2026-09-12T20:10:00.000Z", actor: "Karlie McDowell", actorRole: "client", action: "Appointment rescheduled", previousValue: "Oct 7, 2026 · 2:30 PM", newValue: "Oct 14, 2026 · 2:30 PM", clientVisible: true },
   { id: "sa-6", at: "2026-09-09T11:04:00.000Z", actor: "Kenya Buchanan", actorRole: "owner", action: "Signed contract resent", detail: "Amaya Ellison · v3.0", clientVisible: false },
   { id: "sa-7", at: "2026-09-04T09:48:00.000Z", actor: "Kenya Buchanan", actorRole: "owner", action: "Payment milestone overridden", detail: "Teagan Brooks", previousValue: "$2,000 due Sep 15", newValue: "$1,000 due Sep 15", clientVisible: false },
 ];
