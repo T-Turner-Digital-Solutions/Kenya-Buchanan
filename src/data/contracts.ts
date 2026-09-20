@@ -60,6 +60,25 @@ export const contractTemplates: ContractTemplate[] = [
     ],
   },
   {
+    id: "tpl-maternity-v1",
+    experience: "maternity",
+    name: "Maternity Design Agreement",
+    version: "1.0",
+    updatedAt: "2026-09-20T00:00:00.000Z",
+    requiresGuardian: false,
+    sections: [
+      { heading: "The Commission", body: "[SAMPLE] Scope of the maternity commission will be stated here." },
+      { heading: "Deposit & Payment", body: "[SAMPLE] Deposit and payment terms will be stated here." },
+      { heading: "Timeline & Your Date", body: "[SAMPLE] Terms covering the shoot or event date, and how fittings are scheduled around it, will be stated here." },
+      { heading: "Fittings & Fit Changes", body: "[SAMPLE] Terms covering fittings scheduled close to the date, and how fit changes through pregnancy are accommodated, will be stated here." },
+      { heading: "Release", body: "[SAMPLE] Release and pickup terms will be stated here." },
+    ],
+    acknowledgements: [
+      "I understand my fittings are scheduled close to my date so the gown fits on the day.",
+      "I have read the agreement in full.",
+    ],
+  },
+  {
     id: "tpl-custom-v1",
     experience: "custom",
     name: "Custom Design Agreement",

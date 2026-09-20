@@ -28,91 +28,55 @@ const photo = (
 
 /** Full-viewport hero rotation — the widest, most cinematic frames. */
 export const heroSlides: GalleryItem[] = [
-  photo("gown-royal-blue-tulle-car", "Royal blue tulle gown at the car door", {
+  photo("prom-royal-blue-tulle-arrival", "Royal blue tulle gown at the car door", {
     ratio: "landscape",
-    label: "Prom 2026",
+    label: "Prom",
   }),
-  photo("gown-black-sequin-night", "Black sequin gown with lace sleeves at night", {
-    label: "Prom 2026",
-  }),
-  photo("gown-silver-satin-cape", "Silver satin gown with a full cape", {
-    ratio: "landscape",
-    label: "Prom 2026",
-  }),
-  photo("gown-red-tulle-balustrade", "Red tulle gown against a marble balustrade", {
-    label: "Prom 2026",
-  }),
-  photo("gown-gold-columns", "Gold gown beneath lit columns", { label: "Prom 2026" }),
+  photo("prom-red-tulle-ruffle", "Red tulle gown on the avenue", { label: "Prom" }),
+  photo("prom-silver-pearl-cape", "Silver beaded gown with a pearl cape", { label: "Prom" }),
+  photo("prom-emerald-gold-doors", "Emerald sequin gown before gold doors", { label: "Prom" }),
+  photo("prom-gold-sequin-columns", "Gold sequin gown beneath lit columns", { label: "Prom" }),
 ];
 
 /** The Prom rail — the strongest silhouettes, varied in colour. */
 export const promGowns: GalleryItem[] = [
-  photo("gown-silver-pearl-cape", "Silver beaded gown with a pearl cape", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
-  photo("gown-red-lace-feathers", "Red lace gown with feather detail", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
-  photo("gown-royal-blue-velvet-train", "Royal blue velvet gown with a sweeping train", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
-  photo("gown-royal-blue-feather-bridge", "Royal blue velvet gown with feather detail", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
-  photo("gown-emerald-sequin-doors", "Emerald sequin gown before gold doors", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
-  photo("gown-pink-ruffle-tulle", "Blush ruffled tulle gown with a beaded bodice", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
-  photo("gown-magenta-velvet", "Magenta velvet gown with beaded sleeves", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
-  photo("gown-ivory-beaded-arrival", "Ivory beaded gown with a cathedral train", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
-  photo("gown-blue-velvet-skyline", "Powder blue velvet gown against the skyline", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
-  photo("gown-royal-blue-cape", "Royal blue sequin gown with a cape", {
-    label: "Prom 2026",
-    note: "Custom Kenya B.",
-  }),
+  photo("prom-silver-pearl-cape", "Silver beaded gown with a pearl cape", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-red-lace-feather", "Red lace gown with feather detail", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-royal-blue-velvet", "Royal blue velvet gown with a sweeping train", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-blush-ruffle-skyline", "Blush ruffled gown against the skyline", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-emerald-gold-doors", "Emerald sequin gown before gold doors", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-blush-ruffle-brick", "Blush ruffled tulle gown with a beaded bodice", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-burgundy-velvet", "Burgundy velvet gown with a long train", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-ivory-beaded-corvette", "Ivory beaded gown with a cathedral train", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-sky-blue-mermaid", "Sky blue mermaid gown at sunset", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-black-sequin-high-neck", "Black sequin gown with lace sleeves", { label: "Prom", note: "Custom Kenya B." }),
 ];
 
 /** Collections lookbook — deliberately mixed across experiences. */
 export const lookbook: GalleryItem[] = [
   photo("custom-black-feather-collar", "Black beaded gown with a feather collar", { label: "Custom" }),
-  photo("bridal-silver-lace-veil", "Bridal gown with a cathedral veil", { label: "Bridal" }),
+  photo("bridal-ivory-cathedral-veil", "Bride in ivory lace with a cathedral veil", { label: "Bridal" }),
   photo("custom-fuchsia-orange-arrival", "Fuchsia beaded gown with an orange satin train", { label: "Custom" }),
-  photo("gown-red-off-shoulder-ruffle", "Red off-shoulder gown with ruffle detail", { label: "Prom 2026" }),
-  photo("bridal-ivory-halter-staircase", "Bridal gown on the staircase", { label: "Bridal" }),
+  photo("prom-red-lace-satin-train", "Red lace gown with a satin train", { label: "Prom" }),
+  photo("bridal-ivory-lace-staircase", "Bride on the staircase in ivory lace", { label: "Bridal" }),
   photo("custom-fuchsia-candlelight", "Fuchsia beaded gown with a satin overskirt", { label: "Custom" }),
-  photo("gown-powder-blue-night", "Powder blue satin gown at night", { label: "Prom 2026" }),
-  photo("gown-champagne-rose-wall", "Champagne gown against a wall of roses", { label: "Prom 2026" }),
-  photo("bridal-rose-sequin-bouquet", "Rose sequin bridal gown with a bouquet", { label: "Bridal" }),
-  photo("gown-emerald-off-shoulder", "Emerald off-shoulder gown by the columns", { label: "Prom 2026" }),
+  photo("prom-rose-satin-marquee", "Rose satin gown beneath the marquee", { label: "Prom" }),
+  photo("prom-champagne-satin-roses", "Champagne satin gown against a wall of roses", { label: "Prom" }),
+  photo("bridal-rose-gold-sequin", "Bride in a rose gold sequin gown with a satin overskirt", { label: "Bridal" }),
+  photo("prom-emerald-sequin-terrace", "Emerald sequin gown on the terrace", { label: "Prom" }),
 ];
 
 /** Featured imagery for the experience selector. */
 export const experienceFeature: Record<string, GalleryItem> = {
-  prom: photo("gown-red-tulle-balustrade", "Red tulle prom gown", { ratio: "portrait" }),
-  bridal: photo("bridal-silver-lace-veil", "Bridal gown with a cathedral veil", { ratio: "portrait" }),
+  prom: photo("prom-red-tulle-ruffle", "Red tulle prom gown", { ratio: "portrait" }),
+  bridal: photo("bridal-ivory-cathedral-veil", "Bride in ivory lace with a cathedral veil", { ratio: "portrait" }),
+  maternity: photo("maternity-blush-stone-steps", "Maternity gown on the stone steps", { ratio: "portrait" }),
   custom: photo("custom-fuchsia-orange-steps", "Fuchsia and orange custom gown on the steps", { ratio: "portrait" }),
 };
 
 export const bridalFeature = photo(
-  "bridal-ivory-organza-seated",
-  "Bride seated in an ivory organza gown",
+  "bridal-ivory-lace-staircase",
+  "Bride on the staircase in an ivory lace gown",
   { ratio: "landscape" },
 );
 
@@ -122,27 +86,27 @@ export const customFeature: GalleryItem[] = [
 ];
 
 export const promSeasonFeature = photo(
-  "gown-red-lace-feathers",
+  "prom-red-lace-feather",
   "Red lace gown with feather detail",
   { ratio: "portrait" },
 );
 
 export const liveFeature = photo(
-  "arrival-champagne-street",
-  "Champagne gown and evening arrival on the street",
+  "prom-royal-blue-tulle-arrival",
+  "Evening arrival in a royal blue tulle gown",
   { ratio: "landscape" },
 );
 
 export const partnerBackdrops: Record<string, string> = {
-  photographers: "photo/gown-ivory-beaded-arrival",
-  luxury_cars: "photo/gown-royal-blue-tulle-car",
-  hair: "photo/detail-beaded-bodice-roses",
-  makeup: "photo/gown-silver-pearl-cape",
-  nails: "photo/gown-pink-ruffle-tulle",
-  videographers: "photo/gown-gold-columns",
-  florists: "photo/bridal-rose-sequin-bouquet",
-  jewelry: "photo/gown-champagne-rose-wall",
-  transportation: "photo/gown-silver-satin-cape",
-  event_planners: "photo/bridal-ivory-organza-seated",
-  venues: "photo/bridal-ivory-halter-staircase",
+  photographers: "photo/prom-ivory-beaded-corvette",
+  luxury_cars: "photo/prom-royal-blue-tulle-arrival",
+  hair: "photo/prom-champagne-satin-roses",
+  makeup: "photo/prom-silver-pearl-cape",
+  nails: "photo/prom-blush-ruffle-brick",
+  videographers: "photo/prom-gold-sequin-columns",
+  florists: "photo/bridal-rose-gold-sequin",
+  jewelry: "photo/prom-rose-satin-marquee",
+  transportation: "photo/prom-powder-blue-cape-car",
+  event_planners: "photo/bridal-champagne-barn-garden",
+  venues: "photo/bridal-ivory-lace-staircase",
 };

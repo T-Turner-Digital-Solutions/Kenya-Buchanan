@@ -130,8 +130,8 @@ export const meetKenya: StoryPage = {
       ],
       media: [
         {
-          slot: "photo/gown-gold-columns",
-          alt: "Gold gown beneath lit columns",
+          slot: "photo/prom-gold-sequin-columns",
+          alt: "Gold sequin gown beneath lit columns",
         },
       ],
     },
@@ -157,9 +157,9 @@ export const meetKenya: StoryPage = {
         },
       ],
       media: [
-        { slot: "photo/gown-purple-feather", alt: "Beaded bodice with a purple feather skirt" },
-        { slot: "photo/gown-magenta-velvet", alt: "Magenta velvet gown with beaded sleeves" },
-        { slot: "photo/gown-emerald-sequin-doors", alt: "Emerald sequin gown before gold doors" },
+        { slot: "photo/prom-blush-ruffle-brick", alt: "Blush ruffled gown with a beaded bodice" },
+        { slot: "photo/prom-burgundy-velvet", alt: "Burgundy velvet gown with a long train" },
+        { slot: "photo/prom-emerald-gold-doors", alt: "Emerald sequin gown before gold doors" },
       ],
     },
 
@@ -179,7 +179,7 @@ export const meetKenya: StoryPage = {
       statement: ["The moment may last a day.", "The memory doesn't."],
       media: [
         {
-          slot: "photo/bridal-silver-lace-veil",
+          slot: "photo/bridal-ivory-cathedral-veil",
           alt: "Bride in a Kenya B. gown with a cathedral veil",
         },
       ],
@@ -200,8 +200,8 @@ export const meetKenya: StoryPage = {
       ],
       media: [
         {
-          slot: "photo/gown-royal-blue-tulle-car",
-          alt: "Kenya B. client in a royal blue tulle gown",
+          slot: "photo/prom-royal-blue-tulle-arrival",
+          alt: "Kenya B. client arriving in a royal blue tulle gown",
         },
       ],
       cta: { label: "Kenya B. In The Community", href: "/live" },
@@ -246,7 +246,7 @@ export const meetKenya: StoryPage = {
         "It's the dream. The journey. The woman wearing it. And the moment she'll never forget.",
       ],
       media: [
-        { slot: "photo/gown-silver-pearl-cape", alt: "Kenya B. gown with a pearl cape" },
+        { slot: "photo/prom-silver-pearl-cape", alt: "Kenya B. gown with a pearl cape" },
       ],
     },
   ],

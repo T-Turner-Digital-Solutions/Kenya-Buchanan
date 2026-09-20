@@ -34,6 +34,16 @@ const collections = [
     ],
   },
   {
+    name: "Maternity",
+    note: "Shoots, showers and reveals",
+    pieces: [
+      { id: "col-maternity-1", alt: "Maternity gown on the stone steps", ratio: "portrait" as const },
+      { id: "col-maternity-2", alt: "Fuchsia maternity gown with puff sleeves", ratio: "portrait" as const },
+      { id: "col-maternity-3", alt: "Maternity gown with a flowing skirt", ratio: "tall" as const },
+      { id: "col-maternity-4", alt: "Maternity celebration in a fuchsia gown", ratio: "portrait" as const },
+    ],
+  },
+  {
     name: "Custom",
     note: "Galas, pageants and press",
     pieces: [

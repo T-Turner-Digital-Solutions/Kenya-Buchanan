@@ -284,6 +284,68 @@ const customJourney: JourneyStageTemplate[] = [
   },
 ];
 
+const maternityJourney: JourneyStageTemplate[] = [
+  {
+    key: "consultation",
+    title: "Consultation",
+    description: "Tell Kenya about your shoot, your shower or your celebration — and where you are in your pregnancy.",
+    whatToExpect: ["Discuss your date and setting", "Talk through the look you want", "Confirm the timeline around your due date"],
+  },
+  {
+    key: "inspiration",
+    title: "Inspiration",
+    description: "Share the colours, silhouettes and moods you are drawn to.",
+    whatToExpect: ["Upload inspiration", "Share your shoot location", "Kenya reviews before design"],
+    clientActions: ["Upload inspiration images"],
+  },
+  {
+    key: "measurement",
+    title: "Measurements",
+    description: "Measurements taken with your date in mind, so the gown fits the body you will have on the day.",
+    whatToExpect: [
+      "Measurements taken for your current stage",
+      "Kenya plans ease and adjustability into the design",
+      "Fitting schedule set close to your shoot",
+    ],
+  },
+  {
+    key: "design",
+    title: "Design",
+    description: "Kenya develops a silhouette that celebrates the bump rather than hiding it.",
+    whatToExpect: ["Silhouette developed", "Movement and draping considered", "Design direction confirmed"],
+  },
+  {
+    key: "sourcing",
+    title: "Fabric & Material Sourcing",
+    description: "Materials chosen to drape, move and photograph beautifully.",
+    whatToExpect: ["Fabric selected for movement", "Specialty pieces sourced where needed", "Materials arrive in studio"],
+  },
+  {
+    key: "construction",
+    title: "Construction",
+    description: "Your gown is built by hand, with room designed in.",
+    whatToExpect: ["Pattern drafted", "Gown constructed", "Progress shared here"],
+  },
+  {
+    key: "fitting_two",
+    title: "Fitting",
+    description: "Scheduled close to your date, because your body is still changing. This is the moment to raise anything about fit or comfort.",
+    whatToExpect: ["Fit assessed against your current stage", "Comfort and movement checked", "Adjustments agreed"],
+  },
+  {
+    key: "final_fitting",
+    title: "Final Fitting",
+    description: "The last fitting before your gown is released — as near to your date as the schedule allows.",
+    whatToExpect: ["Final fit confirmed", "Styling and movement check", "Care guidance"],
+  },
+  {
+    key: "release",
+    title: "Gown Release",
+    description: "Your gown comes home, ready for the day.",
+    whatToExpect: ["Balance settled", "Gown packaged", "Care guide provided"],
+  },
+];
+
 export const experiences: Experience[] = [
   {
     slug: "prom",
@@ -334,6 +396,28 @@ export const experiences: Experience[] = [
     ],
     contractTemplateId: "tpl-bridal-v2",
     heroMedia: { id: "bridal-hero", alt: "Bridal gown detail, hand-finished bodice", ratio: "landscape", tone: "dark" },
+    status: "active",
+  },
+  {
+    slug: "maternity",
+    name: "Maternity",
+    tagline: "Dressed for the season you will never forget.",
+    description:
+      "Maternity shoots, showers and reveals. A gown designed for the body you have now — built to drape, to move and to photograph — with fittings scheduled close to your date because your body is still changing.",
+    seasonal: false,
+    config: {
+      ...baseConfig,
+      depositLabel: "Maternity Design Deposit",
+      depositAmountCents: null,
+      inspirationUploadsMin: 1,
+      inspirationUploadsMax: 3,
+      minimumAppointments: 3,
+      availableApprovals: ["design_sketch", "color", "fabric"],
+    },
+    journeyTemplate: maternityJourney,
+    partnerCategories: ["photographers", "videographers", "hair", "makeup", "florists", "venues"],
+    contractTemplateId: "tpl-maternity-v1",
+    heroMedia: { id: "maternity-hero", alt: "Maternity gown in the garden", ratio: "landscape", tone: "dark" },
     status: "active",
   },
   {

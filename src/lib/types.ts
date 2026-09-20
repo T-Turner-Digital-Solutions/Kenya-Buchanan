@@ -15,7 +15,7 @@
 /* Experiences                                                         */
 /* ------------------------------------------------------------------ */
 
-export type ExperienceSlug = "prom" | "bridal" | "custom";
+export type ExperienceSlug = "prom" | "bridal" | "custom" | "maternity";
 
 export interface Experience {
   slug: ExperienceSlug;
