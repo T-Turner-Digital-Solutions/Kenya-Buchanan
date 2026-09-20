@@ -11,16 +11,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        /* True black through charcoal — dark sections are layered, not flat. */
         ink: {
-          DEFAULT: "#0B0B0C",
-          soft: "#16161A",
-          muted: "#2A2A30",
+          DEFAULT: "#0A0A0B",
+          soft: "#141417",
+          muted: "#26262C",
         },
+        charcoal: {
+          DEFAULT: "#1A1A1E",
+          light: "#2C2C33",
+        },
+        /* Warm ivory and a cleaner soft white, so light sections are not all beige. */
         bone: {
           DEFAULT: "#F7F4EF",
           deep: "#EFE9E0",
           shadow: "#E2DACE",
         },
+        ivory: {
+          DEFAULT: "#F4EFE7",
+          deep: "#E9E1D5",
+        },
+        paper: "#FCFBF9",
         champagne: {
           DEFAULT: "#C1A16B",
           light: "#DCC79C",
@@ -36,6 +47,7 @@ const config: Config = {
       letterSpacing: {
         luxe: "0.28em",
         wide2: "0.18em",
+        display: "0.06em",
       },
       maxWidth: {
         editorial: "78rem",
@@ -59,11 +71,22 @@ const config: Config = {
           "0%": { backgroundPosition: "-120% 0" },
           "100%": { backgroundPosition: "220% 0" },
         },
+        /* Slow Ken Burns drift for hero imagery. */
+        kenburns: {
+          "0%": { transform: "scale(1.02) translate3d(0, 0, 0)" },
+          "100%": { transform: "scale(1.14) translate3d(-1.5%, -1.5%, 0)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         rise: "rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both",
         fade: "fade 1.2s ease both",
         sheen: "sheen 6s linear infinite",
+        kenburns: "kenburns 9s ease-out forwards",
+        marquee: "marquee 40s linear infinite",
       },
     },
   },

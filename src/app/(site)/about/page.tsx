@@ -81,11 +81,22 @@ export default function AboutPage() {
                 </span>
               </figcaption>
             </figure>
-            <MediaFrame
-              slot={{ id: "about-detail", alt: "Hand-finished detail from the studio", ratio: "landscape" }}
-              className="max-w-md"
-              sizes="(max-width: 1024px) 100vw, 40vw"
-            />
+            <figure className="flex flex-col gap-4">
+              <MediaFrame
+                slot={{
+                  id: "kenya-with-bride",
+                  alt: "Kenya Buchanan with a bride in a Kenya B. gown",
+                  ratio: "portrait",
+                }}
+                className="w-full max-w-[20rem]"
+                focal="face"
+                sizes="(max-width: 640px) 75vw, 320px"
+              />
+              <figcaption className="max-w-[20rem] text-xs leading-relaxed text-ink/50">
+                With a bride on her wedding day — the part of the work that does not photograph
+                itself.
+              </figcaption>
+            </figure>
           </Reveal>
         </div>
       </Section>

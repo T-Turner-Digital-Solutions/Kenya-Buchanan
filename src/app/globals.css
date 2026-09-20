@@ -38,6 +38,29 @@
     @apply font-sans text-[0.65rem] uppercase tracking-luxe text-clay;
   }
 
+  /*
+   * Display headline in caps — the campaign voice. Paired with sans for every
+   * label, control and piece of data, so not everything reads as a magazine
+   * headline.
+   */
+  .display-caps {
+    @apply font-display font-light uppercase leading-[0.95] tracking-display;
+  }
+
+  /* Horizontal rails: momentum scrolling that snaps, with the next card peeking. */
+  .rail {
+    @apply flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth;
+    scrollbar-width: none;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rail > * {
+    @apply snap-start shrink-0;
+  }
+
   .rule {
     @apply h-px w-full bg-ink/10;
   }
@@ -80,6 +103,16 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  .drag-grab {
+    cursor: grab;
+  }
+
+  .drag-grab:active {
+    cursor: grabbing;
   }
 }
 

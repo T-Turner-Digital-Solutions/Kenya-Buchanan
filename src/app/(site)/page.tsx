@@ -1,299 +1,361 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ExperiencePanel } from "@/components/site/ExperiencePanel";
-import { LiveCard } from "@/components/site/LiveCard";
-import { PageHero } from "@/components/site/PageHero";
-import { PartnerCard } from "@/components/site/PartnerCard";
-import { Section } from "@/components/site/Section";
-import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { ExperienceSelector } from "@/components/site/ExperienceSelector";
+import { GownCarousel } from "@/components/site/GownCarousel";
+import { HeroCarousel } from "@/components/site/HeroCarousel";
+import { LiveFeature } from "@/components/site/LiveFeature";
+import { LookbookGallery } from "@/components/site/LookbookGallery";
+import { PartnersRail } from "@/components/site/PartnersRail";
+import { PortalPreview } from "@/components/site/PortalPreview";
+import { SeasonPanel } from "@/components/site/SeasonPanel";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { resolveMedia } from "@/config/media";
 import { brand } from "@/config/site";
-import { currentPromSeason, experiences, liveSessions, partners } from "@/lib/services";
+import {
+  bridalFeature,
+  customFeature,
+  heroSlides,
+  lookbook,
+  promGowns,
+} from "@/data/gallery";
+import {
+  currentPromSeason,
+  experiences,
+  getDemoPortalClient,
+  liveSessions,
+  partnersByCategory,
+} from "@/lib/services";
 
-const featured = [
-  { id: "featured-1", alt: "Beaded column gown, full length", ratio: "tall" as const, caption: "Prom 2026 · Reveal Night" },
-  { id: "featured-2", alt: "Bridal gown, back detail", ratio: "portrait" as const, caption: "Bridal · Hand-finished" },
-  { id: "featured-3", alt: "Structured bodice detail", ratio: "portrait" as const, caption: "Custom · Gala" },
-  { id: "featured-4", alt: "Full skirt in motion", ratio: "tall" as const, caption: "Kenya B. Collection" },
-];
-
-const clientPromises = [
-  { title: "Where am I in the process?", body: "Your journey, stage by stage, always current." },
-  { title: "What happens next?", body: "The next step is never a guess — it is on your dashboard." },
-  { title: "When do I come in?", body: "Every appointment, with preparation and the option to reschedule yourself." },
-  { title: "What does Kenya need from me?", body: "Uploads, approvals and acknowledgements in one place." },
-];
-
+/**
+ * HOME — a visual sequence, not a document.
+ *
+ * Hero → experiences → prom gowns → the season → bridal → custom →
+ * My Kenya B. → live → Kenya → partners → close. Every section earns its
+ * height, and the gowns carry the page.
+ */
 export default function HomePage() {
-  const upcomingLive = liveSessions.filter((session) => session.state !== "past").slice(0, 2);
-  const partnerPreview = partners.slice(0, 3);
-  const spotsRemaining = currentPromSeason.initialCapacity - currentPromSeason.spotsClaimed;
+  const client = getDemoPortalClient();
+  const partnerGroups = partnersByCategory([
+    "photographers",
+    "luxury_cars",
+    "hair",
+    "makeup",
+    "florists",
+  ]);
+  const bridalSrc = resolveMedia(bridalFeature.id);
 
   return (
     <>
-      <PageHero
-        media={{ id: "home-hero", alt: "Kenya Buchanan with a bride in a Kenya B. gown", ratio: "landscape" }}
-        title="KENYA BUCHANAN"
-        subtitle={brand.motto}
-        actions={
-          <>
-            <Button href="/book" variant="light" size="lg">
-              Begin Your Experience
-            </Button>
-            <Button href="/prom" variant="ghost" size="lg" className="!text-bone/70 hover:!text-bone">
-              Explore Prom
-            </Button>
-            <Button href="/bridal" variant="ghost" size="lg" className="!text-bone/70 hover:!text-bone">
-              Bridal
-            </Button>
-            <Button href="/custom" variant="ghost" size="lg" className="!text-bone/70 hover:!text-bone">
-              Custom
-            </Button>
-          </>
-        }
+      <HeroCarousel
+        slides={heroSlides}
+        eyebrow="A vision. A fit. A moment."
+        title="Kenya Buchanan"
+        tagline={brand.motto}
       />
 
-      {/* Featured work — the gowns are the artwork. */}
-      <Section size="lg">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Featured Work"
-            title={<>The gown is the point.<br />Everything else serves it.</>}
-            action={
-              <Button href="/collections" variant="outline">
-                View Collections
-              </Button>
-            }
-          />
-        </Reveal>
+      {/* Experience selector */}
+      <section className="bg-paper py-16 lg:py-24">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
+          <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6 lg:mb-14">
+            <div className="flex flex-col gap-3">
+              <p className="text-[0.6rem] uppercase tracking-luxe text-champagne-deep">
+                The Experiences
+              </p>
+              <h2 className="display-caps text-3xl text-ink sm:text-4xl">
+                Choose how you are dressed.
+              </h2>
+            </div>
+            <Link
+              href="/book"
+              className="group inline-flex items-center gap-3 text-[0.62rem] uppercase tracking-wide2 text-ink transition-colors hover:text-champagne-deep"
+            >
+              Begin Your Experience
+              <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-4 lg:mt-20 lg:grid-cols-4 lg:gap-6">
-          {featured.map((item, index) => (
-            <Reveal key={item.id} delay={index * 90} className={index % 2 === 1 ? "lg:mt-16" : undefined}>
+          <Reveal delay={100}>
+            <ExperienceSelector experiences={experiences} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Prom gown carousel */}
+      <section className="bg-ivory py-16 lg:py-24">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
+          <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6 lg:mb-14">
+            <div className="flex flex-col gap-3">
+              <p className="text-[0.6rem] uppercase tracking-luxe text-champagne-deep">
+                Kenya B. Prom
+              </p>
+              <h2 className="display-caps text-4xl text-ink sm:text-5xl lg:text-6xl">
+                Made for the entrance.
+              </h2>
+            </div>
+            <Link
+              href="/collections"
+              className="group inline-flex items-center gap-3 text-[0.62rem] uppercase tracking-wide2 text-ink transition-colors hover:text-champagne-deep"
+            >
+              View Full Gallery
+              <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <GownCarousel items={promGowns} ctaHref="/prom" ctaLabel="View Prom Experience" />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Prom season */}
+      <section className="bg-paper">
+        <Reveal>
+          <SeasonPanel season={currentPromSeason} />
+        </Reveal>
+      </section>
+
+      {/* Bridal feature */}
+      <section className="relative isolate min-h-[34rem] overflow-hidden bg-ink lg:min-h-[42rem]">
+        {bridalSrc ? (
+          <Image
+            src={bridalSrc}
+            alt={bridalFeature.alt}
+            fill
+            loading="lazy"
+            sizes="100vw"
+            className="object-cover object-[50%_22%] transition-transform duration-[2000ms] ease-silk hover:scale-105"
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/60 to-ink/10" />
+
+        <div className="relative mx-auto flex min-h-[34rem] max-w-editorial items-center px-5 py-16 sm:px-8 lg:min-h-[42rem] lg:px-12">
+          <Reveal className="flex max-w-lg flex-col gap-6">
+            <p className="text-[0.6rem] uppercase tracking-luxe text-champagne">Kenya B. Bridal</p>
+            <h2 className="display-caps text-4xl text-bone sm:text-5xl lg:text-6xl">
+              For the moment
+              <br />
+              that becomes
+              <br />
+              the memory.
+            </h2>
+            <Link
+              href="/bridal"
+              className="group mt-2 inline-flex w-fit items-center gap-3 border border-bone/40 px-8 py-4 text-[0.66rem] uppercase tracking-wide2 text-bone transition-all duration-500 ease-silk hover:bg-bone hover:text-ink"
+            >
+              Explore Bridal
+              <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Custom feature — asymmetric */}
+      <section className="bg-paper py-16 lg:py-24">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
+          <div className="grid items-center gap-8 lg:grid-cols-[1fr_0.9fr] lg:gap-16">
+            <Reveal className="order-2 grid grid-cols-2 gap-4 lg:order-1">
               <MediaFrame
-                slot={{ id: item.id, alt: item.alt, ratio: item.ratio }}
-                caption={item.caption}
-                sizes="(max-width: 1024px) 50vw, 25vw"
+                slot={customFeature[0]}
+                focal="face"
+                className="aspect-[3/4]"
+                sizes="(max-width: 1024px) 45vw, 26vw"
+              />
+              <MediaFrame
+                slot={customFeature[1]}
+                focal="face"
+                className="mt-10 aspect-[3/4]"
+                sizes="(max-width: 1024px) 45vw, 26vw"
               />
             </Reveal>
-          ))}
-        </div>
-      </Section>
 
-      {/* Experiences */}
-      <Section tone="deep" size="lg">
-        <Reveal>
-          <SectionHeading
-            eyebrow="The Experiences"
-            title="Choose how you want to be dressed."
-            lede="Every Kenya B. client enters through an experience. Each one has its own journey, its own agreement and its own rhythm."
-          />
-        </Reveal>
-        <div className="mt-14 grid gap-12 lg:mt-20 lg:grid-cols-3 lg:gap-8">
-          {experiences.map((experience, index) => (
-            <Reveal key={experience.slug} delay={index * 110}>
-              <ExperiencePanel experience={experience} index={index} />
+            <Reveal delay={120} className="order-1 flex flex-col gap-6 lg:order-2">
+              <p className="text-[0.6rem] uppercase tracking-luxe text-champagne-deep">
+                Kenya B. Custom
+              </p>
+              <h2 className="display-caps text-4xl text-ink sm:text-5xl lg:text-6xl">
+                One night.
+                <br />
+                One design.
+                <br />
+                Yours.
+              </h2>
+              <p className="max-w-md text-sm leading-relaxed text-ink/60">
+                Galas, pageants, milestones and red carpets — drafted, sourced and finished for one
+                body and one occasion.
+              </p>
+              <Link
+                href="/custom"
+                className="group inline-flex w-fit items-center gap-3 bg-ink px-8 py-4 text-[0.66rem] uppercase tracking-wide2 text-bone transition-all duration-500 ease-silk hover:bg-champagne hover:text-ink"
+              >
+                Explore Custom
+                <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
             </Reveal>
-          ))}
+          </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Prom season teaser */}
-      <Section tone="ink" size="lg">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
+      {/* My Kenya B. */}
+      <section className="bg-ivory py-16 lg:py-24">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
           <Reveal>
-            <MediaFrame
-              slot={{ id: "prom-teaser", alt: "Prom gown on the studio floor", ratio: "portrait", tone: "dark" }}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </Reveal>
-          <Reveal delay={120} className="flex flex-col gap-8">
-            <SectionHeading
-              tone="light"
-              eyebrow={`${currentPromSeason.name} · Books Open`}
-              title="A season, not a storefront."
-              lede={
-                <>
-                  A Prom Spot is acceptance into the season — not an appointment. Spots are limited,
-                  claimed with a deposit, and held for one person at a time.
-                </>
-              }
-            />
-            <div className="flex flex-wrap items-baseline gap-x-10 gap-y-4 border-t border-bone/15 pt-8">
-              <div>
-                <p className="font-display text-5xl leading-none text-bone">
-                  {currentPromSeason.spotsClaimed}
-                  <span className="text-2xl text-bone/40"> / {currentPromSeason.initialCapacity}</span>
-                </p>
-                <p className="mt-2 text-[0.55rem] uppercase tracking-luxe text-bone/40">Spots claimed</p>
-              </div>
-              <div>
-                <p className="font-display text-5xl leading-none text-champagne">{spotsRemaining}</p>
-                <p className="mt-2 text-[0.55rem] uppercase tracking-luxe text-bone/40">Remaining</p>
-              </div>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button href="/prom" variant="light">
-                Explore Prom
-              </Button>
-              <Button href="/book" variant="ghost" className="!text-bone/70 hover:!text-bone">
-                Begin Your Experience
-              </Button>
-            </div>
+            <PortalPreview client={client} />
           </Reveal>
         </div>
-      </Section>
-
-      {/* Kenya B. Collection */}
-      <Section size="lg">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-20">
-          <Reveal className="flex flex-col gap-8">
-            <SectionHeading
-              eyebrow={brand.collection}
-              title="Pieces that live beyond one night."
-              lede="A growing collection of Kenya B. designs — some one of one, some reimagined for the next woman who needs them."
-            />
-            <Button href="/collections" variant="outline" className="self-start">
-              View the Collection
-            </Button>
-          </Reveal>
-          <Reveal delay={120} className="grid grid-cols-2 gap-4 lg:gap-6">
-            <MediaFrame slot={{ id: "collection-1", alt: "Collection piece, column silhouette", ratio: "portrait" }} sizes="25vw" />
-            <MediaFrame slot={{ id: "collection-2", alt: "Collection piece, draped detail", ratio: "portrait" }} className="mt-10" sizes="25vw" />
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* Kenya's story */}
-      <Section tone="deep" size="lg">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-20">
-          <Reveal>
-            <MediaFrame
-              slot={{ id: "story-gown", alt: "Kenya B. gown, champagne silk with satin overskirt", ratio: "portrait" }}
-              sizes="(max-width: 1024px) 100vw, 55vw"
-            />
-          </Reveal>
-          <Reveal delay={120} className="flex flex-col gap-8">
-            <Eyebrow>The Designer</Eyebrow>
-            <blockquote className="font-display text-3xl leading-[1.15] text-balance sm:text-4xl lg:text-5xl">
-              &ldquo;I am not making you a dress. I am making the way you walk into the room.&rdquo;
-            </blockquote>
-            <p className="max-w-lg text-sm leading-relaxed text-ink/65">
-              Kenya Buchanan builds gowns by hand for the person who will wear them — measured,
-              drafted, sourced and finished for one body and one night. The process is personal, and
-              it is meant to be.
-            </p>
-            <div className="flex items-center gap-5 border-t border-ink/10 pt-8">
-              <MediaFrame
-                slot={{ id: "kenya-portrait", alt: "Kenya Buchanan", ratio: "portrait" }}
-                className="w-20 shrink-0"
-                sizes="80px"
-              />
-              <div className="flex flex-col gap-1">
-                <p className="font-display text-lg leading-none">Kenya Buchanan</p>
-                <p className="text-[0.55rem] uppercase tracking-luxe text-ink/40">Designer &amp; Founder</p>
-              </div>
-            </div>
-            <Button href="/about" variant="outline" className="self-start">
-              About Kenya
-            </Button>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* Client experience */}
-      <Section tone="ink" size="lg">
-        <Reveal>
-          <SectionHeading
-            tone="light"
-            eyebrow={brand.clientPortal}
-            title="Your gown has an address."
-            lede="Every Kenya B. client receives a private account: your journey, your appointments, your approvals, your payments and a direct line to the studio."
-          />
-        </Reveal>
-        <div className="mt-14 grid gap-px border border-bone/10 bg-bone/10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
-          {clientPromises.map((item, index) => (
-            <Reveal key={item.title} delay={index * 90} className="bg-ink p-8">
-              <p className="font-display text-xl leading-snug text-bone">{item.title}</p>
-              <p className="mt-4 text-sm leading-relaxed text-bone/55">{item.body}</p>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={200} className="mt-12 flex flex-col gap-3 sm:flex-row">
-          <Button href="/portal/login" variant="light">
-            Log In To My Kenya B.
-          </Button>
-        </Reveal>
-      </Section>
+      </section>
 
       {/* Kenya B. Live */}
-      <Section size="lg">
-        <Reveal>
-          <SectionHeading
-            eyebrow={brand.live}
-            title="Kenya, live."
-            lede="Q&As, sourcing diaries and reveal nights. Come with questions."
-            action={
-              <Button href="/live" variant="outline">
-                All Sessions
-              </Button>
-            }
-          />
-        </Reveal>
-        <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-2 lg:gap-12">
-          {upcomingLive.map((session, index) => (
-            <Reveal key={session.id} delay={index * 110}>
-              <LiveCard session={session} />
-            </Reveal>
-          ))}
+      <section className="bg-paper py-16 lg:py-24">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
+          <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
+            <div className="flex flex-col gap-3">
+              <p className="text-[0.6rem] uppercase tracking-luxe text-champagne-deep">
+                {brand.live}
+              </p>
+              <h2 className="display-caps text-3xl text-ink sm:text-4xl">Kenya, live.</h2>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <LiveFeature sessions={liveSessions} />
+          </Reveal>
         </div>
-      </Section>
+      </section>
+
+      {/* Collections lookbook */}
+      <section className="bg-ink py-16 lg:py-24">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
+          <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-6">
+            <div className="flex flex-col gap-3">
+              <p className="text-[0.6rem] uppercase tracking-luxe text-champagne">
+                {brand.collection}
+              </p>
+              <h2 className="display-caps text-3xl text-bone sm:text-4xl">The lookbook.</h2>
+            </div>
+            <Link
+              href="/collections"
+              className="group inline-flex items-center gap-3 text-[0.62rem] uppercase tracking-wide2 text-bone/70 transition-colors hover:text-bone"
+            >
+              All Collections
+              <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </Reveal>
+          <Reveal delay={100} className="[&_.text-ink]:text-bone">
+            <LookbookGallery items={lookbook} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Meet Kenya */}
+      <section className="bg-paper py-16 lg:py-24">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.8fr_1fr] lg:gap-16">
+            <Reveal className="flex justify-center lg:justify-start">
+              <MediaFrame
+                slot={{ id: "kenya-portrait", alt: "Kenya Buchanan", ratio: "portrait" }}
+                className="w-full max-w-[19rem]"
+                sizes="(max-width: 1024px) 70vw, 300px"
+              />
+            </Reveal>
+
+            <Reveal delay={120} className="flex flex-col gap-6">
+              <p className="text-[0.6rem] uppercase tracking-luxe text-champagne-deep">Meet Kenya</p>
+              <blockquote className="font-display text-3xl leading-[1.15] text-ink text-balance sm:text-4xl lg:text-5xl">
+                &ldquo;I am not making you a dress. I am making the way you walk into the room.&rdquo;
+              </blockquote>
+              <p className="max-w-lg text-sm leading-relaxed text-ink/60">
+                Kenya Buchanan builds gowns by hand for the person who will wear them — measured,
+                drafted, sourced and finished for one body and one night.
+              </p>
+              <p className="font-display text-xl italic text-champagne-deep">{brand.motto}</p>
+              <Link
+                href="/about"
+                className="group inline-flex w-fit items-center gap-3 border border-ink/25 px-8 py-4 text-[0.66rem] uppercase tracking-wide2 text-ink transition-all duration-500 ease-silk hover:border-ink hover:bg-ink hover:text-bone"
+              >
+                Her Story
+                <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
       {/* Preferred partners */}
-      <Section tone="deep" size="lg">
-        <Reveal>
-          <SectionHeading
-            eyebrow={brand.preferred}
-            title="Complete your experience."
-            lede="The gown is ours. For everything else around it, Kenya keeps a short list."
-            action={
-              <Button href="/partners" variant="outline">
-                Preferred Partners
-              </Button>
-            }
-          />
-        </Reveal>
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3">
-          {partnerPreview.map((partner, index) => (
-            <Reveal key={partner.id} delay={index * 100}>
-              <PartnerCard partner={partner} />
-            </Reveal>
-          ))}
+      <section className="bg-ivory py-16 lg:py-24">
+        <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
+          <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-6">
+            <div className="flex flex-col gap-3">
+              <p className="text-[0.6rem] uppercase tracking-luxe text-champagne-deep">
+                {brand.preferred}
+              </p>
+              <h2 className="display-caps text-3xl text-ink sm:text-4xl">Complete your night.</h2>
+            </div>
+            <Link
+              href="/partners"
+              className="group inline-flex items-center gap-3 text-[0.62rem] uppercase tracking-wide2 text-ink transition-colors hover:text-champagne-deep"
+            >
+              All Partners
+              <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </Reveal>
+          <Reveal delay={100}>
+            <PartnersRail groups={partnerGroups} />
+          </Reveal>
         </div>
-      </Section>
+      </section>
 
-      {/* Closing call */}
-      <Section tone="ink" size="lg">
-        <Reveal className="flex flex-col items-center gap-10 text-center">
-          <Eyebrow className="!text-champagne">Begin</Eyebrow>
-          <h2 className="max-w-3xl font-display text-4xl leading-[1.05] text-bone text-balance sm:text-5xl lg:text-6xl">
+      {/* Final CTA */}
+      <section className="relative isolate overflow-hidden bg-ink py-20 lg:py-28">
+        <div className="absolute inset-0 opacity-25">
+          <Image
+            src={resolveMedia(heroSlides[0].id) ?? ""}
+            alt=""
+            fill
+            loading="lazy"
+            sizes="100vw"
+            className="object-cover object-[50%_20%]"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/70 to-ink" />
+
+        <Reveal className="relative mx-auto flex max-w-editorial flex-col items-center gap-8 px-5 text-center sm:px-8 lg:px-12">
+          <p className="text-[0.6rem] uppercase tracking-luxe text-champagne">Begin</p>
+          <h2 className="display-caps max-w-3xl text-4xl text-bone text-balance sm:text-5xl lg:text-6xl">
             It starts with one conversation.
           </h2>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button href="/book" variant="light" size="lg">
-              Begin Your Experience
-            </Button>
             <Link
-              href="/about"
-              className="px-9 py-4 text-[0.7rem] uppercase tracking-wide2 text-bone/60 transition-colors duration-500 hover:text-bone"
+              href="/book"
+              className="group inline-flex items-center justify-center gap-3 bg-champagne px-9 py-4 text-[0.68rem] uppercase tracking-wide2 text-ink transition-all duration-500 ease-silk hover:bg-bone"
             >
-              Meet Kenya
+              Begin Your Experience
+              <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+            <Link
+              href="/portal/login"
+              className="inline-flex items-center justify-center border border-bone/35 px-9 py-4 text-[0.68rem] uppercase tracking-wide2 text-bone transition-all duration-500 hover:border-bone hover:bg-bone/10"
+            >
+              My Kenya B. Login
             </Link>
           </div>
         </Reveal>
-      </Section>
+      </section>
     </>
   );
 }
