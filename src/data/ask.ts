@@ -35,7 +35,7 @@ export const askSuggestions: AskEntry[] = [
     id: "ask-3",
     question: "When is my next appointment?",
     answer:
-      "Fitting #2 — Saturday, November 14, 2026 at 4:00 PM at Kenya B. Studio. You can reschedule it from Appointments.",
+      "Fitting #2 — Wednesday, October 14, 2026 at 2:30 PM at Kenya B. Studio. You can reschedule it from Appointments.",
     source: "Your account · Appointments",
   },
   {

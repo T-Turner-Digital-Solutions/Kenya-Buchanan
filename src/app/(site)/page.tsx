@@ -112,13 +112,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Prom season */}
-      <section className="bg-paper">
-        <Reveal>
-          <SeasonPanel season={currentPromSeason} />
-        </Reveal>
-      </section>
-
       {/* Bridal feature */}
       <section className="relative isolate min-h-[34rem] overflow-hidden bg-ink lg:min-h-[42rem]">
         {bridalSrc ? (
@@ -204,8 +197,13 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Prom season band */}
+      <Reveal>
+        <SeasonPanel season={currentPromSeason} />
+      </Reveal>
+
       {/* My Kenya B. */}
-      <section className="bg-ivory py-16 lg:py-24">
+      <section className="overflow-hidden bg-ivory py-16 lg:py-24">
         <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
           <Reveal>
             <PortalPreview client={client} />
@@ -279,7 +277,7 @@ export default function HomePage() {
               </p>
               <p className="font-display text-xl italic text-champagne-deep">{brand.motto}</p>
               <Link
-                href="/about"
+                href="/meet-kenya"
                 className="group inline-flex w-fit items-center gap-3 border border-ink/25 px-8 py-4 text-[0.66rem] uppercase tracking-wide2 text-ink transition-all duration-500 ease-silk hover:border-ink hover:bg-ink hover:text-bone"
               >
                 Her Story
