@@ -34,13 +34,23 @@ const collections = [
     ],
   },
   {
+    name: "Maternity",
+    note: "Shoots, showers and reveals",
+    pieces: [
+      { id: "col-maternity-1", alt: "Maternity gown on the stone steps", ratio: "portrait" as const },
+      { id: "col-maternity-2", alt: "Fuchsia maternity gown with puff sleeves", ratio: "portrait" as const },
+      { id: "col-maternity-3", alt: "Maternity gown with a flowing skirt", ratio: "tall" as const },
+      { id: "col-maternity-4", alt: "Maternity celebration in a fuchsia gown", ratio: "portrait" as const },
+    ],
+  },
+  {
     name: "Custom",
     note: "Galas, pageants and press",
     pieces: [
-      { id: "col-custom-1", alt: "Red carpet gown with high slit", ratio: "portrait" as const },
-      { id: "col-custom-2", alt: "Pageant gown under stage light", ratio: "portrait" as const },
-      { id: "col-custom-3", alt: "Gala gown, sculptural shoulder", ratio: "tall" as const },
-      { id: "col-custom-4", alt: "Custom gown with beaded sleeves", ratio: "portrait" as const },
+      { id: "col-custom-1", alt: "Fuchsia beaded gown with an orange satin train", ratio: "portrait" as const },
+      { id: "col-custom-2", alt: "Black beaded gown with a feather collar", ratio: "portrait" as const },
+      { id: "col-custom-3", alt: "Fuchsia and orange gown on the marble steps", ratio: "tall" as const },
+      { id: "col-custom-4", alt: "Fuchsia beaded gown by candlelight", ratio: "portrait" as const },
     ],
   },
 ];

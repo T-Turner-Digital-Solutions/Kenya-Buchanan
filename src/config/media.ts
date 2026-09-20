@@ -29,60 +29,74 @@ export const mediaSources: Record<string, string | undefined> = {
    * across a full-bleed hero visibly softens it — a hero needs ~1400px wide.
    */
   "kenya-portrait": editorial("kenya-buchanan-portrait"),
-  "kenya-with-bride": editorial("kenya-with-bride-lakeside"),
+  "kenya-with-bride": editorial("bridal-kenya-with-bride"),
+  /* Full-resolution portrait — strong enough to lead a full-bleed hero. */
+  "kenya-meet-hero": editorial("kenya-meet-portrait"),
 
   /* Home */
-  "home-hero": editorial("gown-royal-blue-tulle-car"),
-  "featured-1": editorial("gown-silver-pearl-cape"),
-  "featured-2": editorial("gown-pink-ruffle-tulle"),
-  "featured-3": editorial("gown-red-tulle-balustrade"),
-  "featured-4": editorial("gown-gold-columns"),
-  "prom-teaser": editorial("gown-royal-blue-cape"),
-  "story-gown": editorial("gown-champagne-rose-wall"),
-  "collection-1": editorial("gown-red-off-shoulder-ruffle"),
-  "collection-2": editorial("gown-powder-blue-night"),
+  "home-hero": editorial("prom-royal-blue-tulle-arrival"),
+  "featured-1": editorial("prom-silver-pearl-cape"),
+  "featured-2": editorial("prom-blush-ruffle-brick"),
+  "featured-3": editorial("prom-red-tulle-ruffle"),
+  "featured-4": editorial("prom-gold-sequin-columns"),
+  "prom-teaser": editorial("prom-royal-blue-satin-tulle"),
+  "story-gown": editorial("prom-champagne-satin-roses"),
+  "collection-1": editorial("prom-red-feather-off-shoulder"),
+  "collection-2": editorial("prom-ice-blue-satin"),
 
   /* Experience cards */
-  "prom-card": editorial("gown-blue-velvet-skyline"),
-  "bridal-card": editorial("bridal-ivory-halter-staircase"),
-  "custom-card": editorial("gown-chocolate-velvet"),
+  "prom-card": editorial("prom-sky-blue-mermaid"),
+  "bridal-card": editorial("bridal-ivory-cathedral-veil"),
+  "custom-card": editorial("custom-fuchsia-orange-steps"),
 
   /* Prom */
-  "prom-hero": editorial("gown-black-sequin-night"),
-  "prom-editorial": editorial("gown-royal-blue-velvet-train"),
+  "prom-hero": editorial("prom-black-sequin-high-neck"),
+  "prom-editorial": editorial("prom-royal-blue-velvet"),
 
   /* Bridal */
-  "bridal-hero": editorial("bridal-silver-lace-veil"),
-  "bridal-1": editorial("bridal-rose-sequin-bouquet"),
-  "bridal-2": editorial("bridal-blush-overskirt-lawn"),
+  "bridal-hero": editorial("bridal-ivory-lace-staircase"),
+  "bridal-1": editorial("bridal-rose-gold-sequin"),
+  "bridal-2": editorial("bridal-champagne-barn-garden"),
+
+  /* Maternity */
+  "maternity-hero": editorial("maternity-blush-flowing-skirt"),
+  "maternity-card": editorial("maternity-blush-stone-steps"),
+  "maternity-1": editorial("maternity-fuchsia-puff-sleeve"),
+  "maternity-2": editorial("maternity-blush-garden-couple"),
+  "maternity-3": editorial("maternity-fuchsia-celebration"),
+  "book-maternity": editorial("maternity-blush-garden-couple"),
+  "col-maternity-1": editorial("maternity-blush-stone-steps"),
+  "col-maternity-2": editorial("maternity-fuchsia-puff-sleeve"),
+  "col-maternity-3": editorial("maternity-blush-flowing-skirt"),
+  "col-maternity-4": editorial("maternity-fuchsia-celebration"),
 
   /* Custom */
-  "custom-hero": editorial("gown-royal-blue-feather-bridge"),
-  "custom-editorial": editorial("gown-purple-feather"),
+  "custom-hero": editorial("custom-black-feather-collar"),
+  "custom-editorial": editorial("custom-fuchsia-orange-arrival"),
 
   /* Collections */
-  "collections-hero": editorial("gown-silver-satin-cape"),
-  "col-2026-1": editorial("gown-magenta-velvet"),
-  "col-2026-2": editorial("gown-red-lace-feathers"),
-  "col-2026-3": editorial("gown-emerald-off-shoulder"),
-  "col-2026-4": editorial("detail-beaded-bodice-roses"),
-  "col-bridal-1": editorial("bridal-silver-lace-veil"),
-  "col-bridal-2": editorial("bridal-ivory-organza-seated"),
-  "col-bridal-3": editorial("bridal-ivory-halter-staircase"),
-  "col-bridal-4": editorial("bridal-blush-overskirt-lawn"),
-  "col-custom-1": editorial("gown-pink-satin-waterfront"),
-  "col-custom-2": editorial("gown-black-feather-veil"),
-  "col-custom-3": editorial("gown-champagne-rose-wall"),
-  "col-custom-4": editorial("gown-white-silver-roses"),
+  "collections-hero": editorial("prom-powder-blue-cape-car"),
+  "col-2026-1": editorial("prom-burgundy-velvet"),
+  "col-2026-2": editorial("prom-red-lace-feather"),
+  "col-2026-3": editorial("prom-emerald-sequin-terrace"),
+  "col-2026-4": editorial("prom-gold-marigold"),
+  "col-bridal-1": editorial("bridal-ivory-cathedral-veil"),
+  "col-bridal-2": editorial("bridal-ivory-lace-staircase"),
+  "col-bridal-3": editorial("bridal-rose-gold-sequin"),
+  "col-bridal-4": editorial("bridal-champagne-barn-garden"),
+  "col-custom-1": editorial("custom-fuchsia-orange-arrival"),
+  "col-custom-2": editorial("custom-black-feather-collar"),
+  "col-custom-3": editorial("custom-fuchsia-orange-steps"),
+  "col-custom-4": editorial("custom-fuchsia-candlelight"),
 
   /* Book */
-  "book-hero": editorial("gown-emerald-sequin-doors"),
-  "book-prom": editorial("gown-ivory-beaded-arrival"),
-  "book-bridal": editorial("bridal-rose-sequin-bouquet"),
-  "book-custom": editorial("gown-white-hooded-cape"),
+  "book-hero": editorial("prom-emerald-gold-doors"),
+  "book-prom": editorial("prom-ivory-beaded-corvette"),
+  "book-bridal": editorial("bridal-ivory-cathedral-veil"),
+  "book-custom": editorial("custom-fuchsia-candlelight"),
 
   /* Partners */
-  "partners-hero": editorial("arrival-champagne-street"),
+  "partners-hero": editorial("prom-pink-satin-car"),
 };
 
 /**

@@ -44,28 +44,30 @@ const bodyText: Record<StoryTone, string> = {
 export default function MeetKenyaPage() {
   const { hero, sections, timeline } = meetKenya;
   const portraitSrc = resolveMedia(hero.portrait.slot);
-  const backdropSrc = resolveMedia(hero.backdrop.slot);
   const visible = sections.filter((section) => !section.hidden);
 
   return (
     <>
-      {/* Hero — Kenya, not a gown model */}
-      <section className="relative isolate flex min-h-[92svh] items-center overflow-hidden bg-ink lg:min-h-screen">
-        {backdropSrc ? (
+      {/* Hero — Kenya leads her own page, full bleed */}
+      <section className="relative isolate flex min-h-[94svh] items-end overflow-hidden bg-ink lg:min-h-screen">
+        {portraitSrc ? (
           <Image
-            src={backdropSrc}
-            alt=""
+            src={portraitSrc}
+            alt={hero.portrait.alt}
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[50%_20%] opacity-25 animate-kenburns"
+            className="object-cover object-[58%_14%] animate-kenburns"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-br from-ink via-ink/92 to-ink/70" />
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink to-transparent" />
 
-        <div className="relative mx-auto grid w-full max-w-editorial items-center gap-12 px-5 pb-16 pt-32 sm:px-8 lg:grid-cols-[1fr_20rem] lg:gap-20 lg:px-12">
-          <div className="flex flex-col gap-8">
+        {/* Scrims: dark where the type sits, clear where Kenya is */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink/85 to-transparent" />
+
+        <div className="relative mx-auto w-full max-w-editorial px-5 pb-14 pt-36 sm:px-8 lg:px-12 lg:pb-20">
+          <div className="flex max-w-xl flex-col gap-7">
             <p className="animate-fade text-[0.6rem] uppercase tracking-luxe text-champagne">
               {hero.eyebrow}
             </p>
@@ -88,32 +90,12 @@ export default function MeetKenyaPage() {
 
             <div className="flex flex-col gap-1 border-l-2 border-champagne/50 pl-6">
               {hero.lede.map((line) => (
-                <p key={line} className="text-sm leading-relaxed text-bone/70 sm:text-base">
+                <p key={line} className="text-sm leading-relaxed text-bone/80 sm:text-base">
                   {line}
                 </p>
               ))}
             </div>
           </div>
-
-          {/* Portrait shown at its true size so it stays sharp */}
-          {portraitSrc ? (
-            <div className="relative mx-auto w-[15rem] sm:w-[17rem] lg:mx-0 lg:w-full">
-              <span
-                aria-hidden
-                className="absolute -inset-3 border border-champagne/30"
-              />
-              <div className="relative aspect-[3/4] overflow-hidden">
-                <Image
-                  src={portraitSrc}
-                  alt={hero.portrait.alt}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 60vw, 304px"
-                  className="object-cover object-top"
-                />
-              </div>
-            </div>
-          ) : null}
         </div>
       </section>
 

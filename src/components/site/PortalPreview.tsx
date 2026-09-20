@@ -40,8 +40,8 @@ export function PortalPreview({ client }: { client: PortalClient }) {
   const appointment = client.appointments.find((entry) => entry.status === "scheduled");
   const balance = client.payments.totalInvestmentCents - client.payments.paidCents;
 
-  const avatar = resolveMedia("photo/detail-beaded-bodice-roses");
-  const backdrop = resolveMedia("photo/bridal-silver-lace-veil");
+  const avatar = resolveMedia("photo/prom-champagne-satin-roses");
+  const backdrop = resolveMedia("photo/bridal-ivory-cathedral-veil");
 
   // Circumference of the progress ring (r = 15.5).
   const ring = 2 * Math.PI * 15.5;
