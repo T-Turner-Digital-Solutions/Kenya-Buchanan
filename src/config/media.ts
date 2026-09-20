@@ -85,6 +85,15 @@ export const mediaSources: Record<string, string | undefined> = {
   "partners-hero": editorial("arrival-champagne-street"),
 };
 
+/**
+ * Galleries reference photography directly rather than needing a named slot per
+ * image: a slot id of `photo/<published-name>` resolves straight to the
+ * optimised file. Named slots above still win, so any of them can be re-pointed
+ * without touching a component.
+ */
 export function resolveMedia(slotId: string): string | undefined {
-  return mediaSources[slotId];
+  const named = mediaSources[slotId];
+  if (named) return named;
+  if (slotId.startsWith("photo/")) return editorial(slotId.slice("photo/".length));
+  return undefined;
 }
