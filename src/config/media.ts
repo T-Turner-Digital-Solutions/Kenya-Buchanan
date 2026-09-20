@@ -32,6 +32,7 @@ export const mediaSources: Record<string, string | undefined> = {
   "kenya-with-bride": editorial("bridal-kenya-with-bride"),
   /* Full-resolution portrait — strong enough to lead a full-bleed hero. */
   "kenya-meet-hero": editorial("kenya-meet-portrait"),
+  "archival-studio": editorial("kenya-studio-sewing"),
 
   /* Home */
   "home-hero": editorial("prom-royal-blue-tulle-arrival"),

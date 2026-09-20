@@ -63,6 +63,7 @@ const sources = [
   ["kenya/Screenshot 2026-09-19 105715.png", "kenya-buchanan-portrait", 0],
   ["kenya/Screenshot 2026-09-19 120114.png", "kenya-with-bride-lakeside", { left: 6, right: 3 }],
   ["kenya/kenya-meet-portrait-original.png", "kenya-meet-portrait", 0],
+  ["kenya/kenya-studio-sewing.png", "kenya-studio-sewing", 0],
   // 2027 library — full-resolution photography replacing the original screenshots
   ["prom-2027/prom-royal-blue-tulle-arrival.png", "prom-royal-blue-tulle-arrival", 0],
   ["bridal-2027/bridal-rose-sequin-bouquet.png", "bridal-rose-sequin-bouquet", 0],
