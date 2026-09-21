@@ -213,12 +213,12 @@
   }
 
   /*
-   * No mask at all on a phone. These fades exist to dissolve a picture into
-   * the space around it, and on a narrow screen there is no space around it —
-   * the picture is the full width of the column. Dropping the mask also takes
-   * the whole class of mask-compositing bugs off the table on the devices
-   * where they are most likely, which is how a gown came to be visible on a
-   * desktop and missing on a phone.
+   * No mask at all on a phone, as a floor under the `sm:` variants the markup
+   * uses. These fades exist to dissolve a picture into the space around it,
+   * and on a narrow screen there is no space around it — the picture is the
+   * full width of the column. It also keeps the whole class of
+   * mask-compositing bugs off the devices where they are likeliest, which is
+   * how a gown came to be visible on a desktop and missing on a phone.
    */
   @media (max-width: 639px) {
     .fade-into-panel,

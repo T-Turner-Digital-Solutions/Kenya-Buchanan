@@ -172,7 +172,7 @@ export default function HomePage() {
                   fill
                   loading="lazy"
                   sizes="(max-width: 1024px) 70vw, 36rem"
-                  className="fade-into-page object-cover object-center"
+                  className="object-cover object-center sm:fade-into-page"
                 />
               </figure>
             </Reveal>

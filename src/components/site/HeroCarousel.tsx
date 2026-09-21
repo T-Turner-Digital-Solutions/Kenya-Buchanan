@@ -220,7 +220,7 @@ export function HeroCarousel({
                   priority={position === 0}
                   loading={position === 0 ? undefined : "lazy"}
                   sizes="(max-width: 1024px) 55vw, 22rem"
-                  className="fade-into-page object-cover object-center"
+                  className="object-cover object-center sm:fade-into-page"
                 />
               </figure>
             );
