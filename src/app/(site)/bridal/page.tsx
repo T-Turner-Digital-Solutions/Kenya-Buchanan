@@ -23,7 +23,7 @@ export default function BridalPage() {
     <>
       <PageHero
         eyebrow="The Bridal Experience"
-        media={{ id: "bridal-hero", alt: "Bridal gown, full-length editorial portrait", ratio: "landscape" }}
+        media={{ id: "bridal-hero", alt: "Bride on the staircase in an ivory lace gown with a cathedral train", ratio: "tall" }}
         title="Bridal"
         subtitle="The gown you will be remembered in."
         size="tall"

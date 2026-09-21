@@ -1,3 +1,4 @@
+import { AskKenyaFloat } from "@/components/site/AskKenyaFloat";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 
@@ -10,6 +11,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         {children}
       </main>
       <SiteFooter />
+      <AskKenyaFloat />
     </div>
   );
 }

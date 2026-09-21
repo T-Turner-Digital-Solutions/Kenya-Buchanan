@@ -20,9 +20,9 @@ export function ExperienceSelector({ experiences }: { experiences: Experience[] 
   const current = experiences[active];
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-8">
       {/* Desktop */}
-      <div className="hidden gap-14 lg:grid lg:grid-cols-[1.05fr_1fr] lg:items-stretch">
+      <div className="hidden gap-12 lg:grid lg:grid-cols-[1.05fr_0.8fr] lg:items-stretch">
         <ul className="flex flex-col justify-center">
           {experiences.map((experience, index) => {
             const selected = index === active;
@@ -32,15 +32,15 @@ export function ExperienceSelector({ experiences }: { experiences: Experience[] 
                   href={`/${experience.slug}`}
                   onMouseEnter={() => setActive(index)}
                   onFocus={() => setActive(index)}
-                  className="group flex flex-col gap-3 py-8 transition-colors duration-500"
+                  className="group flex flex-col gap-2 py-5 transition-colors duration-500"
                 >
                   <span className="flex items-baseline justify-between gap-6">
                     <span
                       className={cx(
                         "display-caps transition-all duration-700 ease-silk",
                         selected
-                          ? "text-[3.4rem] text-ink xl:text-[4rem]"
-                          : "text-[2.4rem] text-ink/30 xl:text-[2.8rem]",
+                          ? "text-[2.4rem] text-ink xl:text-[2.8rem]"
+                          : "text-[1.7rem] text-ink/30 xl:text-[2rem]",
                       )}
                     >
                       {experience.name}
@@ -74,7 +74,7 @@ export function ExperienceSelector({ experiences }: { experiences: Experience[] 
         </ul>
 
         {/* Featured image swaps with the selection */}
-        <div className="relative min-h-[30rem] overflow-hidden bg-ink">
+        <div className="relative min-h-[22rem] overflow-hidden bg-ink">
           {experiences.map((experience, index) => {
             const item = experienceFeature[experience.slug];
             const src = item ? resolveMedia(item.id) : undefined;
@@ -94,18 +94,18 @@ export function ExperienceSelector({ experiences }: { experiences: Experience[] 
                     alt={selected ? item.alt : ""}
                     draggable={false}
                     fill
-                    sizes="(max-width: 1024px) 0px, 45vw"
+                    sizes="(max-width: 1024px) 0px, 34vw"
                     className="object-cover object-[50%_20%]"
                   />
                 ) : null}
               </div>
             );
           })}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/70 to-transparent p-8 pt-16">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/70 to-transparent p-6 pt-14">
             <p className="text-[0.55rem] uppercase tracking-luxe text-champagne">
               Kenya B. {current.name}
             </p>
-            <p className="mt-2 font-display text-2xl text-bone">{current.name}</p>
+            <p className="mt-1.5 font-display text-xl text-bone">{current.name}</p>
           </div>
         </div>
       </div>
@@ -119,7 +119,7 @@ export function ExperienceSelector({ experiences }: { experiences: Experience[] 
             <Link
               key={experience.slug}
               href={`/${experience.slug}`}
-              className="relative aspect-[3/4] w-[78vw] max-w-sm overflow-hidden bg-ink"
+              className="relative aspect-[3/4] w-[68vw] max-w-xs overflow-hidden bg-ink"
             >
               {src ? (
                 <Image
@@ -127,7 +127,7 @@ export function ExperienceSelector({ experiences }: { experiences: Experience[] 
                   alt={item.alt}
                   draggable={false}
                   fill
-                  sizes="78vw"
+                  sizes="68vw"
                   className="object-cover object-[50%_18%]"
                 />
               ) : null}

@@ -7,12 +7,11 @@ import type { MediaSlot } from "@/lib/types";
 /**
  * Editorial hero used across the public site.
  *
- * The photography is portrait (roughly 2:3) and the gown is the point, so the
- * picture is NOT stretched across a wide frame — cropping a 2:3 portrait to a
- * 3:1 band throws away three quarters of the dress and leaves a bodice. Instead
- * the same photograph does two jobs: blurred and dimmed it becomes the dark
- * atmosphere behind the type, and at its own proportions it sits beside the
- * headline where the whole gown, hem and train included, is visible.
+ * The photograph is NOT stretched across the full width and it is NOT set in a
+ * frame. It runs large down the right of the section at its own proportions and
+ * dissolves into the page on its left, top and bottom — so the whole gown is
+ * there, hem and train included, and the picture and the page read as one
+ * surface. The same photograph, blurred behind the type, supplies the room.
  */
 export function PageHero({
   eyebrow,
@@ -34,20 +33,18 @@ export function PageHero({
   children?: ReactNode;
 }) {
   const src = resolveMedia(media.id);
-  // The frame takes the photograph's own proportions, so nothing is cropped.
-  // 2:3 is the house portrait shape and covers any slot still awaiting a file.
+  // The picture's own shape. The fade has to be applied to a box that hugs
+  // the photograph — masking a wider container fades empty space and leaves
+  // the picture with a hard vertical edge.
   const aspect = mediaAspect(media.id) ?? 2 / 3;
-  // A wide frame would run past the text column, so the landscape ones are
-  // held to the same height the portraits get rather than the same width.
-  const wide = aspect > 1;
 
   return (
     <section
       className={cx(
         "relative isolate flex w-full items-center overflow-hidden bg-ink",
-        size === "full" && "min-h-[70svh]",
-        size === "tall" && "min-h-[60svh]",
-        size === "mid" && "min-h-[48svh]",
+        size === "full" && "min-h-[88svh]",
+        size === "tall" && "min-h-[82svh]",
+        size === "mid" && "min-h-[74svh]",
       )}
     >
       {src ? (
@@ -58,21 +55,38 @@ export function PageHero({
             fill
             sizes="100vw"
             priority
-            className="scale-125 object-cover object-center opacity-40 blur-2xl"
+            className="scale-125 object-cover object-center opacity-30 blur-2xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/75" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/70" />
         </div>
       ) : null}
 
+      {/* The gown, whole, dissolving into the page. */}
+      {src ? (
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 flex justify-end">
+          <div style={{ aspectRatio: String(aspect) }} className="h-full max-w-[92vw]">
+            <Image
+              src={src}
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 90vw, 55vw"
+              priority
+              className="fade-into-panel object-cover object-center opacity-55 sm:opacity-100"
+            />
+          </div>
+        </div>
+      ) : null}
+
+      {/* Keeps the navigation readable where the photograph runs bright. */}
       <div
-        className={cx(
-          "relative mx-auto grid w-full max-w-editorial items-center gap-10 px-5 pb-14 pt-28 sm:px-8 lg:gap-14 lg:px-12 lg:pb-16 lg:pt-32",
-          "lg:grid-cols-[1fr_auto]",
-        )}
-      >
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/90 to-transparent"
+      />
+
+      <div className="relative mx-auto w-full max-w-editorial px-5 pb-14 pt-28 sm:px-8 lg:px-12 lg:pb-16 lg:pt-32">
         <div
           className={cx(
-            "flex max-w-2xl flex-col gap-6",
+            "flex max-w-xl flex-col gap-6",
             align === "center" && "mx-auto items-center text-center",
           )}
         >
@@ -99,34 +113,6 @@ export function PageHero({
             </div>
           ) : null}
         </div>
-
-        {/* The gown, whole. Sized so the frame is read, not filled. */}
-        {src ? (
-          <figure
-            className={cx(
-              "relative mx-auto w-full lg:mx-0",
-              wide
-                ? "max-w-[19rem] sm:max-w-[22rem] lg:w-[22rem] xl:w-[25rem]"
-                : "max-w-[13rem] sm:max-w-[15rem]",
-              !wide &&
-                (size === "mid" ? "lg:w-[14rem] xl:w-[15rem]" : "lg:w-[16rem] xl:w-[17.5rem]"),
-            )}
-          >
-            <div
-              style={{ aspectRatio: String(aspect) }}
-              className="relative overflow-hidden bg-ink-soft ring-1 ring-bone/15"
-            >
-              <Image
-                src={src}
-                alt={media.alt}
-                fill
-                sizes="(max-width: 1024px) 60vw, 25rem"
-                priority
-                className="object-cover object-center"
-              />
-            </div>
-          </figure>
-        ) : null}
       </div>
     </section>
   );

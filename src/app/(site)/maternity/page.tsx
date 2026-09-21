@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { resolveMedia } from "@/config/media";
+import { mediaAspect, resolveMedia } from "@/config/media";
 import { getExperience } from "@/lib/services";
 
 export const metadata: Metadata = {
@@ -21,6 +21,9 @@ const maternity = getExperience("maternity")!;
 
 export default function MaternityPage() {
   const heroSrc = resolveMedia("maternity-hero");
+  // The frame takes the photograph's shape, so the fade lands on the picture
+  // rather than on empty space beside it.
+  const heroAspect = mediaAspect("maternity-hero");
 
   return (
     <>
@@ -58,14 +61,17 @@ export default function MaternityPage() {
            * dissolves into the page on its left and along its top and bottom.
            */}
           {heroSrc ? (
-            <div className="relative order-first mx-auto h-[19rem] w-[19rem] max-w-full sm:h-[22rem] sm:w-[22rem] lg:order-2 lg:mx-0 lg:h-[26rem] lg:w-[26rem]">
+            <div
+              style={{ aspectRatio: String(heroAspect ?? 2 / 3) }}
+              className="relative order-first mx-auto h-[24rem] max-w-full sm:h-[30rem] lg:order-2 lg:mx-0 lg:h-[38rem] xl:h-[42rem]"
+            >
               <Image
                 src={heroSrc}
                 alt="Chocolate tulle maternity gown with a ruffled train"
                 fill
                 priority
-                sizes="(max-width: 1024px) 70vw, 26rem"
-                className="fade-into-page object-contain object-center"
+                sizes="(max-width: 1024px) 70vw, 20rem"
+                className="fade-into-page object-cover object-center"
               />
             </div>
           ) : null}
