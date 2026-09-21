@@ -114,6 +114,11 @@ const sources = [
    * the photograph, so these are published whole — cropping the type out would
    * cut into the gown or the train.
    */
+  /*
+   * Kenya's sourcing markets — New York, Atlanta and international — as one
+   * titled panel. Published whole; the city names are set into the artwork.
+   */
+  ["bridal-2027/bridal-sourcing-markets.png", "bridal-sourcing-markets", 0],
   ["maternity/maternity-chocolate-tulle-elegance.png", "maternity-chocolate-tulle-elegance", 0],
   ["maternity/maternity-ivory-lace-goddess.png", "maternity-ivory-lace-goddess", 0],
   ["maternity/maternity-black-tulle-bold.png", "maternity-black-tulle-bold", 0],

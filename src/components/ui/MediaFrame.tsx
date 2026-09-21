@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { resolveMedia } from "@/config/media";
+import { mediaAspect, resolveMedia } from "@/config/media";
 import { cx } from "@/lib/format";
 import type { MediaSlot } from "@/lib/types";
 
@@ -22,6 +22,7 @@ export function MediaFrame({
   sizes = "(max-width: 768px) 100vw, 50vw",
   bare = false,
   focal = "center",
+  natural = false,
 }: {
   slot: MediaSlot;
   className?: string;
@@ -35,14 +36,30 @@ export function MediaFrame({
    * cropped to a wide frame otherwise lose the subject's head.
    */
   focal?: "center" | "face" | "top";
+  /**
+   * Take the shape of the photograph instead of the `ratio` above. Use it for
+   * artwork that carries its own titles or composition — cropping those to a
+   * layout's preferred rectangle cuts the picture in half.
+   */
+  natural?: boolean;
 }) {
   const focalClass =
     focal === "face" ? "object-[50%_18%]" : focal === "top" ? "object-top" : "object-center";
   const src = resolveMedia(slot.id);
   const tone = slot.tone ?? "light";
+  // `natural` only applies once there is a file to measure; an unmapped slot
+  // still falls back to the declared ratio so the placeholder keeps its shape.
+  const aspect = natural ? mediaAspect(slot.id) : undefined;
 
   return (
-    <figure className={cx("group relative overflow-hidden", ratios[slot.ratio ?? "portrait"], className)}>
+    <figure
+      style={aspect ? { aspectRatio: String(aspect) } : undefined}
+      className={cx(
+        "group relative overflow-hidden",
+        !aspect && ratios[slot.ratio ?? "portrait"],
+        className,
+      )}
+    >
       {src ? (
         <Image
           src={src}

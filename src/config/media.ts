@@ -117,7 +117,7 @@ export const mediaSources: Record<string, string | undefined> = {
   "video-welcome-poster": editorial("kenya-studio-sewing"),
 
   /* Bridal sourcing — the beading the section describes, on a finished bodice. */
-  "bridal-sourcing": editorial("detail-beaded-bodice-roses"),
+  "bridal-sourcing": editorial("bridal-sourcing-markets"),
 };
 
 /**

@@ -26,6 +26,7 @@ export const mediaDimensions: Record<string, [number, number]> = {
   "/media/editorial/bridal-rose-gold-sequin.webp": [1022, 1539],
   "/media/editorial/bridal-rose-sequin-bouquet.webp": [1020, 1541],
   "/media/editorial/bridal-silver-lace-veil.webp": [677, 690],
+  "/media/editorial/bridal-sourcing-markets.webp": [1320, 1192],
   "/media/editorial/custom-black-feather-collar.webp": [1024, 1536],
   "/media/editorial/custom-black-lace-veil.webp": [1254, 1254],
   "/media/editorial/custom-blush-flowing-train.webp": [1292, 1217],
