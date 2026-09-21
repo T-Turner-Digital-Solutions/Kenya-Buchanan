@@ -77,21 +77,26 @@ export default function MeetKenyaPage() {
         <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink/85 to-transparent" />
 
         <div className="relative mx-auto w-full max-w-editorial px-5 pb-14 pt-36 sm:px-8 lg:px-12 lg:pb-20">
-          <div className="flex max-w-xl flex-col gap-7">
+          {/*
+           * Held narrower and set smaller than the other page headings: Kenya
+           * is in the right of this frame, and at full size the type ran
+           * across her face.
+           */}
+          <div className="flex max-w-md flex-col gap-6 lg:max-w-lg">
             <p className="animate-fade text-[0.6rem] uppercase tracking-luxe text-champagne">
               {hero.eyebrow}
             </p>
 
-            <h1 className="display-caps animate-rise text-[2.9rem] text-bone sm:text-6xl lg:text-7xl">
+            <h1 className="display-caps animate-rise text-[2.3rem] text-bone sm:text-5xl lg:text-[3.4rem] xl:text-6xl">
               {hero.title}
             </h1>
 
-            <ul className="flex flex-wrap gap-x-7 gap-y-2">
+            <ul className="flex flex-wrap gap-x-5 gap-y-1">
               {hero.roles.map((role, index) => (
                 <li
                   key={role}
                   style={{ animationDelay: `${180 + index * 90}ms` }}
-                  className="animate-rise font-display text-xl italic text-champagne-light sm:text-2xl"
+                  className="animate-rise font-display text-lg italic text-champagne-light sm:text-xl"
                 >
                   {role}
                 </li>
