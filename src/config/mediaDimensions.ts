@@ -82,6 +82,7 @@ export const mediaDimensions: Record<string, [number, number]> = {
   "/media/editorial/prom-blush-ruffle-brick.webp": [1024, 1536],
   "/media/editorial/prom-blush-ruffle-skyline.webp": [1024, 1536],
   "/media/editorial/prom-burgundy-velvet.webp": [1090, 1443],
+  "/media/editorial/prom-champagne-gold-balloons.webp": [553, 650],
   "/media/editorial/prom-champagne-satin-roses.webp": [1169, 1345],
   "/media/editorial/prom-chocolate-velvet.webp": [1024, 1536],
   "/media/editorial/prom-emerald-gold-doors.webp": [1067, 1475],

@@ -47,18 +47,38 @@ export const heroSlides: GalleryItem[] = [
   photo("prom-gold-sequin-columns", "Gold sequin gown beneath lit columns", { label: "Prom" }),
 ];
 
-/** The Prom rail — the strongest silhouettes, varied in colour. */
+/**
+ * The Prom rail — every prom gown Kenya has photographed, ordered so no two
+ * neighbouring cards repeat a colour family.
+ */
 export const promGowns: GalleryItem[] = [
+  photo("prom-black-sequin-high-neck", "Black sequin gown with lace sleeves and a sweeping train", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-champagne-gold-balloons", "Champagne gown with gold floral beading at the shoulder", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-red-lace-feather", "Red lace gown with a feather hem", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-silver-pearl-cape", "Silver beaded gown with a pearl cape", { label: "Prom", note: "Custom Kenya B." }),
-  photo("prom-red-lace-feather", "Red lace gown with feather detail", { label: "Prom", note: "Custom Kenya B." }),
-  photo("prom-royal-blue-velvet", "Royal blue velvet gown with a sweeping train", { label: "Prom", note: "Custom Kenya B." }),
-  photo("prom-blush-ruffle-skyline", "Blush ruffled gown against the skyline", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-emerald-gold-doors", "Emerald sequin gown before gold doors", { label: "Prom", note: "Custom Kenya B." }),
-  photo("prom-blush-ruffle-brick", "Blush ruffled tulle gown with a beaded bodice", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-blush-ruffle-skyline", "Blush ruffled gown against the skyline", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-royal-blue-velvet", "Royal blue velvet gown with a sweeping train", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-gold-marigold", "Marigold gown with a draped overskirt", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-burgundy-velvet", "Burgundy velvet gown with a long train", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-ice-blue-satin", "Ice blue satin gown", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-red-tulle-ruffle", "Red tulle gown on the avenue", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-ivory-beaded-corvette", "Ivory beaded gown with a cathedral train", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-emerald-sequin-terrace", "Emerald sequin gown on the terrace", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-rose-satin-marquee", "Rose satin gown beneath the marquee", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-black-sequin-chandelier", "Black sequin gown under the chandeliers", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-sky-blue-mermaid", "Sky blue mermaid gown at sunset", { label: "Prom", note: "Custom Kenya B." }),
-  photo("prom-black-sequin-high-neck", "Black sequin gown with lace sleeves", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-chocolate-velvet", "Chocolate velvet gown with a long train", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-gold-sequin-columns", "Gold sequin gown beneath lit columns", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-blush-ruffle-brick", "Blush ruffled tulle gown with a beaded bodice", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-royal-blue-satin-tulle", "Royal blue satin and tulle gown", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-red-feather-off-shoulder", "Red off-shoulder gown with feather detail", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-champagne-satin-roses", "Champagne satin gown against a wall of roses", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-powder-blue-cape-car", "Powder blue gown with a cape at the car", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-pink-satin-car", "Pink satin gown at the car door", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-red-lace-satin-train", "Red lace gown with a satin train", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-royal-blue-tulle-arrival", "Royal blue tulle gown at the car door", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-ivory-silver-roses-car", "Ivory and silver gown with roses at the car", { label: "Prom", note: "Custom Kenya B." }),
 ];
 
 /** Collections lookbook — deliberately mixed across experiences. */
