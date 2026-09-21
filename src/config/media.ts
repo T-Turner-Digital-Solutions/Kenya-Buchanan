@@ -72,6 +72,10 @@ export const mediaSources: Record<string, string | undefined> = {
   "col-maternity-2": editorial("maternity-fuchsia-puff-sleeve"),
   "col-maternity-3": editorial("maternity-blush-flowing-skirt"),
   "col-maternity-4": editorial("maternity-fuchsia-celebration"),
+  /* The numbered triptych that closes the Maternity page. */
+  "maternity-look-1": editorial("maternity-chocolate-tulle-elegance"),
+  "maternity-look-2": editorial("maternity-ivory-lace-goddess"),
+  "maternity-look-3": editorial("maternity-black-tulle-bold"),
 
   /* Custom */
   "custom-hero": editorial("custom-black-feather-collar"),

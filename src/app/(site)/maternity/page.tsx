@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { JourneyPreview } from "@/components/journey/JourneyPreview";
+import { LookTriptych } from "@/components/site/LookTriptych";
 import { PartnerCard } from "@/components/site/PartnerCard";
 import { Section } from "@/components/site/Section";
 import { Button } from "@/components/ui/Button";
@@ -189,6 +190,27 @@ export default function MaternityPage() {
             </Reveal>
           ))}
         </div>
+      </Section>
+
+      {/* The three looks — each frame carries its own title, so none is cropped. */}
+      <Section tone="ink" size="lg">
+        <Reveal>
+          <SectionHeading
+            tone="light"
+            eyebrow="Three looks"
+            title="One shoot. Three ways to be dressed."
+            lede="Kenya builds a maternity look around how you want the photographs to feel — soft, luminous or unmistakably bold."
+          />
+        </Reveal>
+        <Reveal delay={120} className="mt-14 lg:mt-20">
+          <LookTriptych
+            looks={[
+              { id: "maternity-look-1", alt: "One, Elegance — chocolate tulle maternity gown with a ruffled train", tone: "dark" },
+              { id: "maternity-look-2", alt: "Two, Goddess Glow — ivory lace maternity gown with a sheer overskirt", tone: "dark" },
+              { id: "maternity-look-3", alt: "Three, Bold Beauty — black one-shoulder maternity gown with a flowing train", tone: "dark" },
+            ]}
+          />
+        </Reveal>
       </Section>
 
       <Section tone="ink" size="md">

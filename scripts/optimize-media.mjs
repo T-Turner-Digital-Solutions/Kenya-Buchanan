@@ -109,6 +109,14 @@ const sources = [
   ["maternity/maternity-blush-garden-couple.png", "maternity-blush-garden-couple", 0],
   ["maternity/maternity-blush-flowing-skirt.png", "maternity-blush-flowing-skirt", 0],
   ["maternity/maternity-blush-stone-steps.png", "maternity-blush-stone-steps", 0],
+  /*
+   * The numbered maternity triptych. Each frame carries its own title set into
+   * the photograph, so these are published whole — cropping the type out would
+   * cut into the gown or the train.
+   */
+  ["maternity/maternity-chocolate-tulle-elegance.png", "maternity-chocolate-tulle-elegance", 0],
+  ["maternity/maternity-ivory-lace-goddess.png", "maternity-ivory-lace-goddess", 0],
+  ["maternity/maternity-black-tulle-bold.png", "maternity-black-tulle-bold", 0],
   // Custom — commissions, distinct from the prom season work
   ["custom/custom-fuchsia-orange-arrival.png", "custom-fuchsia-orange-arrival", 0],
   ["custom/custom-fuchsia-orange-steps.png", "custom-fuchsia-orange-steps", 0],
