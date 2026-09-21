@@ -191,6 +191,11 @@ export function HeroCarousel({
          * The gown. Every slide is given the same height, so a wider or
          * narrower frame changes the card's width rather than shifting the
          * layout, and each keeps its own proportions.
+         *
+         * No frame: each slide dissolves into the page on every edge, the same
+         * as the rest of the site. The fade is a mask on the picture and the
+         * cross-fade is opacity on its wrapper, so they do not fight — a slide
+         * can fade out while still dissolving into the page.
          */}
         <div className="relative order-first mx-auto h-[17rem] w-[17rem] max-w-full sm:h-[20rem] sm:w-[20rem] lg:order-2 lg:mx-0 lg:h-[25rem] lg:w-[25rem] xl:h-[28rem] xl:w-[28rem]">
           {slides.map((slide, position) => {
@@ -203,7 +208,7 @@ export function HeroCarousel({
                 aria-hidden={!active}
                 style={{ aspectRatio: String(mediaAspect(slide.id) ?? 2 / 3) }}
                 className={cx(
-                  "absolute left-1/2 top-0 h-full max-w-full -translate-x-1/2 overflow-hidden bg-ink-soft ring-1 ring-bone/15 transition-opacity duration-[1400ms] ease-silk",
+                  "absolute left-1/2 top-0 h-full max-w-full -translate-x-1/2 transition-opacity duration-[1400ms] ease-silk",
                   active ? "opacity-100" : "opacity-0",
                 )}
               >
@@ -215,7 +220,7 @@ export function HeroCarousel({
                   priority={position === 0}
                   loading={position === 0 ? undefined : "lazy"}
                   sizes="(max-width: 1024px) 55vw, 22rem"
-                  className="object-cover object-center"
+                  className="fade-into-page object-cover object-center"
                 />
               </figure>
             );

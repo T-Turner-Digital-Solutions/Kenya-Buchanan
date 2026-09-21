@@ -45,7 +45,7 @@ export function SiteFooter() {
         <div className="mt-16 flex flex-col gap-4 border-t border-bone/10 pt-8 text-[0.6rem] uppercase tracking-wide2 text-bone/40 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
           <div className="flex flex-wrap gap-6">
-            <Link href="/studio" className="transition-colors hover:text-bone/70">
+            <Link href="/studio/login" className="transition-colors hover:text-bone/70">
               {brand.ownerPortal}
             </Link>
             <Link href="/portal/login" className="transition-colors hover:text-bone/70">

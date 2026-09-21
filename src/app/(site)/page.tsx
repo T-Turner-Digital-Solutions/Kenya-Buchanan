@@ -157,18 +157,22 @@ export default function HomePage() {
           {/* The gown, whole — the skirt is the picture. */}
           {bridalSrc ? (
             <Reveal delay={120} className="order-first mx-auto lg:order-2 lg:mx-0">
-              {/* Sized by height, so the frame keeps the photograph's shape. */}
+              {/*
+               * Sized by height, so the frame keeps the photograph's shape, and
+               * unframed — it dissolves into the section on every edge rather
+               * than stopping at a rule.
+               */}
               <figure
                 style={{ aspectRatio: String(mediaAspect(bridalFeature.id) ?? 1) }}
-                className="relative h-[17rem] max-w-full overflow-hidden ring-1 ring-bone/15 sm:h-[20rem] lg:h-[25rem]"
+                className="relative h-[20rem] max-w-full sm:h-[25rem] lg:h-[32rem] xl:h-[36rem]"
               >
                 <Image
                   src={bridalSrc}
                   alt={bridalFeature.alt}
                   fill
                   loading="lazy"
-                  sizes="(max-width: 1024px) 55vw, 25rem"
-                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 70vw, 36rem"
+                  className="fade-into-page object-cover object-center"
                 />
               </figure>
             </Reveal>

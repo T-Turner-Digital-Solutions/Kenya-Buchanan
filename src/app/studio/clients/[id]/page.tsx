@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JourneyAdmin } from "@/components/studio/JourneyAdmin";
 import { OwnerOnly, Panel, Row, StudioNotice } from "@/components/studio/StudioPrimitives";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { StatusPill } from "@/components/ui/StatusPill";
-import { cx, formatCurrency, formatDate, formatDateTime, formatTime } from "@/lib/format";
+import { formatCurrency, formatDate, formatDateTime, formatTime } from "@/lib/format";
 import { clientRoster, getClientRecord, getSignedContract } from "@/lib/services";
 
 export const metadata: Metadata = { title: "Client Record" };
@@ -122,35 +123,7 @@ export default async function StudioClientRecordPage({
 
       <div className="grid gap-8 lg:grid-cols-2">
         <Panel title="Journey" note={`Stage: ${record.stageKey.replace("_", " ")}`}>
-          <ol className="flex flex-col">
-            {record.journey.map((stage, index) => (
-              <li
-                key={stage.key}
-                className="flex items-center justify-between gap-4 border-b border-bone/10 py-3 last:border-b-0"
-              >
-                <span className="flex items-center gap-4">
-                  <span className="font-display text-sm text-bone/30">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className={cx(
-                      "text-sm",
-                      stage.status === "complete"
-                        ? "text-bone/45"
-                        : stage.status === "current"
-                          ? "text-bone"
-                          : "text-bone/55",
-                    )}
-                  >
-                    {stage.title}
-                  </span>
-                </span>
-                <StatusPill tone={stage.status === "current" ? "attention" : "dark"}>
-                  {stage.status.replace("_", " ")}
-                </StatusPill>
-              </li>
-            ))}
-          </ol>
+          <JourneyAdmin stages={record.journey} clientName={record.firstName} />
         </Panel>
 
         <Panel title="Measurements" note={`Taken ${formatDate(record.measurements[0]?.takenAt ?? record.joinedAt)}`}>

@@ -55,11 +55,17 @@ export function BookSelector({
                 )}
               </div>
 
+              {/*
+               * Square, not 16:10. These are 2:3 portraits, and a landscape
+               * crop threw away three quarters of the height and took the
+               * faces with it. A square frame loses a third instead, and the
+               * face anchor keeps the head well inside it.
+               */}
               <MediaFrame
                 slot={{
                   id: `book-${experience.slug}`,
                   alt: `${experience.name} — Kenya B.`,
-                  ratio: "landscape",
+                  ratio: "square",
                   tone: active ? "dark" : "light",
                 }}
                 focal="face"

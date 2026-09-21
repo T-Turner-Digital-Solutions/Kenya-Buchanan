@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EventDatePanel } from "@/components/portal/EventDatePanel";
 import { AnswerCard } from "@/components/portal/NextUp";
 import { Button } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
@@ -60,6 +61,13 @@ export default function PortalOverviewPage() {
           </div>
         </div>
       </section>
+
+      {/* Her date — she sets it herself once her school announces it. */}
+      <EventDatePanel
+        eventLabel={client.eventLabel}
+        eventDate={client.eventDate}
+        firstName={client.firstName}
+      />
 
       {/* The five questions */}
       <section className="grid gap-px bg-ink/10 sm:grid-cols-2">

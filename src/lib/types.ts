@@ -130,8 +130,17 @@ export interface ClientSummary {
   experience: ExperienceSlug;
   seasonId?: string;
   accountStatus: AccountStatus;
-  /** Prom date, wedding date or event date depending on experience. */
+  /**
+   * Prom date, wedding date or event date depending on experience.
+   *
+   * Frequently unknown at enrolment — a school announces prom months after
+   * books open — so the client sets it herself from My Kenya B. once she has
+   * it, and Kenya's fittings are scheduled back from it.
+   */
   eventDate?: string;
+  /** Who last set the date, so Kenya can see it came from the client. */
+  eventDateSetBy?: "client" | "studio";
+  eventDateSetAt?: string;
   eventLabel: string;
   city: string;
   state: string;
