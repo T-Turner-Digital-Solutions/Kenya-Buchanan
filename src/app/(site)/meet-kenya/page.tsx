@@ -50,15 +50,25 @@ export default function MeetKenyaPage() {
     <>
       {/* Hero — Kenya leads her own page, full bleed */}
       <section className="relative isolate flex min-h-[94svh] items-end overflow-hidden bg-ink lg:min-h-screen">
+        {/*
+         * Shifted down clear of the navigation, and the same amount past the
+         * bottom edge, so the frame keeps its full height and the picture is
+         * no smaller — Kenya's face sits below the bar rather than under it.
+         *
+         * No Ken Burns here: the drift scales and pans upward, which walks her
+         * face back up under the navigation over the life of the animation.
+         */}
         {portraitSrc ? (
-          <Image
-            src={portraitSrc}
-            alt={hero.portrait.alt}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[58%_14%] animate-kenburns"
-          />
+          <div className="absolute -bottom-20 left-0 right-0 top-20 lg:-bottom-28 lg:top-28">
+            <Image
+              src={portraitSrc}
+              alt={hero.portrait.alt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-[58%_6%]"
+            />
+          </div>
         ) : null}
 
         {/* Scrims: dark where the type sits, clear where Kenya is */}
