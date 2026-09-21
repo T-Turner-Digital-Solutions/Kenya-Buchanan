@@ -1,17 +1,30 @@
 import Image from "next/image";
 import { mediaAspect, resolveMedia } from "@/config/media";
+import { cx } from "@/lib/format";
 import type { MediaSlot } from "@/lib/types";
 
 /**
- * Three photographs shown side by side, each at its own proportions.
+ * Photographs shown side by side, each at its own proportions.
  *
  * Used for sets that arrive already titled — the number and the name are set
  * into the photograph itself, so nothing is layered on top and nothing is
- * cropped away. On a narrow screen the three stack rather than shrink.
+ * cropped away. On a narrow screen they stack rather than shrink.
  */
-export function LookTriptych({ looks }: { looks: MediaSlot[] }) {
+export function LookTriptych({
+  looks,
+  perRow = 3,
+}: {
+  looks: MediaSlot[];
+  /** Columns from the `sm` breakpoint up. */
+  perRow?: 3 | 4;
+}) {
   return (
-    <ul className="grid gap-8 sm:grid-cols-3 sm:gap-5 lg:gap-8">
+    <ul
+      className={cx(
+        "grid gap-8 sm:gap-5 lg:gap-8",
+        perRow === 4 ? "grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3",
+      )}
+    >
       {looks.map((look) => {
         const src = resolveMedia(look.id);
         if (!src) return null;

@@ -3,14 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { JourneyPreview } from "@/components/journey/JourneyPreview";
 import { LookTriptych } from "@/components/site/LookTriptych";
-import { PartnerCard } from "@/components/site/PartnerCard";
 import { Section } from "@/components/site/Section";
 import { Button } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { resolveMedia } from "@/config/media";
-import { getExperience, partners } from "@/lib/services";
+import { getExperience } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Maternity",
@@ -21,9 +20,6 @@ export const metadata: Metadata = {
 const maternity = getExperience("maternity")!;
 
 export default function MaternityPage() {
-  const maternityPartners = partners.filter((partner) =>
-    maternity.partnerCategories.includes(partner.category),
-  );
   const heroSrc = resolveMedia("maternity-hero");
 
   return (
@@ -165,26 +161,35 @@ export default function MaternityPage() {
         </Reveal>
       </Section>
 
-      {/* Partners */}
+      {/* Maternity Ideas — the library, to bring to a consultation. */}
       <Section size="lg">
         <Reveal>
           <SectionHeading
-            eyebrow="Kenya B. Preferred"
-            title="For the rest of the shoot."
+            eyebrow="Maternity Ideas"
+            title="Bring one of these, or bring your own."
+            lede="Silhouettes, colours and fabrics Kenya has built before. Save the ones that speak to you — they are the starting point for your consultation, not a catalogue to order from."
             action={
-              <Button href="/partners" variant="outline">
-                All Partners
+              <Button href="/enroll/maternity" variant="outline">
+                Book Maternity
               </Button>
             }
           />
         </Reveal>
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3">
-          {maternityPartners.slice(0, 3).map((partner, index) => (
-            <Reveal key={partner.id} delay={index * 100}>
-              <PartnerCard partner={partner} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={120} className="mt-14 lg:mt-20">
+          {/*
+           * The five untitled frames. The numbered set keeps its own section at
+           * the foot of the page, so nothing is shown twice.
+           */}
+          <LookTriptych
+            looks={[
+              { id: "maternity-idea-1", alt: "Blush maternity gown on the stone steps" },
+              { id: "maternity-idea-2", alt: "Blush maternity gown with a flowing skirt" },
+              { id: "maternity-idea-3", alt: "Fuchsia maternity gown with puff sleeves" },
+              { id: "maternity-idea-4", alt: "Blush maternity gown in the garden" },
+              { id: "maternity-idea-5", alt: "Fuchsia maternity celebration gown" },
+            ]}
+          />
+        </Reveal>
       </Section>
 
       {/* The three looks — each frame carries its own title, so none is cropped. */}

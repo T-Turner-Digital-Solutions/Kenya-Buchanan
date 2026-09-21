@@ -72,6 +72,12 @@ export const mediaSources: Record<string, string | undefined> = {
   "col-maternity-2": editorial("maternity-fuchsia-puff-sleeve"),
   "col-maternity-3": editorial("maternity-blush-flowing-skirt"),
   "col-maternity-4": editorial("maternity-fuchsia-celebration"),
+  /* Maternity Ideas — the untitled frames, shown as a reference gallery. */
+  "maternity-idea-1": editorial("maternity-blush-stone-steps"),
+  "maternity-idea-2": editorial("maternity-blush-flowing-skirt"),
+  "maternity-idea-3": editorial("maternity-fuchsia-puff-sleeve"),
+  "maternity-idea-4": editorial("maternity-blush-garden-couple"),
+  "maternity-idea-5": editorial("maternity-fuchsia-celebration"),
   /* The numbered triptych that closes the Maternity page. */
   "maternity-look-1": editorial("maternity-chocolate-tulle-elegance"),
   "maternity-look-2": editorial("maternity-ivory-lace-goddess"),
