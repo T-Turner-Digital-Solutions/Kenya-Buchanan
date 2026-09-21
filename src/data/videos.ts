@@ -40,7 +40,7 @@ export const videos: VideoAsset[] = [
     durationLabel: "2 min",
     description: "Why specialty materials sometimes take time, and what Kenya is looking for.",
     source: null,
-    poster: { id: "video-sourcing-poster", alt: "Bolts of fabric in a sourcing showroom", ratio: "landscape", tone: "dark" },
+    poster: { id: "video-sourcing-poster", alt: "Kenya B. — Stay Tuned, live event coming soon, set in the fabric showroom", ratio: "landscape", tone: "dark" },
   },
   {
     id: "vid-construction",

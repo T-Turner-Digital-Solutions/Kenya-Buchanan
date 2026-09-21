@@ -8,6 +8,8 @@ const ratios: Record<NonNullable<MediaSlot["ratio"]>, string> = {
   landscape: "aspect-[16/10]",
   square: "aspect-square",
   tall: "aspect-[2/3]",
+  /* Video posters and broadcast stills, which arrive at 16:9. */
+  video: "aspect-video",
 };
 
 /**

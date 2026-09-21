@@ -111,10 +111,16 @@ export const mediaSources: Record<string, string | undefined> = {
    * broadcasts themselves exist.
    */
   "live-hero": editorial("kenya-studio-sewing"),
-  "live-1-poster": editorial("kenya-studio-sewing"),
+  /*
+   * Upcoming sessions carry the branded "coming soon" cards — they have no
+   * still yet, and saying so is honest. Past sessions carry real work.
+   */
+  "live-1-poster": editorial("live-coming-soon-atelier"),
+  "live-2-poster": editorial("live-coming-soon-fabrics"),
   "live-3-poster": editorial("detail-beaded-bodice-roses"),
   "live-4-poster": editorial("prom-black-sequin-chandelier"),
   "video-welcome-poster": editorial("kenya-studio-sewing"),
+  "video-sourcing-poster": editorial("live-coming-soon-fabrics"),
 
   /* Bridal sourcing — the beading the section describes, on a finished bodice. */
   "bridal-sourcing": editorial("bridal-sourcing-markets"),

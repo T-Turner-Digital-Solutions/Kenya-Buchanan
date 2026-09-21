@@ -63,6 +63,8 @@ export const mediaDimensions: Record<string, [number, number]> = {
   "/media/editorial/kenya-meet-portrait.webp": [1024, 1536],
   "/media/editorial/kenya-studio-sewing.webp": [1170, 1345],
   "/media/editorial/kenya-with-bride-lakeside.webp": [406, 538],
+  "/media/editorial/live-coming-soon-atelier.webp": [1672, 941],
+  "/media/editorial/live-coming-soon-fabrics.webp": [1672, 941],
   "/media/editorial/maternity-black-tulle-bold.webp": [1145, 1374],
   "/media/editorial/maternity-blush-flowing-skirt.webp": [687, 446],
   "/media/editorial/maternity-blush-garden-couple.webp": [446, 690],

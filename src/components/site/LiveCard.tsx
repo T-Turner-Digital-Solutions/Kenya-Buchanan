@@ -7,7 +7,7 @@ export function LiveCard({ session }: { session: LiveSession }) {
   return (
     <article className="flex flex-col gap-4">
       <div className="relative">
-        <MediaFrame slot={{ ...session.poster, ratio: "landscape" }} sizes="(max-width: 768px) 100vw, 50vw" />
+        <MediaFrame slot={{ ...session.poster, ratio: "video" }} sizes="(max-width: 768px) 100vw, 50vw" />
         <div className="absolute left-4 top-4">
           {session.state === "live" ? (
             <StatusPill tone="dark">

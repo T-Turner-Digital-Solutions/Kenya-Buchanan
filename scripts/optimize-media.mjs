@@ -64,6 +64,13 @@ const sources = [
   ["kenya/Screenshot 2026-09-19 120114.png", "kenya-with-bride-lakeside", { left: 6, right: 3 }],
   ["kenya/kenya-meet-portrait-original.png", "kenya-meet-portrait", 0],
   ["kenya/kenya-studio-sewing.png", "kenya-studio-sewing", 0],
+  /*
+   * Branded "coming soon" cards standing in for Kenya B. Live session stills
+   * until stills from the broadcasts themselves exist. 16:9, like the video
+   * frames they hold a place for.
+   */
+  ["kenya/live-coming-soon-atelier.png", "live-coming-soon-atelier", 0],
+  ["kenya/live-coming-soon-fabrics.png", "live-coming-soon-fabrics", 0],
   // 2027 library — full-resolution photography replacing the original screenshots
   ["prom-2027/prom-royal-blue-tulle-arrival.png", "prom-royal-blue-tulle-arrival", 0],
   ["bridal-2027/bridal-rose-sequin-bouquet.png", "bridal-rose-sequin-bouquet", 0],

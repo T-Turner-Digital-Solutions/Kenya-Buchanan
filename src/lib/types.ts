@@ -550,7 +550,7 @@ export interface MediaSlot {
   id: string;
   alt: string;
   /** Aspect hint used by the placeholder renderer. */
-  ratio?: "portrait" | "landscape" | "square" | "tall";
+  ratio?: "portrait" | "landscape" | "square" | "tall" | "video";
   tone?: "light" | "dark";
 }
 
