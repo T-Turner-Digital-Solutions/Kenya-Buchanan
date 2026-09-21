@@ -154,7 +154,9 @@ export function SiteHeader({ tone = "auto" }: { tone?: "auto" | "light" | "dark"
       {/* Mobile drawer */}
       <div
         className={cx(
-          "fixed inset-0 z-[60] lg:hidden",
+          // overflow-hidden clips the closed panel, which is parked off the
+          // right edge — without it the page scrolls sideways on a phone.
+          "fixed inset-0 z-[60] overflow-hidden lg:hidden",
           open ? "pointer-events-auto" : "pointer-events-none",
         )}
         aria-hidden={!open}

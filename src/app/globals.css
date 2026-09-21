@@ -113,11 +113,17 @@
     mask-image: linear-gradient(to right, transparent 0%, black 45%, black 100%);
   }
 
+  /*
+   * The top of the fade is deliberately short. A subject's head sits in the
+   * first quarter of a portrait, so a long top fade dims the one thing the
+   * picture is of. It clears by 6% — still a gradient, just not one that
+   * reaches a face.
+   */
   .fade-into-panel {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 55%),
-      linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 55%),
-      linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 46%),
+      linear-gradient(to bottom, transparent 0%, black 6%, black 84%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 46%),
+      linear-gradient(to bottom, transparent 0%, black 6%, black 84%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-composite: intersect;
   }
@@ -168,11 +174,17 @@
     background-repeat: repeat, repeat, repeat, repeat, no-repeat;
   }
 
+  /*
+   * Same short top edge, for the same reason — it must not reach a face. The
+   * side and bottom edges are held tight too: this is applied to frames that
+   * already hug their photograph, and a wide fade on a narrow picture eats the
+   * gown rather than softening an edge.
+   */
   .fade-into-page {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 78%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 30%, black 78%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 11%, black 90%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 5%, black 93%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 11%, black 90%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 5%, black 93%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-composite: intersect;
   }
