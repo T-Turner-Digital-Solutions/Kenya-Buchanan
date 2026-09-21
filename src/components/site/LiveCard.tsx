@@ -7,7 +7,16 @@ export function LiveCard({ session }: { session: LiveSession }) {
   return (
     <article className="flex flex-col gap-4">
       <div className="relative">
-        <MediaFrame slot={{ ...session.poster, ratio: "video" }} sizes="(max-width: 768px) 100vw, 50vw" />
+        {/*
+         * Anchored to the face: the session stills are portrait photographs and
+         * a centre crop to 16:9 takes the subject's head off. The branded
+         * "coming soon" cards are already 16:9, so this is a no-op for them.
+         */}
+        <MediaFrame
+          slot={{ ...session.poster, ratio: "video" }}
+          focal="face"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
         <div className="absolute left-4 top-4">
           {session.state === "live" ? (
             <StatusPill tone="dark">

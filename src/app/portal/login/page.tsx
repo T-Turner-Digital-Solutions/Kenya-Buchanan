@@ -25,7 +25,7 @@ export default function PortalLoginPage() {
     <div className="grid min-h-screen lg:grid-cols-2">
       <div className="relative hidden bg-ink lg:block">
         <Image
-          src="/media/editorial/gown-silver-pearl-cape.webp"
+          src="/media/editorial/prom-silver-pearl-cape.webp"
           alt=""
           fill
           sizes="50vw"

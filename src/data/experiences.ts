@@ -11,6 +11,7 @@ import type { Experience, ExperienceConfig, JourneyStageTemplate } from "@/lib/t
 const baseConfig: ExperienceConfig = {
   depositLabel: "Deposit",
   depositAmountCents: null,
+  leadTimeNote: "Kenya confirms your timeline at your consultation.",
   inspirationUploadsMin: 1,
   inspirationUploadsMax: 3,
   minimumAppointments: 3,
@@ -357,6 +358,8 @@ export const experiences: Experience[] = [
     config: {
       ...baseConfig,
       depositLabel: "Prom Spot Deposit",
+      leadTimeNote:
+        "Your gown is built across the season, from your measurement appointment through to your final fitting before prom. Kenya sets your fitting dates once she has your prom date — which is why she asks for it as soon as your school announces it.",
       depositAmountCents: 15_000,
       interestListEnabled: true,
       waitlistEnabled: true,
@@ -377,6 +380,8 @@ export const experiences: Experience[] = [
     config: {
       ...baseConfig,
       depositLabel: "Bridal Consultation Deposit",
+      leadTimeNote:
+        "Nine to fourteen months is preferred. Bridal runs year-round with extended fittings, and specialty lace, silk and beading often have to be sourced before anything is cut.",
       depositAmountCents: null,
       inspirationUploadsMin: 1,
       inspirationUploadsMax: 3,
@@ -408,6 +413,8 @@ export const experiences: Experience[] = [
     config: {
       ...baseConfig,
       depositLabel: "Maternity Design Deposit",
+      leadTimeNote:
+        "Fittings are scheduled close to your date, because your body is still changing. Tell Kenya when you are due and she works back from it.",
       depositAmountCents: null,
       inspirationUploadsMin: 1,
       inspirationUploadsMax: 3,
@@ -430,6 +437,8 @@ export const experiences: Experience[] = [
     config: {
       ...baseConfig,
       depositLabel: "Custom Design Deposit",
+      leadTimeNote:
+        "It depends on the design. Kenya confirms your timeline at your consultation, once she knows what she is building.",
       depositAmountCents: null,
       minimumAppointments: 3,
     },

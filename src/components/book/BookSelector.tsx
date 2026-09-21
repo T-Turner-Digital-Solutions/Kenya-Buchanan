@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { MockNotice } from "@/components/ui/MockNotice";
@@ -23,7 +23,18 @@ export function BookSelector({
   promSeason: Season;
 }) {
   const [selected, setSelected] = useState<Experience | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const remaining = promSeason.initialCapacity - promSeason.spotsClaimed;
+
+  // Choosing an experience opens the application below the cards; without this
+  // it simply appears off-screen and the card reads as doing nothing.
+  useEffect(() => {
+    if (!selected) return;
+    const node = panelRef.current;
+    if (!node) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    node.scrollIntoView({ block: "start", behavior: reduced ? "auto" : "smooth" });
+  }, [selected]);
 
   return (
     <div className="flex flex-col gap-16">
@@ -55,11 +66,17 @@ export function BookSelector({
                 )}
               </div>
 
+              {/*
+               * Square, not 16:10. These are 2:3 portraits, and a landscape
+               * crop threw away three quarters of the height and took the
+               * faces with it. A square frame loses a third instead, and the
+               * face anchor keeps the head well inside it.
+               */}
               <MediaFrame
                 slot={{
                   id: `book-${experience.slug}`,
                   alt: `${experience.name} — Kenya B.`,
-                  ratio: "landscape",
+                  ratio: "square",
                   tone: active ? "dark" : "light",
                 }}
                 focal="face"
@@ -86,7 +103,10 @@ export function BookSelector({
       </div>
 
       {selected ? (
-        <div className="grid gap-12 border-t border-ink/10 pt-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+        <div
+          ref={panelRef}
+          className="scroll-mt-28 grid gap-12 border-t border-ink/10 pt-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20"
+        >
           <div className="flex flex-col gap-6">
             <p className="eyebrow">Selected</p>
             <h2 className="font-display text-4xl leading-tight sm:text-5xl">{selected.name}</h2>
@@ -123,14 +143,27 @@ export function BookSelector({
                 ? "Claim your Prom Spot to enter the season."
                 : `Begin your ${selected.name.toLowerCase()} experience.`}
             </p>
+            <p className="text-sm leading-relaxed text-ink/60">
+              Kenya reads your request before anything is owed. You are not charged to ask —
+              {selected.config.depositAmountCents
+                ? ` the ${formatCurrency(selected.config.depositAmountCents)} deposit is asked for once she takes your gown.`
+                : " your deposit is quoted and asked for once she takes your gown."}
+            </p>
+            <p className="text-sm leading-relaxed text-ink/60">
+              <span className="eyebrow">How long it takes</span>
+              <br />
+              {selected.config.leadTimeNote}
+            </p>
 
             <ol className="flex flex-col gap-3 border-y border-ink/10 py-6">
               {[
                 "Fill in your details",
-                "Review and sign your agreement",
+                "Send Kenya your design — inspiration images and your date",
+                "Kenya reviews it and comes back to you",
+                "Sign your agreement",
                 selected.config.depositAmountCents
-                  ? `Pay your ${formatCurrency(selected.config.depositAmountCents)} deposit`
-                  : "Reserve your place",
+                  ? `Pay your ${formatCurrency(selected.config.depositAmountCents)} deposit — this is what begins your gown`
+                  : "Pay your deposit — this is what begins your gown",
                 "Meet Kenya — your welcome video",
               ].map((label, index) => (
                 <li key={label} className="flex items-baseline gap-4 text-sm text-ink/65">
@@ -143,7 +176,7 @@ export function BookSelector({
             </ol>
 
             <Button href={`/enroll/${selected.slug}`} size="lg">
-              {selected.seasonal ? "Claim Your Prom Spot" : `Book ${selected.name}`}
+              {selected.seasonal ? "Claim Your Prom Spot" : `Start My ${selected.name} Design`}
             </Button>
             <Button href={`/${selected.slug}`} variant="outline" size="lg">
               Read About {selected.name}

@@ -61,9 +61,19 @@ export function PageHero({
         </div>
       ) : null}
 
-      {/* The gown, whole, dissolving into the page. */}
+      {/*
+       * The gown, whole, dissolving into the page.
+       *
+       * Shifted down clear of the navigation, and the same amount past the
+       * bottom edge — the frame keeps its full height, so the gown is no
+       * smaller, but her face sits below the bar instead of under it. Only
+       * floor is lost off the bottom.
+       */}
       {src ? (
-        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 flex justify-end">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-20 right-0 top-20 flex justify-end lg:-bottom-28 lg:top-28"
+        >
           <div style={{ aspectRatio: String(aspect) }} className="h-full max-w-[92vw]">
             <Image
               src={src}

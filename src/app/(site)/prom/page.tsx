@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JourneyPreview } from "@/components/journey/JourneyPreview";
 import { PromSeasonStates } from "@/components/prom/PromSeasonStates";
+import { GownCarousel } from "@/components/site/GownCarousel";
 import { PageHero } from "@/components/site/PageHero";
 import { PartnerCard } from "@/components/site/PartnerCard";
 import { Section } from "@/components/site/Section";
@@ -8,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { promGowns } from "@/data/gallery";
 import { formatCurrency } from "@/lib/format";
 import {
   currentPromSeason,
@@ -50,6 +52,20 @@ export default function PromPage() {
         fullSeason={promSeason2027Full}
         upcomingSeason={promSeason2028}
       />
+
+      {/* The gowns — the whole prom library, on the page people come here for. */}
+      <Section size="lg">
+        <Reveal>
+          <SectionHeading
+            eyebrow="The Gowns"
+            title="Made for the entrance."
+            lede="Every prom gown Kenya has built. None of them is a style you order — they are what her work looks like, and yours is drawn for you."
+          />
+        </Reveal>
+        <Reveal delay={120} className="mt-12 lg:mt-16">
+          <GownCarousel items={promGowns} ctaHref="/book" ctaLabel="Begin Your Experience" />
+        </Reveal>
+      </Section>
 
       {/* What a Prom Spot is */}
       <Section id="what-a-spot-is" size="lg">

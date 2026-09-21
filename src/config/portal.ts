@@ -32,6 +32,7 @@ export const studioNav: NavItem[] = [
   { label: "Messages", href: "/studio/messages" },
   { label: "Approvals", href: "/studio/approvals" },
   { label: "Partners", href: "/studio/partners" },
+  { label: "Ask Kenya B.", href: "/studio/ask-kenya" },
   { label: "Website Content", href: "/studio/content" },
   { label: "Settings", href: "/studio/settings" },
 ];

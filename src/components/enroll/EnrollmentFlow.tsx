@@ -12,10 +12,12 @@ import { getVideo } from "@/lib/services";
 import { cx, formatCurrency, formatDate } from "@/lib/format";
 import type { ContractTemplate, Experience, Season } from "@/lib/types";
 
-type Step = "details" | "agreement" | "deposit" | "welcome";
+type Step = "details" | "design" | "submitted" | "agreement" | "deposit" | "welcome";
 
 const steps: Array<{ key: Step; label: string }> = [
   { key: "details", label: "Your Details" },
+  { key: "design", label: "Your Design" },
+  { key: "submitted", label: "Kenya Reviews" },
   { key: "agreement", label: "Agreement" },
   { key: "deposit", label: "Deposit" },
   { key: "welcome", label: "Welcome" },
@@ -24,9 +26,14 @@ const steps: Array<{ key: Step; label: string }> = [
 /**
  * BOOKING / ENROLLMENT — Phase 1 demonstration flow.
  *
- * One continuous path: fill in the form → sign the agreement → pay the deposit
- * → meet Kenya. The welcome video is part of the flow, not a link the client
- * has to go and find.
+ * One continuous path: your details → your design → Kenya reviews it → the
+ * agreement → the deposit → meet Kenya. The welcome video is part of the flow,
+ * not a link the client has to go and find.
+ *
+ * The order matters and is not cosmetic. Kenya sees the design request and the
+ * date BEFORE any money is asked for: she accepts the commission first, and
+ * only then is a deposit required to begin. A client is never charged for work
+ * Kenya has not agreed to take.
  *
  * Nothing here is real: no record is created, no agreement is executed, no
  * payment is processed and no account is provisioned. Production will run each
@@ -68,7 +75,12 @@ export function EnrollmentFlow({
 
   const submitDetails = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setStep("agreement");
+    setStep("design");
+  };
+
+  const submitDesign = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStep("submitted");
   };
 
   return (
@@ -176,7 +188,7 @@ export function EnrollmentFlow({
 
           <div className="flex flex-col gap-5">
             <Button type="submit" size="lg" className="self-start">
-              Continue to Agreement
+              Continue to Your Design
             </Button>
             <MockNotice>
               Phase 1 prototype — entered information is held in the browser for this demonstration
@@ -184,6 +196,143 @@ export function EnrollmentFlow({
             </MockNotice>
           </div>
         </form>
+      ) : null}
+
+      {step === "design" ? (
+        <form onSubmit={submitDesign} className="flex flex-col gap-10">
+          <div className="flex flex-col gap-3">
+            <h2 className="font-display text-3xl leading-tight sm:text-4xl">Your design</h2>
+            <p className="max-w-xl text-sm leading-relaxed text-ink/60">
+              This is what Kenya reads before she decides whether she can take your gown. Nothing
+              is owed yet.
+            </p>
+          </div>
+
+          {/* What she is agreeing to, before she is asked for anything. */}
+          <div className="grid gap-px bg-ink/10 sm:grid-cols-2">
+            <div className="flex flex-col gap-3 bg-bone p-7">
+              <p className="eyebrow">How long it takes</p>
+              <p className="text-sm leading-relaxed text-ink/70">
+                {experience.config.leadTimeNote}
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 bg-bone p-7">
+              <p className="eyebrow">{season ? `During ${season.name}` : "How Kenya works"}</p>
+              <p className="text-sm leading-relaxed text-ink/70">
+                {season
+                  ? `Prom runs as a capped season — ${season.initialCapacity} spots, and ${season.initialCapacity - season.spotsClaimed} left as this page loaded. Everyone is being built at once, so fittings are scheduled around the whole season rather than one gown, and the dates Kenya offers you are the dates she has. Once the spots are gone, enrolment moves to the waitlist, which is free to join.`
+                  : `Kenya takes a limited number of commissions at a time so each one gets the attention it needs. She confirms your timeline once she has accepted your design.`}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
+              <p className="eyebrow">Your inspiration</p>
+              <div className="flex flex-col items-center justify-center gap-2 border border-dashed border-ink/25 px-6 py-14 text-center">
+                <p className="text-sm text-ink/60">
+                  Drop {experience.config.inspirationUploadsMin}–
+                  {experience.config.inspirationUploadsMax} images here, or choose files
+                </p>
+                <p className="text-[0.6rem] uppercase tracking-wide2 text-ink/35">
+                  Phase 1 — no file is uploaded
+                </p>
+              </div>
+              <p className="max-w-xl text-sm leading-relaxed text-ink/55">
+                These tell Kenya the feeling you are after, not the dress she will copy. Your gown
+                is developed through her creative process, specifically for you.
+              </p>
+            </div>
+
+            <div className="grid gap-8 sm:grid-cols-2">
+              <TextField
+                id="design-date"
+                type="date"
+                label={
+                  experience.slug === "prom"
+                    ? "The date you need it by"
+                    : experience.slug === "bridal"
+                      ? "Your wedding date"
+                      : "The date you need it by"
+                }
+                hint="If your school or venue has not announced it, leave it blank and add it later from your account."
+              />
+              <TextField
+                id="design-occasion"
+                label="The occasion"
+                placeholder={experience.slug === "prom" ? "Senior prom" : "Wedding, gala, pageant"}
+              />
+            </div>
+
+            <TextAreaField
+              id="design-vision"
+              label="Tell Kenya what you want"
+              rows={5}
+              placeholder="Silhouette, colour, how you want to feel walking in, anything you already know you do not want."
+            />
+          </div>
+
+          <div className="flex flex-col gap-5 border-t border-ink/10 pt-8">
+            <p className="max-w-xl border-l-2 border-champagne pl-5 text-sm leading-relaxed text-ink/70">
+              Kenya reads every request herself and comes back to you. If she takes your gown, you
+              will be asked to sign the agreement and pay
+              {depositCents ? ` the ${formatCurrency(depositCents)} deposit` : " your deposit"} —
+              and that is when your gown begins. You are not charged to ask.
+            </p>
+            <Button type="submit" size="lg" className="self-start">
+              Send My Request To Kenya
+            </Button>
+            <MockNotice>
+              Phase 1 prototype — nothing is uploaded, sent or stored.
+            </MockNotice>
+          </div>
+        </form>
+      ) : null}
+
+      {step === "submitted" ? (
+        <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-3">
+            <p className="eyebrow">Sent</p>
+            <h2 className="font-display text-3xl leading-tight sm:text-4xl">
+              Kenya has your request.
+            </h2>
+            <p className="max-w-xl text-sm leading-relaxed text-ink/60">
+              She reviews it herself. You will hear from her about whether she can take your gown,
+              and nothing is owed until she does.
+            </p>
+          </div>
+
+          <ol className="flex flex-col gap-5 border-y border-ink/10 py-8">
+            {[
+              "Kenya reads your request, your images and your date.",
+              "She comes back to you — she may have questions first.",
+              depositCents
+                ? `If she takes your gown, you sign the agreement and pay the ${formatCurrency(depositCents)} deposit.`
+                : "If she takes your gown, you sign the agreement and pay your deposit.",
+              "Your deposit is what begins the work, and your account opens.",
+            ].map((label, index) => (
+              <li key={label} className="flex items-baseline gap-5 text-sm leading-relaxed text-ink/65">
+                <span className="font-display text-base text-champagne-deep">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                {label}
+              </li>
+            ))}
+          </ol>
+
+          <div className="flex flex-col gap-5">
+            <p className="text-[0.6rem] uppercase tracking-luxe text-ink/40">
+              Demonstration — continue as though Kenya has accepted
+            </p>
+            <Button onClick={() => setStep("agreement")} size="lg" className="self-start">
+              Kenya Accepted — Continue
+            </Button>
+            <MockNotice>
+              Phase 1 prototype — no request was sent and no one was notified. In production this
+              screen waits on Kenya, and the agreement and deposit do not open until she accepts.
+            </MockNotice>
+          </div>
+        </div>
       ) : null}
 
       {step === "agreement" ? (

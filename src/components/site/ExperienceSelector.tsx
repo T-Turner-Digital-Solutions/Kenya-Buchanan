@@ -73,39 +73,46 @@ export function ExperienceSelector({ experiences }: { experiences: Experience[] 
           })}
         </ul>
 
-        {/* Featured image swaps with the selection */}
-        <div className="relative min-h-[22rem] overflow-hidden bg-ink">
-          {experiences.map((experience, index) => {
-            const item = experienceFeature[experience.slug];
-            const src = item ? resolveMedia(item.id) : undefined;
-            const selected = index === active;
-            return (
-              <div
-                key={experience.slug}
-                aria-hidden={!selected}
-                className={cx(
-                  "absolute inset-0 transition-all duration-[1100ms] ease-silk",
-                  selected ? "scale-100 opacity-100" : "scale-[1.06] opacity-0",
-                )}
-              >
-                {src ? (
-                  <Image
-                    src={src}
-                    alt={selected ? item.alt : ""}
-                    draggable={false}
-                    fill
-                    sizes="(max-width: 1024px) 0px, 34vw"
-                    className="object-cover object-[50%_20%]"
-                  />
-                ) : null}
-              </div>
-            );
-          })}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/70 to-transparent p-6 pt-14">
-            <p className="text-[0.55rem] uppercase tracking-luxe text-champagne">
+        {/*
+         * Featured image swaps with the selection. No frame and no dark box —
+         * it dissolves into the page, so the caption sits beneath it in dark
+         * type rather than on a gradient that would rebuild the box.
+         */}
+        <div className="relative flex flex-col gap-3">
+          <div className="relative min-h-[22rem] flex-1">
+            {experiences.map((experience, index) => {
+              const item = experienceFeature[experience.slug];
+              const src = item ? resolveMedia(item.id) : undefined;
+              const selected = index === active;
+              return (
+                <div
+                  key={experience.slug}
+                  aria-hidden={!selected}
+                  className={cx(
+                    "absolute inset-0 transition-all duration-[1100ms] ease-silk",
+                    selected ? "scale-100 opacity-100" : "scale-[1.06] opacity-0",
+                  )}
+                >
+                  {src ? (
+                    <Image
+                      src={src}
+                      alt={selected ? item.alt : ""}
+                      draggable={false}
+                      fill
+                      sizes="(max-width: 1024px) 0px, 34vw"
+                      className="fade-into-page object-cover object-[50%_20%]"
+                    />
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col gap-1 pl-1">
+            <p className="text-[0.55rem] uppercase tracking-luxe text-champagne-deep">
               Kenya B. {current.name}
             </p>
-            <p className="mt-1.5 font-display text-xl text-bone">{current.name}</p>
+            <p className="font-display text-xl text-ink">{current.name}</p>
           </div>
         </div>
       </div>

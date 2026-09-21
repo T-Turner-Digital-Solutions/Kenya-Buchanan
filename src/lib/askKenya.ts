@@ -1,3 +1,4 @@
+import { answeredQuestions } from "@/data/askKenyaQuestions";
 import { experiences, currentPromSeason, liveSessions } from "@/lib/services";
 import { formatCurrency, formatDate } from "@/lib/format";
 
@@ -64,6 +65,10 @@ export function buildBrief(): string {
     .map((session) => `- ${session.title}, ${formatDate(session.startsAt)}, on ${session.platform}`)
     .join("\n");
 
+  const answered = answeredQuestions
+    .map((entry) => `Q: ${entry.question}\nA: ${entry.answer}`)
+    .join("\n\n");
+
   return `# Kenya Buchanan — what you may answer from
 
 Kenya Buchanan is a custom gown designer. Her line is "It's more than a gown."
@@ -90,7 +95,15 @@ sources from Atlanta, New York, other U.S. markets and international suppliers
 when the design asks for it.
 
 ## Pages
-/prom /bridal /custom /maternity /collections /meet-kenya /live /book /partners`;
+/prom /bridal /custom /maternity /collections /meet-kenya /live /book /partners
+
+## Kenya's answers
+These are her words. Where one of them covers the question, use it.
+
+${answered}
+
+A question this list does not cover, and that nothing above answers, is one
+Kenya has not answered yet. Escalate it.`;
 }
 
 const SYSTEM_PROMPT = `You are the Ask Kenya B. assistant on Kenya Buchanan's website.

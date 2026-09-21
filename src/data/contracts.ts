@@ -25,6 +25,9 @@ export const contractTemplates: ContractTemplate[] = [
     requiresGuardian: true,
     sections: [
       { heading: "The Prom Spot", body: "[SAMPLE] A Prom Spot represents acceptance into the Prom season. It is not an appointment. Appointments are scheduled separately once enrollment is complete." },
+      { heading: "Design Request & Acceptance", body: "[SAMPLE] Terms covering the client's design request, the inspiration images submitted with it, Kenya's review of that request, and the fact that no deposit is due and no work begins until Kenya accepts the commission, will be stated here." },
+      { heading: "Your Date", body: "[SAMPLE] Terms covering the client's stated event date, the client's responsibility to supply it as soon as it is known and to notify Kenya if it changes, and the effect of a change on the fitting schedule, will be stated here." },
+      { heading: "Production Timeline & Season Capacity", body: "[SAMPLE] Terms covering the production timeline, the capped season, how fittings are scheduled across the season rather than per gown, and what Kenya does and does not guarantee about delivery, will be stated here." },
       { heading: "Deposit", body: "[SAMPLE] A deposit secures the Prom Spot. Deposit terms, including whether and under what conditions it is refundable, will be stated here in the final agreement." },
       { heading: "Payment Schedule & Production Milestones", body: "[SAMPLE] Payment milestones and the production stages they precede will be stated here. Certain stages may not begin until the associated milestone is satisfied." },
       { heading: "Appointments, Rescheduling & Attendance", body: "[SAMPLE] Terms covering appointment scheduling, client rescheduling, rescheduling cutoffs, no-shows and lateness will be stated here." },
@@ -35,7 +38,10 @@ export const contractTemplates: ContractTemplate[] = [
     ],
     acknowledgements: [
       "I understand a Prom Spot is acceptance into the Prom season, not an appointment.",
+      "I understand Kenya reviews my design request before any deposit is asked for, and that I am not charged to ask.",
+      "I understand my gown does not begin until my deposit is received.",
       "I understand my gown is developed through Kenya's creative process specifically for me.",
+      "I understand my date drives my fitting schedule, and I will tell Kenya straight away if it changes.",
       "I understand Fitting #2 is the designated time to raise questions and requested adjustments.",
       "I have read the agreement in full.",
     ],
@@ -49,13 +55,18 @@ export const contractTemplates: ContractTemplate[] = [
     requiresGuardian: false,
     sections: [
       { heading: "The Bridal Experience", body: "[SAMPLE] Scope of the bridal commission, timeline expectations and fitting cadence will be stated here." },
+      { heading: "Design Request & Acceptance", body: "[SAMPLE] Terms covering the design request and its inspiration images, Kenya's review, and the fact that no deposit is due and no work begins until she accepts the commission, will be stated here." },
+      { heading: "Your Date & Production Timeline", body: "[SAMPLE] Terms covering the stated wedding date, the client's responsibility to notify Kenya of a change, the preferred lead time, sourcing time for specialty materials, and what Kenya does and does not guarantee about delivery, will be stated here." },
       { heading: "Deposit & Payment Schedule", body: "[SAMPLE] Bridal deposit and milestone terms will be stated here." },
       { heading: "Approvals", body: "[SAMPLE] Design, colour and fabric approval terms will be stated here." },
       { heading: "Fittings & Alterations", body: "[SAMPLE] Fitting schedule and alteration terms will be stated here." },
       { heading: "Release & Preservation", body: "[SAMPLE] Release, transport and preservation terms will be stated here." },
     ],
     acknowledgements: [
+      "I understand Kenya reviews my design request before any deposit is asked for, and that I am not charged to ask.",
+      "I understand my gown does not begin until my deposit is received.",
       "I understand the bridal timeline requires my availability for scheduled fittings.",
+      "I understand my date drives my fitting schedule, and I will tell Kenya straight away if it changes.",
       "I have read the agreement in full.",
     ],
   },
@@ -68,12 +79,15 @@ export const contractTemplates: ContractTemplate[] = [
     requiresGuardian: false,
     sections: [
       { heading: "The Commission", body: "[SAMPLE] Scope of the maternity commission will be stated here." },
+      { heading: "Design Request & Acceptance", body: "[SAMPLE] Terms covering the design request and its inspiration images, Kenya's review, and the fact that no deposit is due and no work begins until she accepts the commission, will be stated here." },
       { heading: "Deposit & Payment", body: "[SAMPLE] Deposit and payment terms will be stated here." },
       { heading: "Timeline & Your Date", body: "[SAMPLE] Terms covering the shoot or event date, and how fittings are scheduled around it, will be stated here." },
       { heading: "Fittings & Fit Changes", body: "[SAMPLE] Terms covering fittings scheduled close to the date, and how fit changes through pregnancy are accommodated, will be stated here." },
       { heading: "Release", body: "[SAMPLE] Release and pickup terms will be stated here." },
     ],
     acknowledgements: [
+      "I understand Kenya reviews my design request before any deposit is asked for, and that I am not charged to ask.",
+      "I understand my gown does not begin until my deposit is received.",
       "I understand my fittings are scheduled close to my date so the gown fits on the day.",
       "I have read the agreement in full.",
     ],
@@ -87,11 +101,17 @@ export const contractTemplates: ContractTemplate[] = [
     requiresGuardian: false,
     sections: [
       { heading: "The Commission", body: "[SAMPLE] Scope of the custom commission will be stated here." },
+      { heading: "Design Request & Acceptance", body: "[SAMPLE] Terms covering the design request and its inspiration images, Kenya's review, and the fact that no deposit is due and no work begins until she accepts the commission, will be stated here." },
       { heading: "Deposit & Payment", body: "[SAMPLE] Deposit and payment terms will be stated here." },
-      { heading: "Timeline", body: "[SAMPLE] Delivery timeline and event-date terms will be stated here." },
+      { heading: "Timeline", body: "[SAMPLE] Delivery timeline and event-date terms, including the client's responsibility to notify Kenya of a change of date, will be stated here." },
       { heading: "Changes", body: "[SAMPLE] Change-request terms will be stated here." },
     ],
-    acknowledgements: ["I have read the agreement in full."],
+    acknowledgements: [
+      "I understand Kenya reviews my design request before any deposit is asked for, and that I am not charged to ask.",
+      "I understand my gown does not begin until my deposit is received.",
+      "I understand my date drives my schedule, and I will tell Kenya straight away if it changes.",
+      "I have read the agreement in full.",
+    ],
   },
 ];
 
