@@ -84,9 +84,9 @@ export const experienceFeature: Record<string, GalleryItem> = {
 };
 
 export const bridalFeature = photo(
-  "bridal-ivory-lace-staircase",
-  "Bride on the staircase in an ivory lace gown",
-  { ratio: "landscape" },
+  "bridal-ivory-organza-seated",
+  "Bride seated in an ivory organza ballgown with a beaded bodice",
+  { ratio: "square" },
 );
 
 export const customFeature: GalleryItem[] = [

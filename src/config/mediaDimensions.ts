@@ -20,7 +20,7 @@ export const mediaDimensions: Record<string, [number, number]> = {
   "/media/editorial/bridal-ivory-lace-cape.webp": [1029, 1529],
   "/media/editorial/bridal-ivory-lace-staircase.webp": [1024, 1536],
   "/media/editorial/bridal-ivory-lace-veil.webp": [1254, 1254],
-  "/media/editorial/bridal-ivory-organza-seated.webp": [676, 677],
+  "/media/editorial/bridal-ivory-organza-seated.webp": [1254, 1254],
   "/media/editorial/bridal-ivory-ruffle-ballgown.webp": [1254, 1254],
   "/media/editorial/bridal-kenya-with-bride.webp": [1100, 1429],
   "/media/editorial/bridal-rose-gold-sequin.webp": [1022, 1539],

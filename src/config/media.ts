@@ -57,7 +57,7 @@ export const mediaSources: Record<string, string | undefined> = {
   "prom-editorial": editorial("prom-royal-blue-velvet"),
 
   /* Bridal */
-  "bridal-hero": editorial("bridal-ivory-organza-seated"),
+  "bridal-hero": editorial("bridal-ivory-lace-staircase"),
   "bridal-1": editorial("bridal-rose-gold-sequin"),
   "bridal-2": editorial("bridal-champagne-barn-garden"),
 

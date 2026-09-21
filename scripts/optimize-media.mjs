@@ -54,7 +54,11 @@ const sources = [
   ["prom-2026/Screenshot 2026-09-19 104308.png", "gown-royal-blue-feather-bridge", 0],
   ["prom-2026/Screenshot 2026-09-19 104328.png", "gown-black-feather-veil", 0],
   // Bridal
-  ["bridal/Screenshot 2026-09-19 105124.png", "bridal-ivory-organza-seated", 0],
+  /*
+   * Superseded by the full-resolution file below — the screenshot was 676px
+   * wide, which is not enough to lead a section.
+   */
+  ["bridal-2027/bridal-ivory-organza-seated.webp", "bridal-ivory-organza-seated", 0],
   ["bridal/Screenshot 2026-09-19 105140.png", "bridal-blush-overskirt-lawn", 0],
   ["bridal/Screenshot 2026-09-19 105203.png", "bridal-silver-lace-veil", 0],
   ["bridal/Screenshot 2026-09-19 105218.png", "bridal-rose-sequin-bouquet", 0],

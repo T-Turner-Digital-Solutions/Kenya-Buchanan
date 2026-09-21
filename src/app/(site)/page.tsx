@@ -11,7 +11,7 @@ import { PortalPreview } from "@/components/site/PortalPreview";
 import { SeasonPanel } from "@/components/site/SeasonPanel";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { Reveal } from "@/components/ui/Reveal";
-import { resolveMedia } from "@/config/media";
+import { mediaAspect, resolveMedia } from "@/config/media";
 import { brand } from "@/config/site";
 import {
   bridalFeature,
@@ -117,20 +117,23 @@ export default function HomePage() {
       </section>
 
       {/* Bridal feature */}
-      <section className="relative isolate min-h-[34rem] overflow-hidden bg-ink lg:min-h-[42rem]">
+      <section className="relative isolate overflow-hidden bg-ink">
+        {/* The room: the same photograph, blurred, so the gown itself is not cropped. */}
         {bridalSrc ? (
-          <Image
-            src={bridalSrc}
-            alt={bridalFeature.alt}
-            fill
-            loading="lazy"
-            sizes="100vw"
-            className="object-cover object-[50%_22%] transition-transform duration-[2000ms] ease-silk hover:scale-105"
-          />
+          <div aria-hidden className="absolute inset-0">
+            <Image
+              src={bridalSrc}
+              alt=""
+              fill
+              loading="lazy"
+              sizes="100vw"
+              className="scale-125 object-cover object-center opacity-40 blur-2xl"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/70" />
+          </div>
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/60 to-ink/10" />
 
-        <div className="relative mx-auto flex min-h-[34rem] max-w-editorial items-center px-5 py-16 sm:px-8 lg:min-h-[42rem] lg:px-12">
+        <div className="relative mx-auto grid max-w-editorial items-center gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[1fr_auto] lg:gap-14 lg:px-12 lg:py-20">
           <Reveal className="flex max-w-lg flex-col gap-6">
             <p className="text-[0.6rem] uppercase tracking-luxe text-champagne">Kenya B. Bridal</p>
             <h2 className="display-caps text-4xl text-bone sm:text-5xl lg:text-6xl">
@@ -150,6 +153,26 @@ export default function HomePage() {
               </span>
             </Link>
           </Reveal>
+
+          {/* The gown, whole — the skirt is the picture. */}
+          {bridalSrc ? (
+            <Reveal delay={120} className="order-first mx-auto lg:order-2 lg:mx-0">
+              {/* Sized by height, so the frame keeps the photograph's shape. */}
+              <figure
+                style={{ aspectRatio: String(mediaAspect(bridalFeature.id) ?? 1) }}
+                className="relative h-[17rem] max-w-full overflow-hidden ring-1 ring-bone/15 sm:h-[20rem] lg:h-[25rem]"
+              >
+                <Image
+                  src={bridalSrc}
+                  alt={bridalFeature.alt}
+                  fill
+                  loading="lazy"
+                  sizes="(max-width: 1024px) 55vw, 25rem"
+                  className="object-cover object-center"
+                />
+              </figure>
+            </Reveal>
+          ) : null}
         </div>
       </section>
 
