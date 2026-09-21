@@ -36,7 +36,7 @@ export function HeroCarousel({
   title: string;
   tagline: string;
 }) {
-  const { index, goTo, next, previous, engage, handlers, reducedMotion } =
+  const { index, goTo, next, previous, engage, handlers } =
     useCarousel({
       count: slides.length,
       interval: 6500,
@@ -48,45 +48,18 @@ export function HeroCarousel({
       aria-label="Kenya Buchanan gowns"
       tabIndex={0}
       {...handlers}
-      className="relative isolate flex min-h-[80svh] w-full touch-pan-y select-none items-center overflow-hidden bg-ink-raised focus:outline-none lg:min-h-[88svh]"
+      className="surface-velvet relative isolate flex min-h-[80svh] w-full touch-pan-y select-none items-center overflow-hidden focus:outline-none lg:min-h-[88svh]"
     >
-      {/* The room: the active photograph, blurred and dimmed. */}
-      {slides.map((slide, position) => {
-        const src = resolveMedia(slide.id);
-        const active = position === index;
-        if (!src) return null;
-        return (
-          <div
-            key={`bg-${slide.id}`}
-            aria-hidden
-            className={cx(
-              "absolute inset-0 transition-opacity duration-[1400ms] ease-silk",
-              active ? "opacity-100" : "opacity-0",
-            )}
-          >
-            <Image
-              src={src}
-              alt=""
-              draggable={false}
-              fill
-              priority={position === 0}
-              loading={position === 0 ? undefined : "lazy"}
-              sizes="100vw"
-              className={cx(
-                "scale-125 object-cover object-center opacity-40 blur-2xl",
-                active && !reducedMotion && "animate-kenburns",
-              )}
-            />
-          </div>
-        );
-      })}
+      {/*
+       * The velvet is the backdrop. There is no blurred copy of the active
+       * slide behind the type any more: it tinted the whole opening to
+       * whatever colour that gown happened to be, so a royal blue slide turned
+       * the room blue. Cloth does not change colour with whoever is standing
+       * on it, and that is the point of a backdrop.
+       */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-ink-raised via-ink-raised/85 to-ink-raised/75"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink-raised to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink-raised/95 to-transparent"
       />
 
       {/* Overlay */}
