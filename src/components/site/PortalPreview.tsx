@@ -54,7 +54,7 @@ export function PortalPreview({ client }: { client: PortalClient }) {
           aria-hidden
           className="pointer-events-none absolute -right-5 top-1/2 hidden h-[128%] w-[27%] -translate-y-1/2 sm:-right-8 lg:-right-12 lg:block xl:-right-20"
         >
-          <div className="fade-into-panel relative h-full w-full opacity-35">
+          <div className="relative h-full w-full opacity-35 sm:fade-into-panel">
             <Image
               src={backdrop}
               alt=""

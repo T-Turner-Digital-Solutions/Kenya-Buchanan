@@ -100,7 +100,7 @@ export function ExperienceSelector({ experiences }: { experiences: Experience[] 
                       draggable={false}
                       fill
                       sizes="(max-width: 1024px) 0px, 34vw"
-                      className="fade-into-page object-cover object-[50%_20%]"
+                      className="object-cover object-[50%_20%] sm:fade-into-page"
                     />
                   ) : null}
                 </div>

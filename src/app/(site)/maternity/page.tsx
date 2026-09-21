@@ -71,7 +71,7 @@ export default function MaternityPage() {
                 fill
                 priority
                 sizes="(max-width: 1024px) 70vw, 20rem"
-                className="fade-into-page object-cover object-center"
+                className="object-cover object-center sm:fade-into-page"
               />
             </div>
           ) : null}
