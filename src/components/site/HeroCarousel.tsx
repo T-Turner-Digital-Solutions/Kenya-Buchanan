@@ -63,7 +63,7 @@ export function HeroCarousel({
       />
 
       {/* Overlay */}
-      <div className="relative mx-auto grid w-full max-w-editorial items-center gap-10 px-5 pb-12 pt-28 sm:px-8 lg:grid-cols-[1fr_auto] lg:gap-14 lg:px-12 lg:pb-14 lg:pt-32">
+      <div className="relative mx-auto grid w-full max-w-editorial items-center gap-10 px-5 pb-12 pt-32 sm:px-8 lg:grid-cols-[1fr_auto] lg:gap-14 lg:px-12 lg:pb-16 lg:pt-44">
         <div className="flex max-w-2xl flex-col gap-10 lg:order-1">
           <div className="flex flex-col gap-6">
             <p className="animate-fade text-[0.6rem] uppercase tracking-luxe text-champagne">
@@ -171,7 +171,12 @@ export function HeroCarousel({
          * so they do not fight — a slide can fade out while still dissolving
          * into the cloth.
          */}
-        <div className="relative order-first mx-auto h-[19rem] w-[19rem] max-w-full sm:h-[24rem] sm:w-[24rem] lg:order-2 lg:mx-0 lg:h-[31rem] lg:w-[31rem] xl:h-[35rem] xl:w-[35rem]">
+        {/*
+         * The photographs have almost no room above the subject's head, so the
+         * breathing space has to come from the layout rather than from the
+         * crop — the frame sits lower, well clear of the navigation.
+         */}
+        <div className="relative order-first mx-auto mt-0 h-[19rem] w-[19rem] max-w-full sm:h-[24rem] sm:w-[24rem] lg:order-2 lg:mx-0 lg:mt-8 lg:h-[31rem] lg:w-[31rem] xl:mt-10 xl:h-[35rem] xl:w-[35rem]">
           {slides.map((slide, position) => {
             const src = resolveMedia(slide.id);
             const active = position === index;
