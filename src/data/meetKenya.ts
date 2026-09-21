@@ -130,8 +130,9 @@ export const meetKenya: StoryPage = {
       ],
       media: [
         {
-          slot: "photo/prom-gold-sequin-columns",
-          alt: "Gold sequin gown beneath lit columns",
+          slot: "photo/custom-black-feather-collar",
+          alt: "Kenya Buchanan in one of her own designs",
+          caption: "Kenya in her own design",
         },
       ],
     },
@@ -228,8 +229,7 @@ export const meetKenya: StoryPage = {
         },
         {
           slot: "archival-studio",
-          alt: "Kenya at work in the studio — sketching, fabric, fittings",
-          awaitingUpload: true,
+          alt: "Kenya at work in her studio — sketches, fabric and the machine",
           caption: "In the studio",
         },
       ],

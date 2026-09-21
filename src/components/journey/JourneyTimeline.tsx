@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { MediaFrame } from "@/components/ui/MediaFrame";
 import { StatusPill } from "@/components/ui/StatusPill";
 import { VideoFrame } from "@/components/ui/VideoFrame";
 import { getVideo } from "@/lib/services";
@@ -118,6 +119,23 @@ export function JourneyTimeline({ stages }: { stages: JourneyStage[] }) {
                                   </span>
                                 ) : null}
                               </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+
+                    {stage.progressPhotos?.length ? (
+                      <div className="flex flex-col gap-3">
+                        <p className="eyebrow">From the studio</p>
+                        <ul className="grid gap-5 sm:grid-cols-2 lg:max-w-2xl">
+                          {stage.progressPhotos.map((photo) => (
+                            <li key={photo.id} className="flex flex-col gap-3">
+                              <MediaFrame slot={photo.media} sizes="(max-width: 640px) 90vw, 300px" />
+                              <p className="text-sm leading-relaxed text-ink/65">{photo.caption}</p>
+                              <p className="text-[0.55rem] uppercase tracking-luxe text-ink/35">
+                                Posted {formatDate(photo.postedAt)}
+                              </p>
                             </li>
                           ))}
                         </ul>

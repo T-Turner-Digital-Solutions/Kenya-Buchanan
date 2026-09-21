@@ -6,7 +6,7 @@ import { MediaFrame } from "@/components/ui/MediaFrame";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { StatusPill } from "@/components/ui/StatusPill";
 import { VideoFrame } from "@/components/ui/VideoFrame";
-import { daysUntil, formatCurrency, formatDate, formatTime, formatWeekday } from "@/lib/format";
+import { formatCurrency, formatDate, formatTime, formatWeekday } from "@/lib/format";
 import { getDemoPortalClient, getVideo } from "@/lib/services";
 
 export const metadata: Metadata = { title: "Overview" };
@@ -26,28 +26,39 @@ export default function PortalOverviewPage() {
   const balance = client.payments.totalInvestmentCents - client.payments.paidCents;
   const completed = client.journey.filter((stage) => stage.status === "complete").length;
   const stageVideo = getVideo(currentStage?.videoId);
+  // The gown she chose. It is the first thing she sees when she logs in —
+  // before the progress bar, before the list of what she owes.
+  const chosenDesign = client.approvals.find((approval) => approval.kind === "design_sketch");
+  const chosenGown = chosenDesign?.media[0];
 
   return (
     <div className="flex flex-col gap-14">
-      {/* Progress */}
-      <section className="flex flex-col gap-5">
-        <div className="flex flex-wrap items-end justify-between gap-4">
+      {/* Her gown, then her progress */}
+      <section className="grid gap-8 sm:grid-cols-[13rem_1fr] sm:gap-10 lg:grid-cols-[16rem_1fr]">
+        {chosenGown ? (
+          <MediaFrame slot={chosenGown} sizes="(max-width: 640px) 70vw, 256px" priority />
+        ) : null}
+
+        <div className="flex flex-col justify-center gap-5">
+          {/* The days counter is already in the page header, so it is not repeated. */}
           <div className="flex flex-col gap-2">
             <p className="eyebrow">Your gown</p>
-            <p className="font-display text-2xl leading-snug">
-              Stage {completed + 1} of {client.journey.length} — {currentStage?.title}
+            <p className="font-display text-3xl leading-snug">
+              {client.firstName}, this is the one.
+            </p>
+            <p className="max-w-md text-sm leading-relaxed text-ink/60">
+              Chosen from the three you uploaded. Kenya posts a photograph to your journey as each
+              part of it comes together.
             </p>
           </div>
-          {client.eventDate ? (
-            <p className="text-right">
-              <span className="font-display text-4xl leading-none">{daysUntil(client.eventDate)}</span>
-              <span className="mt-1 block text-[0.55rem] uppercase tracking-luxe text-ink/40">
-                Days until prom
-              </span>
+
+          <div className="flex flex-col gap-3">
+            <p className="text-sm text-ink/70">
+              Stage {completed + 1} of {client.journey.length} — {currentStage?.title}
             </p>
-          ) : null}
+            <ProgressBar value={completed} max={client.journey.length} label="Journey progress" />
+          </div>
         </div>
-        <ProgressBar value={completed} max={client.journey.length} label="Journey progress" />
       </section>
 
       {/* The five questions */}

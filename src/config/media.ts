@@ -17,6 +17,8 @@
  * misrepresent what the picture shows.
  */
 
+import { mediaDimensions } from "@/config/mediaDimensions";
+
 const editorial = (name: string) => `/media/editorial/${name}.webp`;
 
 export const mediaSources: Record<string, string | undefined> = {
@@ -32,6 +34,7 @@ export const mediaSources: Record<string, string | undefined> = {
   "kenya-with-bride": editorial("bridal-kenya-with-bride"),
   /* Full-resolution portrait — strong enough to lead a full-bleed hero. */
   "kenya-meet-hero": editorial("kenya-meet-portrait"),
+  "archival-studio": editorial("kenya-studio-sewing"),
 
   /* Home */
   "home-hero": editorial("prom-royal-blue-tulle-arrival"),
@@ -50,16 +53,16 @@ export const mediaSources: Record<string, string | undefined> = {
   "custom-card": editorial("custom-fuchsia-orange-steps"),
 
   /* Prom */
-  "prom-hero": editorial("prom-black-sequin-high-neck"),
+  "prom-hero": editorial("prom-red-lace-feather"),
   "prom-editorial": editorial("prom-royal-blue-velvet"),
 
   /* Bridal */
-  "bridal-hero": editorial("bridal-ivory-lace-staircase"),
+  "bridal-hero": editorial("bridal-ivory-organza-seated"),
   "bridal-1": editorial("bridal-rose-gold-sequin"),
   "bridal-2": editorial("bridal-champagne-barn-garden"),
 
   /* Maternity */
-  "maternity-hero": editorial("maternity-blush-flowing-skirt"),
+  "maternity-hero": editorial("maternity-hero-tulle"),
   "maternity-card": editorial("maternity-blush-stone-steps"),
   "maternity-1": editorial("maternity-fuchsia-puff-sleeve"),
   "maternity-2": editorial("maternity-blush-garden-couple"),
@@ -69,6 +72,16 @@ export const mediaSources: Record<string, string | undefined> = {
   "col-maternity-2": editorial("maternity-fuchsia-puff-sleeve"),
   "col-maternity-3": editorial("maternity-blush-flowing-skirt"),
   "col-maternity-4": editorial("maternity-fuchsia-celebration"),
+  /* Maternity Ideas — the untitled frames, shown as a reference gallery. */
+  "maternity-idea-1": editorial("maternity-blush-stone-steps"),
+  "maternity-idea-2": editorial("maternity-blush-flowing-skirt"),
+  "maternity-idea-3": editorial("maternity-fuchsia-puff-sleeve"),
+  "maternity-idea-4": editorial("maternity-blush-garden-couple"),
+  "maternity-idea-5": editorial("maternity-fuchsia-celebration"),
+  /* The numbered triptych that closes the Maternity page. */
+  "maternity-look-1": editorial("maternity-chocolate-tulle-elegance"),
+  "maternity-look-2": editorial("maternity-ivory-lace-goddess"),
+  "maternity-look-3": editorial("maternity-black-tulle-bold"),
 
   /* Custom */
   "custom-hero": editorial("custom-black-feather-collar"),
@@ -97,6 +110,35 @@ export const mediaSources: Record<string, string | undefined> = {
 
   /* Partners */
   "partners-hero": editorial("prom-pink-satin-car"),
+
+  /*
+   * Kenya B. Live and video posters. These use Kenya's own studio photograph
+   * and finished work — the only honest stand-ins until stills from the
+   * broadcasts themselves exist.
+   */
+  "live-hero": editorial("kenya-studio-sewing"),
+  /*
+   * Upcoming sessions carry the branded "coming soon" cards — they have no
+   * still yet, and saying so is honest. Past sessions carry real work.
+   */
+  "live-1-poster": editorial("live-coming-soon-atelier"),
+  "live-2-poster": editorial("live-coming-soon-fabrics"),
+  "live-3-poster": editorial("detail-beaded-bodice-roses"),
+  "live-4-poster": editorial("prom-black-sequin-chandelier"),
+  "video-welcome-poster": editorial("kenya-studio-sewing"),
+  "video-sourcing-poster": editorial("live-coming-soon-fabrics"),
+
+  /*
+   * The demo client's portal. Her chosen gown is what she sees when she logs
+   * in, and her two fabric swatches are details of that same gown — the
+   * beading on her bodice and on her skirt is her fabric.
+   */
+  "karlie-sketch": editorial("karlie-gown-form"),
+  "karlie-fabric-1": editorial("karlie-fabric-bodice"),
+  "karlie-fabric-2": editorial("karlie-fabric-skirt"),
+
+  /* Bridal sourcing — the beading the section describes, on a finished bodice. */
+  "bridal-sourcing": editorial("bridal-sourcing-markets"),
 };
 
 /**
@@ -110,4 +152,17 @@ export function resolveMedia(slotId: string): string | undefined {
   if (named) return named;
   if (slotId.startsWith("photo/")) return editorial(slotId.slice("photo/".length));
   return undefined;
+}
+
+/**
+ * The photograph's own proportions (width / height), so a frame can take the
+ * shape of its picture instead of cropping it to a shape the layout chose.
+ * Returns undefined when the slot has no photography yet.
+ */
+export function mediaAspect(slotId: string): number | undefined {
+  const src = resolveMedia(slotId);
+  if (!src) return undefined;
+  const size = mediaDimensions[src];
+  if (!size) return undefined;
+  return size[0] / size[1];
 }

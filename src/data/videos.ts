@@ -13,7 +13,7 @@ export const videos: VideoAsset[] = [
     description:
       "Kenya welcomes you personally and walks you through the experience — what to expect, how we communicate, and how to trust the process.",
     source: null,
-    poster: { id: "video-welcome-poster", alt: "Kenya Buchanan in the studio", ratio: "landscape", tone: "dark" },
+    poster: { id: "video-welcome-poster", alt: "Kenya Buchanan at work in her studio", ratio: "landscape", tone: "dark" },
   },
   {
     id: "vid-measurements-prep",
@@ -40,7 +40,7 @@ export const videos: VideoAsset[] = [
     durationLabel: "2 min",
     description: "Why specialty materials sometimes take time, and what Kenya is looking for.",
     source: null,
-    poster: { id: "video-sourcing-poster", alt: "Bolts of fabric in a sourcing showroom", ratio: "landscape", tone: "dark" },
+    poster: { id: "video-sourcing-poster", alt: "Kenya B. — Stay Tuned, live event coming soon, set in the fabric showroom", ratio: "landscape", tone: "dark" },
   },
   {
     id: "vid-construction",

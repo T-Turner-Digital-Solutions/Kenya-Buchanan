@@ -12,6 +12,11 @@ export interface GalleryItem extends MediaSlot {
   /** Short caption shown under the active slide where the design calls for it. */
   label?: string;
   note?: string;
+  /**
+   * Vertical crop anchor for full-bleed use, as a CSS percentage. Tightly
+   * framed portraits need a higher anchor or the subject loses her head.
+   */
+  focalY?: string;
 }
 
 const photo = (
@@ -28,6 +33,10 @@ const photo = (
 
 /** Full-viewport hero rotation — the widest, most cinematic frames. */
 export const heroSlides: GalleryItem[] = [
+  photo("prom-black-sequin-high-neck", "Black sequin gown with lace sleeves in the candlelit lobby", {
+    label: "Prom",
+    focalY: "0%",
+  }),
   photo("prom-royal-blue-tulle-arrival", "Royal blue tulle gown at the car door", {
     ratio: "landscape",
     label: "Prom",

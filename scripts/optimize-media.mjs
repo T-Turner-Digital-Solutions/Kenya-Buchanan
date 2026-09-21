@@ -63,6 +63,23 @@ const sources = [
   ["kenya/Screenshot 2026-09-19 105715.png", "kenya-buchanan-portrait", 0],
   ["kenya/Screenshot 2026-09-19 120114.png", "kenya-with-bride-lakeside", { left: 6, right: 3 }],
   ["kenya/kenya-meet-portrait-original.png", "kenya-meet-portrait", 0],
+  ["kenya/kenya-studio-sewing.png", "kenya-studio-sewing", 0],
+  /*
+   * Branded "coming soon" cards standing in for Kenya B. Live session stills
+   * until stills from the broadcasts themselves exist. 16:9, like the video
+   * frames they hold a place for.
+   */
+  /*
+   * The demo client's gown, and two details cropped from the same photograph
+   * for her fabric approval — the beading on her bodice and on her skirt are
+   * her fabric, so the swatches are taken from her own gown rather than
+   * borrowed from someone else's.
+   */
+  ["portal/karlie-gown-form.png", "karlie-gown-form", 0],
+  ["portal/karlie-gown-form.png", "karlie-fabric-bodice", { left: 370, top: 170, right: 354, bottom: 1066 }],
+  ["portal/karlie-gown-form.png", "karlie-fabric-skirt", { left: 300, top: 880, right: 244, bottom: 176 }],
+  ["kenya/live-coming-soon-atelier.png", "live-coming-soon-atelier", 0],
+  ["kenya/live-coming-soon-fabrics.png", "live-coming-soon-fabrics", 0],
   // 2027 library — full-resolution photography replacing the original screenshots
   ["prom-2027/prom-royal-blue-tulle-arrival.png", "prom-royal-blue-tulle-arrival", 0],
   ["bridal-2027/bridal-rose-sequin-bouquet.png", "bridal-rose-sequin-bouquet", 0],
@@ -108,6 +125,25 @@ const sources = [
   ["maternity/maternity-blush-garden-couple.png", "maternity-blush-garden-couple", 0],
   ["maternity/maternity-blush-flowing-skirt.png", "maternity-blush-flowing-skirt", 0],
   ["maternity/maternity-blush-stone-steps.png", "maternity-blush-stone-steps", 0],
+  /*
+   * The numbered maternity triptych. Each frame carries its own title set into
+   * the photograph, so these are published whole — cropping the type out would
+   * cut into the gown or the train.
+   */
+  /*
+   * Kenya's sourcing markets — New York, Atlanta and international — as one
+   * titled panel. Published whole; the city names are set into the artwork.
+   */
+  ["bridal-2027/bridal-sourcing-markets.png", "bridal-sourcing-markets", 0],
+  ["maternity/maternity-chocolate-tulle-elegance.png", "maternity-chocolate-tulle-elegance", 0],
+  ["maternity/maternity-ivory-lace-goddess.png", "maternity-ivory-lace-goddess", 0],
+  ["maternity/maternity-black-tulle-bold.png", "maternity-black-tulle-bold", 0],
+  /*
+   * The same chocolate tulle frame with its title cropped away, for the
+   * Maternity opening — there the photograph dissolves into the page and set
+   * lettering drifting out of a fade would read as a mistake.
+   */
+  ["maternity/maternity-chocolate-tulle-elegance.png", "maternity-hero-tulle", { right: 340 }],
   // Custom — commissions, distinct from the prom season work
   ["custom/custom-fuchsia-orange-arrival.png", "custom-fuchsia-orange-arrival", 0],
   ["custom/custom-fuchsia-orange-steps.png", "custom-fuchsia-orange-steps", 0],

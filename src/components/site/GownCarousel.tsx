@@ -35,23 +35,29 @@ export function GownCarousel({
 
   return (
     <div className="flex flex-col gap-8">
-      {/* Desktop stage */}
+      {/* Desktop stage — five gowns across, the centre one dominant */}
       <div
         aria-roledescription="carousel"
         aria-label="Prom gowns"
         tabIndex={0}
         {...handlers}
-        className="relative hidden h-[34rem] touch-pan-y select-none overflow-hidden drag-grab focus:outline-none lg:block xl:h-[38rem]"
+        className="relative hidden h-[30rem] touch-pan-y select-none overflow-hidden drag-grab focus:outline-none lg:block xl:h-[33rem]"
       >
         {items.map((item, position) => {
           const src = resolveMedia(item.id);
-          // Shortest signed distance on the ring, so the track wraps smoothly.
+          // Shortest signed distance on the ring, so the fan wraps smoothly.
           let offset = position - index;
           if (offset > items.length / 2) offset -= items.length;
           if (offset < -items.length / 2) offset += items.length;
 
-          const visible = Math.abs(offset) <= 2;
+          const distance = Math.abs(offset);
+          const visible = distance <= 2;
           const isActive = offset === 0;
+
+          // Each step out sits closer, smaller and quieter than the last.
+          const step = [0, 13.5, 25][distance] ?? 25;
+          const scale = [1, 0.8, 0.62][distance] ?? 0.62;
+          const opacity = [1, 0.75, 0.5][distance] ?? 0;
 
           return (
             <button
@@ -65,24 +71,25 @@ export function GownCarousel({
                 goTo(position);
               }}
               style={{
-                transform: `translate3d(calc(-50% + ${offset * 23}rem), -50%, 0) scale(${isActive ? 1 : 0.68})`,
-                zIndex: 10 - Math.abs(offset),
+                transform: `translate3d(calc(-50% + ${Math.sign(offset) * step}rem), -50%, 0) scale(${scale})`,
+                zIndex: 10 - distance,
+                opacity: visible ? opacity : 0,
               }}
               className={cx(
-                "absolute left-1/2 top-1/2 h-full w-[24rem] overflow-hidden bg-ink transition-all duration-[900ms] ease-silk xl:w-[27rem]",
-                visible ? "opacity-100" : "pointer-events-none opacity-0",
-                !isActive && "opacity-70 hover:opacity-90",
+                "absolute left-1/2 top-1/2 h-full w-[17rem] overflow-hidden bg-ink transition-all duration-[900ms] ease-silk xl:w-[19rem]",
+                visible ? "pointer-events-auto" : "pointer-events-none",
+                !isActive && "hover:!opacity-90",
               )}
             >
               {src ? (
                 <Image
+                  draggable={false}
                   src={src}
                   alt={item.alt}
-                  draggable={false}
                   fill
                   loading="lazy"
-                  sizes="(max-width: 1024px) 0px, 27rem"
-                  className="object-cover object-[50%_18%]"
+                  sizes="(max-width: 1024px) 0px, 19rem"
+                  className="object-cover object-[50%_14%]"
                 />
               ) : null}
               {/* A light veil keeps focus centre without greying the neighbours out. */}

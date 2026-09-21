@@ -122,6 +122,20 @@
     mask-composite: intersect;
   }
 
+  /*
+   * Dissolves on every edge, for a photograph that sits in the page rather
+   * than in a frame. Both axes are masked and intersected, so the corners fade
+   * rather than staying square.
+   */
+  .fade-into-page {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 78%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 30%, black 78%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
   .fade-into-right {
     -webkit-mask-image: linear-gradient(to left, transparent 0%, black 55%, black 100%);
     mask-image: linear-gradient(to left, transparent 0%, black 55%, black 100%);
