@@ -154,6 +154,37 @@
    * not read as a regular grid, and they are dim enough to be texture rather
    * than decoration.
    */
+  /*
+   * VELVET.
+   *
+   * Three things make cloth read as velvet rather than as flat colour: a deep
+   * warm ground, broad soft pools where light falls across the pile, and a
+   * very fine grain — the nap. All three are drawn here, so there is no image
+   * to load and it scales to any section.
+   *
+   * The grain is an inline SVG turbulence, kept faint. Loud enough to see as
+   * texture and it stops looking like fabric and starts looking like noise.
+   */
+  .surface-velvet {
+    background-color: theme("colors.ink.raised");
+    background-image:
+      /* the nap */
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E"),
+      /* the sheen — where the light lies on the pile */
+      radial-gradient(ellipse 120% 85% at 18% 8%, rgba(220, 199, 156, 0.13), transparent 62%),
+      radial-gradient(ellipse 95% 75% at 88% 72%, rgba(90, 32, 50, 0.26), transparent 64%),
+      linear-gradient(157deg, rgba(255, 252, 245, 0.05) 0%, transparent 46%),
+      /* the fold at the foot of the drop */
+      radial-gradient(ellipse 140% 60% at 50% 108%, rgba(0, 0, 0, 0.45), transparent 70%);
+    background-size:
+      180px 180px,
+      auto,
+      auto,
+      auto,
+      auto;
+    background-repeat: repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  }
+
   .surface-sparkle {
     background-color: theme("colors.ivory.DEFAULT");
     background-image:
