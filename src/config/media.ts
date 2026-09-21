@@ -62,7 +62,7 @@ export const mediaSources: Record<string, string | undefined> = {
   "bridal-2": editorial("bridal-champagne-barn-garden"),
 
   /* Maternity */
-  "maternity-hero": editorial("maternity-blush-flowing-skirt"),
+  "maternity-hero": editorial("maternity-hero-tulle"),
   "maternity-card": editorial("maternity-blush-stone-steps"),
   "maternity-1": editorial("maternity-fuchsia-puff-sleeve"),
   "maternity-2": editorial("maternity-blush-garden-couple"),

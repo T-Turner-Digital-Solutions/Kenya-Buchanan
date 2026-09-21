@@ -45,9 +45,9 @@ export function PageHero({
     <section
       className={cx(
         "relative isolate flex w-full items-center overflow-hidden bg-ink",
-        size === "full" && "min-h-[82svh]",
-        size === "tall" && "min-h-[68svh]",
-        size === "mid" && "min-h-[54svh]",
+        size === "full" && "min-h-[70svh]",
+        size === "tall" && "min-h-[60svh]",
+        size === "mid" && "min-h-[48svh]",
       )}
     >
       {src ? (
@@ -66,7 +66,7 @@ export function PageHero({
 
       <div
         className={cx(
-          "relative mx-auto grid w-full max-w-editorial items-center gap-10 px-5 pb-16 pt-32 sm:px-8 lg:gap-16 lg:px-12 lg:pb-20 lg:pt-36",
+          "relative mx-auto grid w-full max-w-editorial items-center gap-10 px-5 pb-14 pt-28 sm:px-8 lg:gap-14 lg:px-12 lg:pb-16 lg:pt-32",
           "lg:grid-cols-[1fr_auto]",
         )}
       >
@@ -106,10 +106,10 @@ export function PageHero({
             className={cx(
               "relative mx-auto w-full lg:mx-0",
               wide
-                ? "max-w-[22rem] sm:max-w-[26rem] lg:w-[26rem] xl:w-[30rem]"
-                : "max-w-[15rem] sm:max-w-[17rem]",
+                ? "max-w-[19rem] sm:max-w-[22rem] lg:w-[22rem] xl:w-[25rem]"
+                : "max-w-[13rem] sm:max-w-[15rem]",
               !wide &&
-                (size === "mid" ? "lg:w-[16rem] xl:w-[18rem]" : "lg:w-[19rem] xl:w-[21rem]"),
+                (size === "mid" ? "lg:w-[14rem] xl:w-[15rem]" : "lg:w-[16rem] xl:w-[17.5rem]"),
             )}
           >
             <div
@@ -120,7 +120,7 @@ export function PageHero({
                 src={src}
                 alt={media.alt}
                 fill
-                sizes="(max-width: 1024px) 70vw, 30rem"
+                sizes="(max-width: 1024px) 60vw, 25rem"
                 priority
                 className="object-cover object-center"
               />

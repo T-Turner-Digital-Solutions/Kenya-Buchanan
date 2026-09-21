@@ -29,55 +29,50 @@ export default function MaternityPage() {
   return (
     <>
       {/*
-       * The maternity photographs are smaller originals, so the hero shows the
-       * image sharp inside a frame over a blurred wash of itself rather than
-       * stretching one file across the viewport.
+       * Maternity opens warm rather than black. The photograph is not put in a
+       * frame — it bleeds in from the right and dissolves into the page, so the
+       * gown and the paper are one surface rather than a picture sitting on a
+       * background.
        */}
-      <section className="relative isolate flex min-h-[86svh] items-center overflow-hidden bg-ink lg:min-h-[92vh]">
-        {heroSrc ? (
-          <Image
-            src={heroSrc}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="scale-110 object-cover object-[50%_35%] opacity-30 blur-2xl"
-          />
-        ) : null}
-        <div className="absolute inset-0 bg-gradient-to-br from-ink via-ink/85 to-ink/60" />
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink to-transparent" />
-
-        <div className="relative mx-auto grid w-full max-w-editorial items-center gap-12 px-5 pb-16 pt-32 sm:px-8 lg:grid-cols-[1fr_22rem] lg:gap-16 lg:px-12">
-          <div className="flex flex-col gap-6">
-            <p className="animate-fade text-[0.6rem] uppercase tracking-luxe text-champagne">
+      <section className="relative isolate overflow-hidden bg-ivory">
+        <div className="relative mx-auto grid w-full max-w-editorial items-center gap-8 px-5 pb-16 pt-28 sm:px-8 lg:grid-cols-[1fr_auto] lg:gap-14 lg:px-12 lg:pb-20 lg:pt-32">
+          <div className="flex max-w-xl flex-col gap-6">
+            <p className="animate-fade text-[0.6rem] uppercase tracking-luxe text-champagne-deep">
               The Maternity Experience
             </p>
-            <h1 className="display-caps animate-rise text-[2.9rem] text-bone sm:text-6xl lg:text-7xl">
+            <h1 className="display-caps animate-rise text-[2.9rem] text-ink sm:text-6xl lg:text-7xl">
               Maternity
             </h1>
-            <p className="animate-rise font-display text-xl italic leading-snug text-bone/80 sm:text-2xl">
+            <p className="animate-rise font-display text-xl italic leading-snug text-ink/70 sm:text-2xl">
               {maternity.tagline}
             </p>
-            <p className="max-w-lg text-sm leading-relaxed text-bone/60">{maternity.description}</p>
+            <p className="max-w-lg text-sm leading-relaxed text-ink/60">{maternity.description}</p>
             <div className="mt-2 flex flex-col gap-3 sm:flex-row">
-              <Button href="/enroll/maternity" variant="light" size="lg">
+              <Button href="/enroll/maternity" size="lg">
                 Book Maternity
               </Button>
-              <Button href="/book" variant="ghost" size="lg" className="!text-bone/60 hover:!text-bone">
+              <Button href="/book" variant="outline" size="lg">
                 Other Experiences
               </Button>
             </div>
           </div>
 
-          <div className="relative mx-auto w-[16rem] sm:w-[19rem] lg:mx-0 lg:w-full">
-            <span aria-hidden className="absolute -inset-3 border border-champagne/30" />
-            <MediaFrame
-              slot={{ id: "maternity-card", alt: "Maternity gown on the stone steps", ratio: "portrait" }}
-              className="relative"
-              sizes="(max-width: 1024px) 60vw, 352px"
-              priority
-            />
-          </div>
+          {/*
+           * No frame and no crop: the whole gown is there, and the picture
+           * dissolves into the page on its left and along its top and bottom.
+           */}
+          {heroSrc ? (
+            <div className="relative order-first mx-auto h-[19rem] w-[19rem] max-w-full sm:h-[22rem] sm:w-[22rem] lg:order-2 lg:mx-0 lg:h-[26rem] lg:w-[26rem]">
+              <Image
+                src={heroSrc}
+                alt="Chocolate tulle maternity gown with a ruffled train"
+                fill
+                priority
+                sizes="(max-width: 1024px) 70vw, 26rem"
+                className="fade-into-page object-contain object-center"
+              />
+            </div>
+          ) : null}
         </div>
       </section>
 

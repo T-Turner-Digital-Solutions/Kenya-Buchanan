@@ -138,6 +138,12 @@ const sources = [
   ["maternity/maternity-chocolate-tulle-elegance.png", "maternity-chocolate-tulle-elegance", 0],
   ["maternity/maternity-ivory-lace-goddess.png", "maternity-ivory-lace-goddess", 0],
   ["maternity/maternity-black-tulle-bold.png", "maternity-black-tulle-bold", 0],
+  /*
+   * The same chocolate tulle frame with its title cropped away, for the
+   * Maternity opening — there the photograph dissolves into the page and set
+   * lettering drifting out of a fade would read as a mistake.
+   */
+  ["maternity/maternity-chocolate-tulle-elegance.png", "maternity-hero-tulle", { right: 340 }],
   // Custom — commissions, distinct from the prom season work
   ["custom/custom-fuchsia-orange-arrival.png", "custom-fuchsia-orange-arrival", 0],
   ["custom/custom-fuchsia-orange-steps.png", "custom-fuchsia-orange-steps", 0],

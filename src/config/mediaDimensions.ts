@@ -75,6 +75,7 @@ export const mediaDimensions: Record<string, [number, number]> = {
   "/media/editorial/maternity-chocolate-tulle-elegance.webp": [1024, 1536],
   "/media/editorial/maternity-fuchsia-celebration.webp": [440, 508],
   "/media/editorial/maternity-fuchsia-puff-sleeve.webp": [536, 555],
+  "/media/editorial/maternity-hero-tulle.webp": [684, 1536],
   "/media/editorial/maternity-ivory-lace-goddess.webp": [1145, 1374],
   "/media/editorial/prom-black-sequin-chandelier.webp": [1024, 1536],
   "/media/editorial/prom-black-sequin-high-neck.webp": [1149, 1368],

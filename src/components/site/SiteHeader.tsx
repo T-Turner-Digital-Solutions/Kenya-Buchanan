@@ -14,6 +14,9 @@ import { BrandMark } from "./BrandMark";
  * becomes a solid light sticky bar. Mobile opens a full-height drawer that
  * staggers its items in.
  */
+/** Routes whose hero is light rather than black. */
+const LIGHT_HERO_ROUTES = new Set(["/maternity"]);
+
 export function SiteHeader({ tone = "auto" }: { tone?: "auto" | "light" | "dark" }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -36,7 +39,8 @@ export function SiteHeader({ tone = "auto" }: { tone?: "auto" | "light" | "dark"
     };
   }, [open]);
 
-  const overDark = tone === "dark" && !scrolled;
+  // Pages that open on a light hero need dark type in the transparent bar.
+  const overDark = tone === "dark" && !scrolled && !LIGHT_HERO_ROUTES.has(pathname);
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
