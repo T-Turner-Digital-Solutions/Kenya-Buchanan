@@ -58,9 +58,23 @@ export default function BridalPage() {
               ))}
             </dl>
           </Reveal>
-          <Reveal delay={120} className="grid grid-cols-2 gap-4 lg:gap-6">
-            <MediaFrame slot={{ id: "bridal-1", alt: "Bridal bodice, hand-beaded detail", ratio: "portrait" }} sizes="30vw" />
-            <MediaFrame slot={{ id: "bridal-2", alt: "Bridal train on the studio floor", ratio: "portrait" }} className="mt-12" sizes="30vw" />
+          {/*
+           * The pair overlaps rather than sitting in two tidy columns: each
+           * frame is wider than half the space and the second slides back over
+           * the first, so they read as one arrangement. The second is lifted
+           * and stacked above, which is what makes the overlap legible.
+           */}
+          <Reveal delay={120} className="relative flex items-start">
+            <MediaFrame
+              slot={{ id: "bridal-1", alt: "Bridal bodice, hand-beaded detail", ratio: "portrait" }}
+              className="w-[58%] shrink-0"
+              sizes="(max-width: 1024px) 58vw, 30vw"
+            />
+            <MediaFrame
+              slot={{ id: "bridal-2", alt: "Bridal train on the studio floor", ratio: "portrait" }}
+              className="relative z-10 -ml-[14%] mt-16 w-[58%] shrink-0 shadow-2xl lg:mt-24"
+              sizes="(max-width: 1024px) 58vw, 30vw"
+            />
           </Reveal>
         </div>
       </Section>
