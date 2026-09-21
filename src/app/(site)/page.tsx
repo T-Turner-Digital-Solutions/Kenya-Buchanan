@@ -59,14 +59,14 @@ export default function HomePage() {
       <ExperienceBand />
 
       {/* Experience selector */}
-      <section className="surface-sparkle pb-12 pt-32 lg:pb-16 lg:pt-36">
+      <section className="surface-sparkle pb-12 pt-52 lg:pb-16 lg:pt-72">
         <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
           <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-5 lg:mb-10">
             <div className="flex flex-col gap-2">
               <p className="text-[0.6rem] uppercase tracking-luxe text-champagne-deep">
                 The Experiences
               </p>
-              <h2 className="display-caps text-2xl text-ink sm:text-3xl">
+              <h2 className="display-caps text-2xl text-champagne-deep sm:text-3xl">
                 Choose how you are dressed.
               </h2>
             </div>

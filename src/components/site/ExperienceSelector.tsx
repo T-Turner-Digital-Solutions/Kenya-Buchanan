@@ -39,8 +39,8 @@ export function ExperienceSelector({ experiences }: { experiences: Experience[] 
                       className={cx(
                         "display-caps transition-all duration-700 ease-silk",
                         selected
-                          ? "text-[2.4rem] text-ink xl:text-[2.8rem]"
-                          : "text-[1.7rem] text-ink/30 xl:text-[2rem]",
+                          ? "text-[2.4rem] text-champagne-deep xl:text-[2.8rem]"
+                          : "text-[1.7rem] text-champagne-deep/35 xl:text-[2rem]",
                       )}
                     >
                       {experience.name}

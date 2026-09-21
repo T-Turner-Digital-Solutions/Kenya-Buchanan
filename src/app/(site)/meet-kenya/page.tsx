@@ -71,10 +71,14 @@ export default function MeetKenyaPage() {
           </div>
         ) : null}
 
-        {/* Scrims: dark where the type sits, clear where Kenya is */}
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/55 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" />
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink/85 to-transparent" />
+        {/*
+         * Scrims kept light. They only have to carry the type in the lower
+         * left — anything heavier greys out the whole portrait, and the point
+         * of this page is her face.
+         */}
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/25 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/75 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink/70 to-transparent" />
 
         <div className="relative mx-auto w-full max-w-editorial px-5 pb-14 pt-36 sm:px-8 lg:px-12 lg:pb-20">
           {/*
