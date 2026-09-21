@@ -67,6 +67,7 @@ export const promGowns: GalleryItem[] = [
   photo("prom-emerald-sequin-terrace", "Emerald sequin gown on the terrace", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-rose-satin-marquee", "Rose satin gown beneath the marquee", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-black-sequin-chandelier", "Black sequin gown under the chandeliers", { label: "Prom", note: "Custom Kenya B." }),
+  photo("prom-fuchsia-satin-overskirt", "Fuchsia beaded gown with a satin overskirt in the showroom", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-sky-blue-mermaid", "Sky blue mermaid gown at sunset", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-chocolate-velvet", "Chocolate velvet gown with a long train", { label: "Prom", note: "Custom Kenya B." }),
   photo("prom-gold-sequin-columns", "Gold sequin gown beneath lit columns", { label: "Prom", note: "Custom Kenya B." }),

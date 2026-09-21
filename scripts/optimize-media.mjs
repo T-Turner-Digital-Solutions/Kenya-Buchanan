@@ -87,6 +87,7 @@ const sources = [
   // 2027 library — full-resolution photography replacing the original screenshots
   ["prom-2027/prom-royal-blue-tulle-arrival.png", "prom-royal-blue-tulle-arrival", 0],
   ["prom-2027/prom-champagne-gold-balloons.png", "prom-champagne-gold-balloons", 0],
+  ["prom-2027/prom-fuchsia-satin-overskirt.png", "prom-fuchsia-satin-overskirt", 0],
   ["bridal-2027/bridal-rose-sequin-bouquet.png", "bridal-rose-sequin-bouquet", 0],
   ["bridal-2027/bridal-champagne-garden.png", "bridal-champagne-garden", 0],
   ["bridal-2027/bridal-ivory-lace-veil.png", "bridal-ivory-lace-veil", 0],
