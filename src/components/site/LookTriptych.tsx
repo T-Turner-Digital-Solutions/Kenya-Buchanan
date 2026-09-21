@@ -37,11 +37,17 @@ export function LookTriptych({
            */
           <li
             key={look.id}
-            className="group flex h-[26rem] items-end justify-center sm:h-[22rem] lg:h-[30rem]"
+            className="group flex items-end justify-center sm:h-[22rem] lg:h-[30rem]"
           >
+            {/*
+             * Width-driven on a phone, height-driven from `sm` up. Fixing the
+             * height on a narrow screen makes a landscape frame wider than the
+             * viewport — aspect-ratio wins over max-width once a height is
+             * set — and the page scrolls sideways.
+             */}
             <div
               style={{ aspectRatio: String(mediaAspect(look.id) ?? 2 / 3) }}
-              className="relative h-full max-w-full overflow-hidden bg-ink-soft ring-1 ring-bone/10"
+              className="relative w-full overflow-hidden bg-ink-soft ring-1 ring-bone/10 sm:h-full sm:w-auto sm:max-w-full"
             >
               <Image
                 src={src}

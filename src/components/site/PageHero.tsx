@@ -42,9 +42,9 @@ export function PageHero({
     <section
       className={cx(
         "relative isolate flex w-full items-center overflow-hidden bg-ink",
-        size === "full" && "min-h-[88svh]",
-        size === "tall" && "min-h-[82svh]",
-        size === "mid" && "min-h-[74svh]",
+        size === "full" && "sm:min-h-[88svh]",
+        size === "tall" && "sm:min-h-[82svh]",
+        size === "mid" && "sm:min-h-[74svh]",
       )}
     >
       {src ? (
@@ -68,11 +68,16 @@ export function PageHero({
        * bottom edge — the frame keeps its full height, so the gown is no
        * smaller, but her face sits below the bar instead of under it. Only
        * floor is lost off the bottom.
+       *
+       * From `sm` up only. On a phone there is no room beside the type, so the
+       * picture would sit behind it and have to be dimmed to keep the words
+       * readable — which is no picture at all. The phone gets the stacked
+       * version below instead.
        */}
       {src ? (
         <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-20 right-0 top-20 flex justify-end lg:-bottom-28 lg:top-28"
+          className="pointer-events-none absolute -bottom-20 right-0 top-20 hidden justify-end sm:flex lg:-bottom-28 lg:top-28"
         >
           <div style={{ aspectRatio: String(aspect) }} className="h-full max-w-[92vw]">
             <Image
@@ -81,7 +86,7 @@ export function PageHero({
               fill
               sizes="(max-width: 1024px) 90vw, 55vw"
               priority
-              className="fade-into-panel object-cover object-center opacity-55 sm:opacity-100"
+              className="fade-into-panel object-cover object-center"
             />
           </div>
         </div>
@@ -94,6 +99,26 @@ export function PageHero({
       />
 
       <div className="relative mx-auto w-full max-w-editorial px-5 pb-14 pt-28 sm:px-8 lg:px-12 lg:pb-16 lg:pt-32">
+        {/*
+         * Phone only. Full strength and unmasked — a fade across a face at
+         * this size hides the person rather than softening an edge.
+         */}
+        {src ? (
+          <div
+            style={{ aspectRatio: String(aspect) }}
+            className="relative mx-auto mb-10 w-[92%] max-w-[22rem] sm:hidden"
+          >
+            <Image
+              src={src}
+              alt={media.alt}
+              fill
+              sizes="92vw"
+              priority
+              className="object-cover object-center"
+            />
+          </div>
+        ) : null}
+
         <div
           className={cx(
             "flex max-w-xl flex-col gap-6",
