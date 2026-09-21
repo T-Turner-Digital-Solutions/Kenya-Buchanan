@@ -122,6 +122,15 @@ export const mediaSources: Record<string, string | undefined> = {
   "video-welcome-poster": editorial("kenya-studio-sewing"),
   "video-sourcing-poster": editorial("live-coming-soon-fabrics"),
 
+  /*
+   * The demo client's portal. Her chosen gown is what she sees when she logs
+   * in, and her two fabric swatches are details of that same gown — the
+   * beading on her bodice and on her skirt is her fabric.
+   */
+  "karlie-sketch": editorial("karlie-gown-form"),
+  "karlie-fabric-1": editorial("karlie-fabric-bodice"),
+  "karlie-fabric-2": editorial("karlie-fabric-skirt"),
+
   /* Bridal sourcing — the beading the section describes, on a finished bodice. */
   "bridal-sourcing": editorial("bridal-sourcing-markets"),
 };

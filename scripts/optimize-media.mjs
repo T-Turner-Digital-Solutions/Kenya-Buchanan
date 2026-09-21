@@ -69,6 +69,15 @@ const sources = [
    * until stills from the broadcasts themselves exist. 16:9, like the video
    * frames they hold a place for.
    */
+  /*
+   * The demo client's gown, and two details cropped from the same photograph
+   * for her fabric approval — the beading on her bodice and on her skirt are
+   * her fabric, so the swatches are taken from her own gown rather than
+   * borrowed from someone else's.
+   */
+  ["portal/karlie-gown-form.png", "karlie-gown-form", 0],
+  ["portal/karlie-gown-form.png", "karlie-fabric-bodice", { left: 370, top: 170, right: 354, bottom: 1066 }],
+  ["portal/karlie-gown-form.png", "karlie-fabric-skirt", { left: 300, top: 880, right: 244, bottom: 176 }],
   ["kenya/live-coming-soon-atelier.png", "live-coming-soon-atelier", 0],
   ["kenya/live-coming-soon-fabrics.png", "live-coming-soon-fabrics", 0],
   // 2027 library — full-resolution photography replacing the original screenshots

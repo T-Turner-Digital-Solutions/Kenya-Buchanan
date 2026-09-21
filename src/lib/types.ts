@@ -217,6 +217,22 @@ export interface JourneyStageTemplate {
   optional?: boolean;
 }
 
+/**
+ * A photograph Kenya posts to a stage while the gown is being made, so the
+ * client can watch her own dress come together rather than waiting in silence
+ * between fittings.
+ *
+ * Owner-uploaded and CLIENT-VISIBLE. Nothing internal belongs here — studio
+ * notes live in `ownerNotes`, which the portal never reads.
+ */
+export interface StageProgressPhoto {
+  id: string;
+  media: MediaSlot;
+  /** Kenya's line about what the client is looking at. */
+  caption: string;
+  postedAt: string;
+}
+
 export interface JourneyStage extends JourneyStageTemplate {
   status: StageStatus;
   completedAt?: string;
@@ -228,6 +244,8 @@ export interface JourneyStage extends JourneyStageTemplate {
   approvalId?: string;
   uploadPrompt?: UploadPrompt;
   statusNote?: string;
+  /** Photographs Kenya has posted at this stage. Absent until she posts one. */
+  progressPhotos?: StageProgressPhoto[];
 }
 
 export interface ChecklistItem {

@@ -65,6 +65,19 @@ const karlieJourney: JourneyStage[] = promTemplate.map((stage) => {
           { id: "c-d1", label: "Design direction developed", done: true },
           { id: "c-d2", label: "Sketch approved by you", done: true, clientAction: true },
         ],
+        progressPhotos: [
+          {
+            id: "pp-karlie-design",
+            media: {
+              id: "karlie-sketch",
+              alt: "Karlie's gown on the studio form — orchid beaded lace with a sweeping train",
+              ratio: "portrait",
+            },
+            caption:
+              "Your design on the form. This is the one we chose from the three you uploaded — the beading runs from the bodice all the way through the train.",
+            postedAt: "2026-09-08T19:05:00.000Z",
+          },
+        ],
       };
     case "sourcing":
       return {
@@ -155,11 +168,11 @@ export const karlieMcDowell: ClientRecord = {
     { id: "up-4", label: "Shoe height reference", kind: "image", uploadedAt: "2026-09-02T11:20:00.000Z", uploadedBy: "client" },
   ],
   designNotes:
-    "Structured bodice, deep V neckline, full skirt with movement. Karlie wants drama at the entrance and the ability to dance.",
+    "Illusion corset bodice with dimensional floral beading, fitted through the hip to a high slit, sweeping beaded train. Karlie wants drama at the entrance and the ability to dance.",
   fabric: {
     id: "fab-karlie",
-    name: "Champagne silk mikado with beaded tulle overlay",
-    descriptor: "Heavy-weight silk with a soft sheen, paired with a hand-beaded overlay",
+    name: "Orchid sequin-beaded lace over lilac silk",
+    descriptor: "Hand-beaded lace worked in swirls across the skirt, with dimensional floral beading on the bodice",
     sourcingLocation: "New York",
     sourcingStatus: "sourcing",
     approvalId: "apr-karlie-fabric",
@@ -170,8 +183,8 @@ export const karlieMcDowell: ClientRecord = {
       kind: "design_sketch",
       title: "Your Design",
       status: "approved",
-      note: "Here is where your gown landed. The bodice line is what we talked through at your appointment.",
-      media: [{ id: "karlie-sketch", alt: "Design sketch — structured bodice, full skirt", ratio: "portrait" }],
+      note: "This is the one. Of the three you uploaded, this is the line I want for you — the bodice is what we talked through at your appointment.",
+      media: [{ id: "karlie-sketch", alt: "Karlie's gown on the studio form — orchid beaded lace with a sweeping train", ratio: "portrait" }],
       requestedAt: "2026-09-05T15:00:00.000Z",
       approvedAt: "2026-09-08T19:05:00.000Z",
     },
@@ -180,10 +193,10 @@ export const karlieMcDowell: ClientRecord = {
       kind: "fabric",
       title: "Your Fabric Selection",
       status: "pending",
-      note: "This is the silk I want for your gown, with the beaded overlay for the skirt. Look at how the light moves across it.",
+      note: "This is the lace I want for your gown, and the beading for the skirt. Look at how the light moves across it.",
       media: [
-        { id: "karlie-fabric-1", alt: "Champagne silk mikado", ratio: "square" },
-        { id: "karlie-fabric-2", alt: "Beaded tulle overlay detail", ratio: "square" },
+        { id: "karlie-fabric-1", alt: "Dimensional floral beading on the bodice", ratio: "square" },
+        { id: "karlie-fabric-2", alt: "Beaded lace worked in swirls across the skirt", ratio: "square" },
       ],
       videoId: "vid-sourcing",
       requestedAt: "2026-09-16T13:30:00.000Z",
