@@ -59,7 +59,7 @@ export default function HomePage() {
       <ExperienceBand />
 
       {/* Experience selector */}
-      <section className="surface-sparkle pb-12 pt-52 lg:pb-16 lg:pt-72">
+      <section className="surface-sparkle pb-12 pt-[19rem] lg:pb-16 lg:pt-[28rem]">
         <div className="mx-auto max-w-editorial px-5 sm:px-8 lg:px-12">
           <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-5 lg:mb-10">
             <div className="flex flex-col gap-2">
