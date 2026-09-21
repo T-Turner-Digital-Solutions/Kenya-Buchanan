@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { resolveMedia } from "@/config/media";
+import { mediaAspect, resolveMedia } from "@/config/media";
 import { cx } from "@/lib/format";
 import type { MediaSlot } from "@/lib/types";
 
@@ -33,14 +33,18 @@ export function PageHero({
   children?: ReactNode;
 }) {
   const src = resolveMedia(media.id);
+  // The picture's own shape. The fade has to be applied to a box that hugs
+  // the photograph — masking a wider container fades empty space and leaves
+  // the picture with a hard vertical edge.
+  const aspect = mediaAspect(media.id) ?? 2 / 3;
 
   return (
     <section
       className={cx(
         "relative isolate flex w-full items-center overflow-hidden bg-ink",
-        size === "full" && "min-h-[80svh]",
-        size === "tall" && "min-h-[74svh]",
-        size === "mid" && "min-h-[66svh]",
+        size === "full" && "min-h-[88svh]",
+        size === "tall" && "min-h-[82svh]",
+        size === "mid" && "min-h-[74svh]",
       )}
     >
       {src ? (
@@ -59,18 +63,17 @@ export function PageHero({
 
       {/* The gown, whole, dissolving into the page. */}
       {src ? (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-y-0 right-0 w-[78%] sm:w-[62%] lg:w-[56%]"
-        >
-          <Image
-            src={src}
-            alt=""
-            fill
-            sizes="(max-width: 1024px) 75vw, 56vw"
-            priority
-            className="fade-into-panel object-contain object-right opacity-60 sm:opacity-100"
-          />
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 flex justify-end">
+          <div style={{ aspectRatio: String(aspect) }} className="h-full max-w-[92vw]">
+            <Image
+              src={src}
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 90vw, 55vw"
+              priority
+              className="fade-into-panel object-cover object-center opacity-55 sm:opacity-100"
+            />
+          </div>
         </div>
       ) : null}
 
