@@ -42,6 +42,12 @@ export interface Experience {
 export interface ExperienceConfig {
   depositLabel: string;
   depositAmountCents: number | null;
+  /**
+   * What Kenya tells a client about how long her gown takes, in her words.
+   * Owner-editable, and deliberately not a number the platform computes — a
+   * date the software promises is a date Kenya has to keep.
+   */
+  leadTimeNote: string;
   inspirationUploadsMin: number;
   inspirationUploadsMax: number;
   minimumAppointments: number;
