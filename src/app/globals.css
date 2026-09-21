@@ -165,37 +165,38 @@
    * The grain is an inline SVG turbulence, kept faint. Loud enough to see as
    * texture and it stops looking like fabric and starts looking like noise.
    */
+  /*
+   * CRUSHED VELVET.
+   *
+   * Drawn gradients could not do this. Crushed velvet is not a smooth pile
+   * with fine grain — it is creased, blotchy and high-contrast, with the nap
+   * lying in different directions and catching light in patches. That is a
+   * photograph of cloth, not a formula, so it is a photograph of cloth:
+   * Kenya's own swatch, published at 1800px and laid down with `cover` so it
+   * never tiles. Mirror-tiling it was tried first and read as a damask
+   * kaleidoscope rather than fabric.
+   *
+   * Over it, two warm washes keep the cloth in the brand's key rather than
+   * neutral grey, and a soft gradient from the left keeps type crisp where it
+   * crosses a bright crease.
+   */
   .surface-velvet {
-    background-color: theme("colors.ink.raised");
+    background-color: theme("colors.ink.DEFAULT");
     background-image:
-      /* the nap — fine pile, the thing that separates velvet from paint */
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.34'/%3E%3C/svg%3E"),
-      /* the drape — soft vertical variation, as cloth hung behind a subject */
-      repeating-linear-gradient(
-        97deg,
-        rgba(255, 250, 240, 0.028) 0px,
-        rgba(255, 250, 240, 0.028) 2px,
-        transparent 2px,
-        transparent 9px,
-        rgba(0, 0, 0, 0.05) 9px,
-        rgba(0, 0, 0, 0.05) 12px,
-        transparent 12px,
-        transparent 23px
+      linear-gradient(
+        100deg,
+        rgba(10, 10, 11, 0.72) 0%,
+        rgba(10, 10, 11, 0.42) 44%,
+        rgba(10, 10, 11, 0.2) 72%
       ),
-      /* the sheen — where the light lies on the pile */
-      radial-gradient(ellipse 110% 78% at 16% 4%, rgba(226, 205, 160, 0.2), transparent 60%),
-      radial-gradient(ellipse 90% 70% at 90% 70%, rgba(104, 36, 58, 0.34), transparent 62%),
-      linear-gradient(157deg, rgba(255, 252, 245, 0.075) 0%, transparent 44%),
-      /* the fold at the foot of the drop */
-      radial-gradient(ellipse 150% 62% at 50% 112%, rgba(0, 0, 0, 0.55), transparent 72%);
-    background-size:
-      200px 200px,
-      auto,
-      auto,
-      auto,
-      auto,
-      auto;
-    background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+      /* an even hand over the whole drop, so the creases stay quiet */
+      linear-gradient(rgba(10, 10, 11, 0.26), rgba(10, 10, 11, 0.26)),
+      radial-gradient(ellipse 110% 80% at 16% 4%, rgba(226, 205, 160, 0.11), transparent 58%),
+      radial-gradient(ellipse 90% 72% at 90% 76%, rgba(104, 36, 58, 0.22), transparent 62%),
+      url("/media/texture/velvet-crushed-black.webp");
+    background-size: auto, auto, auto, auto, cover;
+    background-position: center, center, center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   }
 
   .surface-sparkle {
