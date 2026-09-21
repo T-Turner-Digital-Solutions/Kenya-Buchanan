@@ -120,12 +120,27 @@
    * reaches a face.
    */
   .fade-into-panel {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 46%),
-      linear-gradient(to bottom, transparent 0%, black 6%, black 84%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 46%),
-      linear-gradient(to bottom, transparent 0%, black 6%, black 84%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+    /*
+     * One axis only, unconditionally. Two mask layers have to be composited,
+     * and a browser that takes the layers but not the compositing keyword
+     * renders an EMPTY mask — the photograph disappears completely. Some
+     * mobile browsers do exactly that. So the safe single-axis fade is the
+     * baseline and the second axis is added only where compositing is known
+     * to work.
+     */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 46%);
+    mask-image: linear-gradient(to right, transparent 0%, black 46%);
+  }
+
+  @supports (mask-composite: intersect) or (-webkit-mask-composite: source-in) {
+    .fade-into-panel {
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 46%),
+        linear-gradient(to bottom, transparent 0%, black 6%, black 84%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 46%),
+        linear-gradient(to bottom, transparent 0%, black 6%, black 84%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
   }
 
   /*
@@ -181,12 +196,36 @@
    * gown rather than softening an edge.
    */
   .fade-into-page {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 11%, black 90%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 5%, black 93%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 11%, black 90%, transparent 100%),
-      linear-gradient(to bottom, transparent 0%, black 5%, black 93%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-composite: intersect;
+    /* Single axis baseline — see the note on .fade-into-panel. */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 93%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 93%, transparent 100%);
+  }
+
+  @supports (mask-composite: intersect) or (-webkit-mask-composite: source-in) {
+    .fade-into-page {
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 11%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 5%, black 93%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 11%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 5%, black 93%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
+  }
+
+  /*
+   * No mask at all on a phone. These fades exist to dissolve a picture into
+   * the space around it, and on a narrow screen there is no space around it —
+   * the picture is the full width of the column. Dropping the mask also takes
+   * the whole class of mask-compositing bugs off the table on the devices
+   * where they are most likely, which is how a gown came to be visible on a
+   * desktop and missing on a phone.
+   */
+  @media (max-width: 639px) {
+    .fade-into-panel,
+    .fade-into-page {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
   }
 
   .fade-into-right {
