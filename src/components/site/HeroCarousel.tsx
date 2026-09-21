@@ -165,12 +165,13 @@ export function HeroCarousel({
          * narrower frame changes the card's width rather than shifting the
          * layout, and each keeps its own proportions.
          *
-         * No frame: each slide dissolves into the page on every edge, the same
-         * as the rest of the site. The fade is a mask on the picture and the
-         * cross-fade is opacity on its wrapper, so they do not fight — a slide
-         * can fade out while still dissolving into the page.
+         * No frame: each slide dissolves into the velvet on its right, and
+         * keeps a clean edge on the left where it meets the type. The fade is
+         * a mask on the picture and the cross-fade is opacity on its wrapper,
+         * so they do not fight — a slide can fade out while still dissolving
+         * into the cloth.
          */}
-        <div className="relative order-first mx-auto h-[17rem] w-[17rem] max-w-full sm:h-[20rem] sm:w-[20rem] lg:order-2 lg:mx-0 lg:h-[25rem] lg:w-[25rem] xl:h-[28rem] xl:w-[28rem]">
+        <div className="relative order-first mx-auto h-[19rem] w-[19rem] max-w-full sm:h-[24rem] sm:w-[24rem] lg:order-2 lg:mx-0 lg:h-[31rem] lg:w-[31rem] xl:h-[35rem] xl:w-[35rem]">
           {slides.map((slide, position) => {
             const src = resolveMedia(slide.id);
             const active = position === index;
@@ -192,8 +193,8 @@ export function HeroCarousel({
                   fill
                   priority={position === 0}
                   loading={position === 0 ? undefined : "lazy"}
-                  sizes="(max-width: 1024px) 55vw, 22rem"
-                  className="object-cover object-center sm:fade-into-page"
+                  sizes="(max-width: 1024px) 60vw, 30rem"
+                  className="object-cover object-center sm:fade-right-edge"
                 />
               </figure>
             );
