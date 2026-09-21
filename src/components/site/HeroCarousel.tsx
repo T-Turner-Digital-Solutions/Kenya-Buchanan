@@ -48,7 +48,7 @@ export function HeroCarousel({
       aria-label="Kenya Buchanan gowns"
       tabIndex={0}
       {...handlers}
-      className="relative isolate flex min-h-[80svh] w-full touch-pan-y select-none items-center overflow-hidden bg-ink focus:outline-none lg:min-h-[88svh]"
+      className="relative isolate flex min-h-[80svh] w-full touch-pan-y select-none items-center overflow-hidden bg-ink-raised focus:outline-none lg:min-h-[88svh]"
     >
       {/* The room: the active photograph, blurred and dimmed. */}
       {slides.map((slide, position) => {
@@ -82,11 +82,11 @@ export function HeroCarousel({
       })}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-ink/75"
+        className="absolute inset-0 bg-gradient-to-t from-ink-raised via-ink-raised/85 to-ink-raised/75"
       />
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink to-transparent"
+        className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-ink-raised to-transparent"
       />
 
       {/* Overlay */}

@@ -16,6 +16,12 @@ const config: Config = {
           DEFAULT: "#0A0A0B",
           soft: "#141417",
           muted: "#26262C",
+          /*
+           * A lifted black for the opening section — lighter than ink, but
+           * warm rather than neutral, so it never reads as grey next to the
+           * bone and champagne.
+           */
+          raised: "#1D1A17",
         },
         charcoal: {
           DEFAULT: "#1A1A1E",
