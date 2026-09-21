@@ -19,9 +19,11 @@ const OUT_EDITORIAL = "public/media/editorial";
 const OUT_BRAND = "public/media/brand";
 
 /**
- * [source file, published name, pixels to crop from the top]
+ * [source file, published name, pixels to crop from the top, optional grade]
  * An object may be given instead of a number to crop other edges too:
  * { top, right, bottom, left }
+ * The grade is { brightness, saturation, contrast, lift, gamma, sharpen } and
+ * is for photographs that arrive under-lit.
  */
 const sources = [
   // Prom
@@ -66,7 +68,18 @@ const sources = [
   // Kenya
   ["kenya/Screenshot 2026-09-19 105715.png", "kenya-buchanan-portrait", 0],
   ["kenya/Screenshot 2026-09-19 120114.png", "kenya-with-bride-lakeside", { left: 6, right: 3 }],
-  ["kenya/kenya-meet-portrait-original.png", "kenya-meet-portrait", 0],
+  /*
+   * Shot under stage light and several stops down. Graded up here so the Meet
+   * Kenya opening reads as a studio portrait rather than a dim room.
+   */
+  ["kenya/kenya-meet-portrait-original.png", "kenya-meet-portrait", 0, {
+    brightness: 1.26,
+    saturation: 1.06,
+    contrast: 1.1,
+    lift: -6,
+    gamma: 1.12,
+    sharpen: { sigma: 0.9, m1: 0.4, m2: 1.1 },
+  }],
   ["kenya/kenya-studio-sewing.png", "kenya-studio-sewing", 0],
   /*
    * Branded "coming soon" cards standing in for Kenya B. Live session stills
@@ -164,7 +177,7 @@ await mkdir(OUT_BRAND, { recursive: true });
 
 let published = 0;
 
-for (const [file, name, crop] of sources) {
+for (const [file, name, crop, grade] of sources) {
   let image = sharp(`${SRC}/${file}`);
   const meta = await image.metadata();
 
@@ -181,6 +194,24 @@ for (const [file, name, crop] of sources) {
       width: meta.width - left - right,
       height: meta.height - top - bottom,
     });
+  }
+
+  /*
+   * An optional grade, for photographs that come in under-lit. Baking it here
+   * rather than filtering in CSS means the browser downloads the picture
+   * Kenya wants people to see, and one file is graded once rather than every
+   * device grading it on every paint.
+   */
+  if (grade) {
+    if (grade.brightness || grade.saturation) {
+      image = image.modulate({
+        brightness: grade.brightness ?? 1,
+        saturation: grade.saturation ?? 1,
+      });
+    }
+    if (grade.contrast) image = image.linear(grade.contrast, grade.lift ?? 0);
+    if (grade.gamma) image = image.gamma(grade.gamma);
+    if (grade.sharpen) image = image.sharpen(grade.sharpen);
   }
 
   const info = await image.webp({ quality: 86, effort: 5 }).toFile(`${OUT_EDITORIAL}/${name}.webp`);

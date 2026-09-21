@@ -230,8 +230,20 @@
       89px 89px,
       211px 211px,
       167px 167px,
-      100% 150px;
+      100% 260px;
     background-repeat: repeat, repeat, repeat, repeat, no-repeat;
+  }
+
+  /* A shorter drop on a phone — 260px of it is most of the screen. */
+  @media (max-width: 639px) {
+    .surface-sparkle {
+      background-size:
+        137px 137px,
+        89px 89px,
+        211px 211px,
+        167px 167px,
+        100% 180px;
+    }
   }
 
   /*

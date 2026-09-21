@@ -105,4 +105,5 @@ export const mediaDimensions: Record<string, [number, number]> = {
   "/media/editorial/prom-royal-blue-velvet.webp": [1098, 1433],
   "/media/editorial/prom-silver-pearl-cape.webp": [1145, 1374],
   "/media/editorial/prom-sky-blue-mermaid.webp": [1219, 1290],
+  "/media/texture/velvet-crushed-black.webp": [1800, 1125],
 };
